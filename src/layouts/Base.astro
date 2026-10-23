@@ -45,7 +45,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       <a href={en ? '/en/#directions' : '/lechenie/'} aria-current={path.startsWith('/lechenie/') ? 'page' : undefined}>{t.dir}</a>
       {!en && <a href="/pacientam/" aria-current={path.startsWith('/pacientam/') ? 'page' : undefined}>Пациентам</a>}
       <a href={home + '#results'}>{t.res}</a>
-      <a href={home + '#about'}>{t.about}</a>
+      <a href={en ? '/en/#about' : '/obo-mne/'} aria-current={path.startsWith('/obo-mne/') ? 'page' : undefined}>{t.about}</a>
       {en && <a href="/en/#contacts">{t.contacts}</a>}
     </nav>
     <div class="lang" aria-label={t.lang}><a href={ruPath} lang="ru" aria-current={en ? undefined : "true"}>RU</a><a href={enPath} lang="en" aria-current={en ? "true" : undefined}>EN</a></div>

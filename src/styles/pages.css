@@ -203,3 +203,5 @@ html[data-theme="light"] .record b{color:#9a7212}
 .case-fig .pair2 span{position:absolute;left:10px;top:10px;font-weight:700;font-size:.78rem;padding:4px 10px;border-radius:999px;background:rgba(15,14,12,.8);color:#efeae0}
 .case-fig .pair2 div+div span{background:var(--gold);color:var(--on-gold)}
 .case-fig figcaption{margin-top:10px;font-size:.9rem;color:var(--quiet)}
+.about-hero{margin:0 0 clamp(36px,5vw,56px);border-radius:20px;overflow:hidden;max-width:420px}
+.about-hero img{width:100%;height:auto;display:block}
