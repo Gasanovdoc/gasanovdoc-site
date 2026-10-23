@@ -95,6 +95,8 @@
 
 @media print{
   @page{margin:16mm 14mm}
+  html,body{width:auto!important;overflow:visible}
+  .wrap{max-width:none!important}
   :root{--ground:#fff;--panel:#fff;--panel-2:#f2f2f2;--rule:#cfcfcf;--ivory:#111;--soft:#222;--quiet:#555;--gold:#7a5a00}
   body{background:#fff;color:#111;font-size:12pt;line-height:1.5}
   body::before,.top,footer,.toc,.toolbar,.tabs,.cta-box,.crumbs,.no-print,.chk{display:none!important}
@@ -102,8 +104,77 @@
   .page-head h1{font-size:24pt}
   .doc{display:block;padding:0}
   .js .tabpanel[hidden]{display:block}
-  .tabpanel+.tabpanel{break-before:page}
+  .callout.alert{background:#fbeeea!important;border-color:#e3a596!important}
+  .callout.alert strong{color:#a33a24!important}
+  .page-head .wrap,.doc{padding-left:0!important;padding-right:0!important}
+  .print-brand{display:flex!important}
+  .body section>h2{font-size:18pt;padding-top:10pt}
+  .body h3{font-size:13pt}
+  .body section+section{margin-top:16pt}
+  h2,h3{break-after:avoid}
   .checklist li{break-inside:avoid;padding:6pt 0!important}
   .callout{break-inside:avoid}
   a{color:#111;text-decoration:none}
 }
+
+/* stronger section headings inside articles */
+.body section>h2,.body>section>h2{padding-top:26px;border-top:1px solid var(--rule);position:relative;font-size:clamp(2.1rem,3.6vw,2.8rem);font-weight:700}
+.body section>h2::before{content:"";position:absolute;left:0;top:-1px;width:56px;height:3px;border-radius:2px;background:var(--gold)}
+.body h3{font-weight:700;font-size:1.6rem;color:var(--ivory)}
+.body .cta-box h2,.faq h2{}
+.cta-box h2{border:0;padding:0}
+.cta-box h2::before{display:none}
+
+/* ===== light theme ===== */
+.theme-btn{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;border:1px solid var(--rule);background:transparent;color:var(--soft);cursor:pointer;transition:color .2s,border-color .2s}
+.theme-btn:hover{color:var(--gold);border-color:var(--gold)}
+.theme-btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round}
+.theme-btn .sun{display:none}
+html[data-theme="light"] .theme-btn .sun{display:block}
+html[data-theme="light"] .theme-btn .moon{display:none}
+
+html[data-theme="light"]{
+  --ground:#f6f3ec;--panel:#ffffff;--panel-2:#ece6da;--rule:#e1d9ca;
+  --ivory:#1a1814;--soft:#46403a;--quiet:#7a7366;
+  --gold:#b8891a;--gold-soft:rgba(184,137,26,.12);--on-gold:#ffffff;
+  color-scheme:light;
+}
+html[data-theme="light"] a,html[data-theme="light"] .keyfacts b,html[data-theme="light"] .checklist li em,html[data-theme="light"] .card .go,html[data-theme="light"] .chk{color:#8f6a0c}
+html[data-theme="light"] .btn-fill{color:#fff}
+html[data-theme="light"] .btn-fill:hover{background:#a37812;border-color:#a37812}
+html[data-theme="light"] .btn-line{border-color:rgba(26,24,20,.25);color:var(--ivory)}
+html[data-theme="light"] .btn-line:hover{border-color:var(--gold);color:#8f6a0c}
+html[data-theme="light"] .menu a:hover,html[data-theme="light"] .crumbs a:hover,html[data-theme="light"] .toc a:hover{color:#8f6a0c}
+html[data-theme="light"] .callout.alert{background:#fbeeea;border-color:#e3a596}
+html[data-theme="light"] .callout.alert strong{color:#a33a24}
+html[data-theme="light"] .card:hover,html[data-theme="light"] .dtile:hover{box-shadow:0 14px 34px rgba(60,45,20,.12)}
+/* home: video & photo blocks stay dark islands with light text */
+html[data-theme="light"] .hero-video::after{background:linear-gradient(90deg,var(--ground) 0%,rgba(246,243,236,.6) 22%,rgba(246,243,236,0) 55%)}
+@media (max-width:860px){html[data-theme="light"] .hero-video::after{background:linear-gradient(0deg,var(--ground) 0%,rgba(246,243,236,.3) 45%,rgba(246,243,236,0) 70%)}}
+html[data-theme="light"] .hero-video figcaption{color:#efeae0;text-shadow:0 1px 6px #000}
+html[data-theme="light"] .travel-head{--ivory:#efeae0;--soft:#d6cfc1;color:#efeae0}
+html[data-theme="light"] .journey li{box-shadow:0 18px 40px rgba(60,45,20,.12)}
+html[data-theme="light"] .journey li::before{color:rgba(184,137,26,.16)}
+html[data-theme="light"] .shot figcaption{color:#efeae0}
+html[data-theme="light"] .dtile:hover,html[data-theme="light"] .dtile:focus-visible{background:#fff}
+html[data-theme="light"] .ill .ln{stroke:#9b927f}
+html[data-theme="light"] .ill .lt{stroke:#cfc6b4}
+html[data-theme="light"] .ill .hl{stroke:#8d8370}
+html[data-theme="light"] .ill .hf{fill:#e6dfd1;stroke:#8d8370}
+html[data-theme="light"] .ill .dot{fill:#fff}
+html[data-theme="light"] .ill .to{stroke:#8d8370}
+html[data-theme="light"] .ill .ti{stroke:#e3dccd}
+html[data-theme="light"] .ill .ts{stroke:rgba(26,24,20,.16)}
+html[data-theme="light"] .ill .ts2{stroke:rgba(26,24,20,.25)}
+html[data-theme="light"] .ill .bonefill{fill:#ece6da}
+html[data-theme="light"] .ill .plate{fill:rgba(120,110,95,.2);stroke:rgba(120,110,95,.45)}
+html[data-theme="light"] .dtile:hover .to{stroke:#5f584c}
+html[data-theme="light"] .dtile:hover .ti{stroke:#d8cfbd}
+html[data-theme="light"] .mark,html[data-theme="light"] .menu a[aria-current="page"]{color:var(--ivory)}
+html[data-theme="light"] .menu a,html[data-theme="light"] .crumbs a,html[data-theme="light"] .toc a,html[data-theme="light"] .byline a,html[data-theme="light"] .lang a{color:var(--soft)}
+html[data-theme="light"] .lang a[aria-current]{color:var(--ivory)}
+html[data-theme="light"] .menu a:hover,html[data-theme="light"] .crumbs a:hover,html[data-theme="light"] .toc a:hover,html[data-theme="light"] .byline a:hover{color:#8f6a0c}
+html[data-theme="light"] .card,html[data-theme="light"] .video-card{color:var(--ivory)}
+
+.print-brand{display:none;flex-wrap:wrap;gap:4pt 12pt;max-width:100%;justify-content:space-between;border-bottom:1.5pt solid #b8891a;padding-bottom:6pt;margin-bottom:10pt;font-size:9pt;color:#555}
+.print-brand b{font-family:var(--serif);font-size:14pt;color:#111}
