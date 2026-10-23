@@ -1,7 +1,9 @@
 ---
 import '../styles/global.css';
-interface Props { title: string; description: string; jsonld?: string; lang?: string }
-const { title, description, jsonld, lang = 'ru' } = Astro.props;
+import '../styles/pages.css';
+interface Props { title: string; description: string; jsonld?: string; lang?: string; ogType?: string }
+const { title, description, jsonld, lang = 'ru', ogType = 'website' } = Astro.props;
+const path = Astro.url.pathname;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 <!doctype html>
@@ -12,28 +14,29 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   <title>{title}</title>
   <meta name="description" content={description}>
   <link rel="canonical" href={canonical}>
-  <meta property="og:type" content="website">
+  <meta property="og:type" content={ogType}>
   <meta property="og:title" content={title}>
   <meta property="og:description" content={description}>
   <meta property="og:url" content={canonical}>
   <meta property="og:image" content={new URL('/media/portrait.webp', Astro.site)}>
   <meta property="og:locale" content="ru_RU">
   <meta name="theme-color" content="#0f0e0c">
+  <script is:inline>document.documentElement.classList.add('js')</script>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   {jsonld && <script type="application/ld+json" set:html={jsonld} />}
 </head>
 <body>
 <header class="top">
   <div class="wrap">
-    <a class="mark" href="#top">Тимур Гасанов<small>нейрохирург</small></a>
+    <a class="mark" href="/">Тимур Гасанов<small>нейрохирург</small></a>
     <nav class="menu" aria-label="Разделы сайта">
-      <a href="#directions">Болезни и лечение</a>
-      <a href="#travel">Пациентам</a>
-      <a href="#results">Результаты</a>
-      <a href="#about">Обо мне</a>
+      <a href="/#directions">Болезни и лечение</a>
+      <a href="/pacientam/" aria-current={path.startsWith('/pacientam/') ? 'page' : undefined}>Пациентам</a>
+      <a href="/#results">Результаты</a>
+      <a href="/#about">Обо мне</a>
     </nav>
-    <div class="lang" aria-label="Язык"><a href="#top" aria-current="true">RU</a><a href="#top" lang="en">EN</a></div>
-    <a class="btn btn-fill" href="#request">Записаться</a>
+    <div class="lang" aria-label="Язык"><a href={path} aria-current="true">RU</a><a href="/en/" lang="en">EN</a></div>
+    <a class="btn btn-fill" href="/#request">Записаться</a>
   </div>
 </header>
 <slot />

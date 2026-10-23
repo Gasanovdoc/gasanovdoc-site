@@ -1,0 +1,109 @@
+/* Inner pages: articles, patient guides. Same palette as the home page; reading column + sticky contents on wide screens. */
+.menu a[aria-current="page"]{color:var(--ivory)}
+
+.page-head{padding-block:clamp(40px,6vw,72px) clamp(28px,4vw,44px);border-bottom:1px solid var(--rule)}
+.crumbs{display:flex;flex-wrap:wrap;gap:6px 10px;margin:0 0 22px;padding:0;list-style:none;font-size:.88rem;color:var(--quiet)}
+.crumbs li+li::before{content:"/";margin-right:10px;color:var(--rule)}
+.crumbs a{color:var(--soft);text-decoration:none}
+.crumbs a:hover{color:var(--gold)}
+.page-head h1{font-size:clamp(2.5rem,5.4vw,4.2rem);line-height:1.02;max-width:20ch}
+.page-head .lede{max-width:62ch;font-size:1.12rem;margin-top:20px}
+.byline{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;margin-top:26px;font-size:.9rem;color:var(--quiet)}
+.byline a{color:var(--soft);text-decoration:none;border-bottom:1px solid var(--rule)}
+.byline a:hover{color:var(--gold);border-color:var(--gold)}
+
+.keyfacts{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:34px;background:var(--rule);border:1px solid var(--rule);border-radius:16px;overflow:hidden}
+.keyfacts div{background:var(--panel);padding:18px 20px}
+.keyfacts b{display:block;font:700 1.35rem/1.15 var(--sans);color:var(--gold)}
+.keyfacts span{display:block;margin-top:4px;font-size:.88rem;line-height:1.45;color:var(--soft)}
+@media (max-width:760px){.keyfacts{grid-template-columns:1fr 1fr}}
+
+.doc{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:clamp(32px,6vw,88px);padding-block:clamp(40px,6vw,72px) clamp(64px,8vw,104px)}
+.doc>section,.doc .body>section{padding:0}
+.toc{position:sticky;top:104px;align-self:start;font-size:.92rem}
+.toc p{font-weight:600;color:var(--quiet);margin-bottom:10px}
+.toc ol{list-style:none;margin:0;padding:0;border-left:1px solid var(--rule)}
+.toc a{display:block;padding:6px 0 6px 16px;margin-left:-1px;border-left:1px solid transparent;color:var(--soft);text-decoration:none;line-height:1.4}
+.toc a:hover{color:var(--gold);border-color:var(--gold)}
+@media (max-width:980px){.doc{grid-template-columns:1fr}.toc{display:none}}
+
+.body{max-width:720px}
+.body section+section{margin-top:clamp(44px,5vw,64px)}
+.body h2{font-size:clamp(1.9rem,3.2vw,2.5rem);line-height:1.08;scroll-margin-top:100px}
+.body h3{font-size:1.4rem;margin-top:30px;scroll-margin-top:100px}
+.body p{margin-top:16px;color:var(--soft)}
+.body p strong,.body li strong{color:var(--ivory);font-weight:600}
+.body ul,.body ol{margin:16px 0 0;padding-left:1.3em;color:var(--soft)}
+.body li{margin-top:8px;padding-left:4px}
+.body li::marker{color:var(--gold)}
+.body a{text-decoration-thickness:1px;text-underline-offset:3px}
+
+.callout{margin-top:24px;padding:20px 22px;border-radius:14px;background:var(--panel);border:1px solid var(--rule)}
+.callout p:first-child{margin-top:0}
+.callout.alert{border-color:rgba(214,92,72,.55);background:rgba(214,92,72,.08)}
+.callout.alert strong{color:#f0a493}
+
+.video-card{display:grid;grid-template-columns:120px 1fr;gap:20px;align-items:center;margin-top:24px;padding:16px;border-radius:16px;background:var(--panel);border:1px solid var(--rule);text-decoration:none;color:var(--ivory);transition:border-color .2s}
+.video-card:hover{border-color:var(--gold)}
+.video-card .vthumb{position:relative;aspect-ratio:4/3;border-radius:10px;overflow:hidden;background:#000}
+.video-card .vthumb img{width:100%;height:100%;object-fit:cover;opacity:.7}
+.video-card .vthumb svg{position:absolute;inset:0;margin:auto;width:38px;height:38px}
+.video-card .vtext b{display:block;font-weight:600;font-size:1.05rem;line-height:1.35}
+.video-card .vtext small{display:block;margin-top:4px;font-size:.88rem;color:var(--quiet)}
+.video-card:hover b{color:var(--gold)}
+
+.faq details{border-top:1px solid var(--rule)}
+.faq details:last-child{border-bottom:1px solid var(--rule)}
+.faq summary{list-style:none;cursor:pointer;padding:18px 40px 18px 0;position:relative;font-weight:600;color:var(--ivory);line-height:1.4}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";position:absolute;right:6px;top:50%;width:10px;height:10px;border-right:1.5px solid var(--gold);border-bottom:1.5px solid var(--gold);transform:translateY(-70%) rotate(45deg);transition:transform .2s}
+.faq details[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
+.faq details p{margin:0 0 18px}
+
+.cta-box{margin-top:clamp(48px,6vw,72px);padding:clamp(26px,4vw,40px);border-radius:20px;background:var(--panel);border:1px solid var(--rule)}
+.cta-box h2{font-size:clamp(1.8rem,3vw,2.3rem)}
+.cta-box p{max-width:52ch}
+.cta-box .btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+
+/* checklist & print-friendly guide pages */
+.toolbar{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.toolbar .btn{min-height:48px;padding:0 24px;font-size:.95rem;gap:10px}
+.toolbar svg{width:18px;height:18px}
+.checklist{list-style:none!important;padding:0!important;margin-top:18px!important;border-top:1px solid var(--rule)}
+.checklist li{display:grid;grid-template-columns:1fr auto;gap:6px 24px;align-items:baseline;margin:0!important;padding:14px 0!important;border-bottom:1px solid var(--rule)}
+.checklist li span{color:var(--ivory)}
+.checklist li small{display:block;grid-column:1;font-size:.88rem;color:var(--quiet);line-height:1.5}
+.checklist li em{grid-column:2;grid-row:1;font-style:normal;font-weight:600;font-size:.92rem;color:var(--gold);white-space:nowrap}
+@media (max-width:560px){.checklist li{grid-template-columns:1fr}.checklist li em{grid-column:1;grid-row:auto}}
+
+.tabs{display:inline-flex;gap:4px;margin-top:30px;padding:5px;border-radius:999px;background:var(--panel);border:1px solid var(--rule)}
+.tabs button{min-height:46px;padding:0 22px;border:0;border-radius:999px;background:transparent;color:var(--soft);font:600 .95rem/1 var(--sans);cursor:pointer;transition:background-color .2s,color .2s}
+.tabs button:hover{color:var(--ivory)}
+.tabs button[aria-selected="true"]{background:var(--gold);color:var(--on-gold)}
+.js .tabpanel[hidden]{display:none}
+@media (max-width:520px){.tabs{display:flex}.tabs button{flex:1;padding:0 12px}}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:8px}
+.card{display:flex;flex-direction:column;gap:10px;padding:26px;border-radius:18px;background:var(--panel);border:1px solid var(--rule);text-decoration:none;color:var(--ivory);transition:border-color .2s,transform .2s}
+.card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.card h3{font-size:1.6rem}
+.card p{color:var(--soft);font-size:.98rem;margin:0}
+.card .go{margin-top:auto;padding-top:10px;color:var(--gold);font-weight:600;font-size:.92rem}
+
+/* draft-only marker for facts Timur must confirm; remove before launch */
+.chk{background:rgba(212,166,42,.16);color:#f1cf74;border-radius:4px;padding:0 5px;font-size:.82em;font-weight:600}
+
+@media print{
+  @page{margin:16mm 14mm}
+  :root{--ground:#fff;--panel:#fff;--panel-2:#f2f2f2;--rule:#cfcfcf;--ivory:#111;--soft:#222;--quiet:#555;--gold:#7a5a00}
+  body{background:#fff;color:#111;font-size:12pt;line-height:1.5}
+  body::before,.top,footer,.toc,.toolbar,.tabs,.cta-box,.crumbs,.no-print,.chk{display:none!important}
+  .page-head{padding:0 0 10pt;border:0}
+  .page-head h1{font-size:24pt}
+  .doc{display:block;padding:0}
+  .js .tabpanel[hidden]{display:block}
+  .tabpanel+.tabpanel{break-before:page}
+  .checklist li{break-inside:avoid;padding:6pt 0!important}
+  .callout{break-inside:avoid}
+  a{color:#111;text-decoration:none}
+}

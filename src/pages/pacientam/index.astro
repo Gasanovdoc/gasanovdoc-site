@@ -1,0 +1,38 @@
+---
+import Base from '../../layouts/Base.astro';
+const title = 'Пациентам: подготовка к операции и восстановление';
+const description = 'Памятки нейрохирурга для пациентов: анализы для госпитализации, уход за раной после операции, восстановление и упражнения.';
+---
+<Base title={title} description={description}>
+<main id="top">
+  <header class="page-head">
+    <div class="wrap">
+      <ol class="crumbs">
+        <li><a href="/">Главная</a></li>
+        <li aria-current="page">Пациентам</li>
+      </ol>
+      <h1>Пациентам</h1>
+      <p class="lede">Памятки, которые я обычно объясняю на приёме и при выписке. Их можно открыть с телефона, скачать или распечатать.</p>
+    </div>
+  </header>
+  <div class="wrap" style="padding-block:clamp(40px,6vw,72px) clamp(64px,8vw,104px)">
+    <div class="cards">
+      <a class="card" href="/pacientam/analizy-dlya-gospitalizacii/">
+        <h3>Анализы для госпитализации</h3>
+        <p>Какие анализы и обследования сдать перед плановой операцией, сколько они действительны и что взять с собой.</p>
+        <span class="go">Список и PDF</span>
+      </a>
+      <a class="card" href="/pacientam/uhod-za-ranoy/">
+        <h3>Как ухаживать за раной</h3>
+        <p>Перевязки, мытьё, снятие швов и тревожные признаки — отдельно для раны на голове и на теле.</p>
+        <span class="go">Памятка</span>
+      </a>
+      <a class="card" href="https://t.me/gasanovDOC/28" target="_blank" rel="noopener">
+        <h3>Упражнения для кистей</h3>
+        <p>Пять упражнений при синдроме запястного канала и после операции. Видео в Telegram-канале.</p>
+        <span class="go">Смотреть в Telegram</span>
+      </a>
+    </div>
+  </div>
+</main>
+</Base>
