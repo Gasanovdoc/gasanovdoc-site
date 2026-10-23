@@ -1,0 +1,20 @@
+[Unit]
+Description=gasanovdoc.ru — приём заявок
+After=network-online.target
+
+[Service]
+User=gasanovdoc
+Group=gasanovdoc
+WorkingDirectory=/var/www/gasanovdoc/server
+EnvironmentFile=/etc/gasanovdoc/api.env
+ExecStart=/usr/bin/node index.mjs
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ReadWritePaths=/var/lib/gasanovdoc
+
+[Install]
+WantedBy=multi-user.target

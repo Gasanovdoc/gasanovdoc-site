@@ -1,0 +1,8 @@
+{
+  "name": "gasanovdoc-api",
+  "private": true,
+  "type": "module",
+  "description": "Приём заявок с сайта: сохранение на сервере, письмо на почту, сигнал в Telegram без персональных данных",
+  "scripts": { "start": "node index.mjs", "test": "node --test test.mjs" },
+  "dependencies": { "nodemailer": "^6.9.16" }
+}

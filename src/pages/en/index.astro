@@ -96,9 +96,10 @@ const jsonld = `{"@context":"https://schema.org","@type":"Physician","name":"Tim
         </div>
         <div class="field"><label for="f-link">Link to your scans</label><input id="f-link" name="link" inputmode="url" placeholder="Google Drive, Dropbox, hospital cloud — if any"></div>
         <div class="field"><label for="f-text">What concerns you</label><textarea id="f-text" name="text" maxlength="1000" placeholder="Briefly: symptoms, for how long, which tests you have had"></textarea></div>
-        <label class="consent"><input type="checkbox" id="f-ok" required><span>I consent to the processing of my personal data, including health information, in accordance with the <a href="#">privacy policy</a>.</span></label>
+        <label class="consent"><input type="checkbox" id="f-ok" name="consent" required><span>I give my <a href="/soglasie-na-obrabotku-dannyh/" target="_blank">consent to the processing of personal data</a>, including health information, and confirm that I have read the <a href="/politika-konfidencialnosti/" target="_blank">privacy policy</a> (in Russian).</span></label>
         <button class="btn btn-fill" type="submit">Send request</button>
-        <p class="done" role="status">Preview only: the form is not connected yet.</p>
+        <div class="hp" aria-hidden="true"><label>Leave this field empty<input name="website" tabindex="-1" autocomplete="off"></label></div>
+        <p class="form-msg" id="formMsg" role="status" aria-live="polite"></p>
       </form>
     </div>
   </section>

@@ -96,9 +96,10 @@ const jsonld = `{"@context":"https://schema.org","@type":"Physician","name":"Т�
         </div>
         <div class="field"><label for="f-link">Ссылка на снимки</label><input id="f-link" name="link" inputmode="url" placeholder="Яндекс Диск, облако клиники — если есть"></div>
         <div class="field"><label for="f-text">Что беспокоит</label><textarea id="f-text" name="text" maxlength="1000" placeholder="Коротко: жалобы, как давно, какие исследования проходили"></textarea></div>
-        <label class="consent"><input type="checkbox" id="f-ok" required><span>Даю согласие на обработку персональных данных, в том числе сведений о здоровье, в соответствии с <a href="#">политикой конфиденциальности</a>.</span></label>
+        <label class="consent"><input type="checkbox" id="f-ok" name="consent" required><span>Даю <a href="/soglasie-na-obrabotku-dannyh/" target="_blank">согласие на обработку персональных данных</a>, в том числе сведений о состоянии здоровья, и подтверждаю, что ознакомлен(а) с <a href="/politika-konfidencialnosti/" target="_blank">политикой конфиденциальности</a>.</span></label>
         <button class="btn btn-fill" type="submit">Записаться</button>
-        <p class="done" role="status">Это макет: заявка пока никуда не отправляется. На сайте она придёт вам на почту, а в Telegram — сигнал о новой заявке.</p>
+        <div class="hp" aria-hidden="true"><label>Не заполняйте это поле<input name="website" tabindex="-1" autocomplete="off"></label></div>
+        <p class="form-msg" id="formMsg" role="status" aria-live="polite"></p>
       </form>
     </div>
   </section>

@@ -24,8 +24,23 @@
   var sx=null;pair.addEventListener('touchstart',function(e){sx=e.touches[0].clientX},{passive:true});
   pair.addEventListener('touchend',function(e){if(sx===null)return;var dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>50)show(cur+(dx<0?1:-1));sx=null});
   ['mening','cea2d','cea3d','aneurysm','bypass'].forEach(function(k){['before','after'].forEach(function(t){var i=new Image();i.src='/media/cases/'+k+'-'+t+'.webp'})});
-  var f=document.getElementById('reqForm');
-  f.addEventListener('submit',function(e){e.preventDefault();f.classList.add('sent')});
+  var f=document.getElementById('reqForm'),msg=document.getElementById('formMsg'),btn=f.querySelector('button[type=submit]');
+  var T=isEn?{need:'Please fill in your name and a way to contact you.',ok:'Please tick the consent box.',send:'Sending…',done:'Thank you! Your request has been received. I will reply personally, usually within a few days.',err:'Could not send the request. Please try again or write to me on Telegram: @gasanov_doc'}
+            :{need:'Укажите, как к вам обращаться, и почту, Telegram или телефон.',ok:'Отметьте согласие на обработку данных.',send:'Отправляю…',done:'Спасибо! Заявка получена. Я отвечу лично, обычно в течение нескольких дней.',err:'Не удалось отправить заявку. Попробуйте ещё раз или напишите мне в Telegram: @gasanov_doc'};
+  function say(t,kind){msg.textContent=t;msg.className='form-msg '+(kind||'')}
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var E=f.elements,v=function(k){return (E[k].value||'').trim()};
+    var d={name:v('name'),contact:v('contact'),phone:v('phone'),link:v('link'),text:v('text'),consent:E['consent'].checked,website:E['website'].value,lang:isEn?'en':'ru'};
+    if(!d.name||!(d.contact||d.phone)){say(T.need,'err');return}
+    if(!d.consent){say(T.ok,'err');return}
+    btn.disabled=true;say(T.send);
+    fetch('/api/zayavka',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)})
+      .then(function(r){if(!r.ok)throw 0;return r.json()})
+      .then(function(){f.reset();f.classList.add('sent');say(T.done,'ok')})
+      .catch(function(){say(T.err,'err')})
+      .then(function(){btn.disabled=false});
+  });
 
   var v=document.getElementById('heroVideo');
   if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches){v.removeAttribute('autoplay');v.pause()}
