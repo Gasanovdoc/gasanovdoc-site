@@ -194,3 +194,12 @@ html[data-theme="light"] .record b{color:#9a7212}
 .hub-ops ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0 32px;border-top:1px solid var(--rule)}
 .hub-ops li{padding:14px 0 14px 22px;border-bottom:1px solid var(--rule);position:relative;color:var(--soft)}
 .hub-ops li::before{content:"";position:absolute;left:2px;top:50%;width:8px;height:8px;border-radius:50%;background:var(--gold);transform:translateY(-50%)}
+
+/* before/after pair inside an article */
+.case-fig{margin:26px 0 0}
+.case-fig .pair2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.case-fig .pair2 div{position:relative;border-radius:14px;overflow:hidden;background:#050505;aspect-ratio:1}
+.case-fig img{width:100%;height:100%;object-fit:cover;display:block}
+.case-fig .pair2 span{position:absolute;left:10px;top:10px;font-weight:700;font-size:.78rem;padding:4px 10px;border-radius:999px;background:rgba(15,14,12,.8);color:#efeae0}
+.case-fig .pair2 div+div span{background:var(--gold);color:var(--on-gold)}
+.case-fig figcaption{margin-top:10px;font-size:.9rem;color:var(--quiet)}
