@@ -1,0 +1,47 @@
+---
+import '../styles/global.css';
+interface Props { title: string; description: string; jsonld?: string; lang?: string }
+const { title, description, jsonld, lang = 'ru' } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html>
+<html lang={lang}>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  <link rel="canonical" href={canonical}>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:url" content={canonical}>
+  <meta property="og:image" content={new URL('/media/portrait.webp', Astro.site)}>
+  <meta property="og:locale" content="ru_RU">
+  <meta name="theme-color" content="#0f0e0c">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  {jsonld && <script type="application/ld+json" set:html={jsonld} />}
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="mark" href="#top">Тимур Гасанов<small>нейрохирург</small></a>
+    <nav class="menu" aria-label="Разделы сайта">
+      <a href="#directions">Болезни и лечение</a>
+      <a href="#travel">Пациентам</a>
+      <a href="#results">Результаты</a>
+      <a href="#about">Обо мне</a>
+    </nav>
+    <div class="lang" aria-label="Язык"><a href="#top" aria-current="true">RU</a><a href="#top" lang="en">EN</a></div>
+    <a class="btn btn-fill" href="#request">Записаться</a>
+  </div>
+</header>
+<slot />
+<footer>
+  <div class="wrap">
+    <p class="warn">Имеются противопоказания. Необходима консультация специалиста.</p>
+    <p><a href="#">Политика конфиденциальности</a>&nbsp;&nbsp;&nbsp;<a href="#">Согласие на обработку данных</a></p>
+  </div>
+</footer>
+</body>
+</html>

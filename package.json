@@ -1,0 +1,17 @@
+{
+  "name": "gasanovdoc-site",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
+    "@fontsource/cormorant-garamond": "^5.3.0",
+    "@fontsource/manrope": "^5.3.0",
+    "astro": "^5.18.2"
+  },
+  "private": true,
+  "type": "module"
+}
