@@ -183,3 +183,14 @@ html[data-theme="light"] .record{position:relative;z-index:1;width:fit-content;m
 html[data-theme="light"] .record span{color:var(--soft)}
 html[data-theme="light"] .record b{color:#9a7212}
 .mark,.top .btn{white-space:nowrap}
+
+/* hubs */
+.hub{padding-block:clamp(40px,6vw,72px) clamp(64px,8vw,104px)}
+.hub-h{font-size:clamp(1.9rem,3.2vw,2.5rem);margin-bottom:22px}
+.card-plain{cursor:default}
+.card-plain:hover{border-color:var(--rule);transform:none}
+.card-plain h3{color:var(--soft)}
+.hub-ops{margin-top:clamp(48px,6vw,72px)}
+.hub-ops ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0 32px;border-top:1px solid var(--rule)}
+.hub-ops li{padding:14px 0 14px 22px;border-bottom:1px solid var(--rule);position:relative;color:var(--soft)}
+.hub-ops li::before{content:"";position:absolute;left:2px;top:50%;width:8px;height:8px;border-radius:50%;background:var(--gold);transform:translateY(-50%)}

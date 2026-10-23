@@ -1,0 +1,25 @@
+---
+import Base from '../../layouts/Base.astro';
+import { directions } from '../../data/directions';
+---
+<Base title="Болезни и лечение: направления нейрохирургии" description="Сосудистая нейрохирургия, опухоли мозга, позвоночник, периферические нервы, гидроцефалия и дефекты черепа — заболевания, которые я лечу, и операции.">
+<main id="top">
+  <header class="page-head">
+    <div class="wrap">
+      <ol class="crumbs"><li><a href="/">Главная</a></li><li aria-current="page">Болезни и лечение</li></ol>
+      <h1>Болезни и лечение</h1>
+      <p class="lede">Пять направлений, в которых я оперирую. Внутри — заболевания, статьи о них и операции.</p>
+    </div>
+  </header>
+  <div class="wrap hub">
+    <div class="cards">
+      {directions.map((d) => (
+        <a class="card" href={`/lechenie/${d.slug}/`}>
+          <h3>{d.title}</h3>
+          <p>{d.conditions.map((c) => c.name).join(' · ')}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</main>
+</Base>
