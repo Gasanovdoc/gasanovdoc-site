@@ -63,6 +63,6 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <p><a href="#">{t.privacy}</a>&nbsp;&nbsp;&nbsp;<a href="#">{t.consent}</a></p>
   </div>
 </footer>
-<script is:inline>try{if('scrollRestoration' in history)history.scrollRestoration='manual';if(!location.hash)window.scrollTo(0,0);}catch(e){}</script>
+<script is:inline>try{if('scrollRestoration' in history)history.scrollRestoration='manual';if(!location.hash){window.scrollTo(0,0);var h=document.querySelector('header.top');if(h&&window.parent!==window)h.scrollIntoView({block:'start'});}}catch(e){}</script>
 </body>
 </html>
