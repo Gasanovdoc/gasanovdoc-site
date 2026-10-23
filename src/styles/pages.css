@@ -178,3 +178,8 @@ html[data-theme="light"] .card,html[data-theme="light"] .video-card{color:var(--
 
 .print-brand{display:none;flex-wrap:wrap;gap:4pt 12pt;max-width:100%;justify-content:space-between;border-bottom:1.5pt solid #b8891a;padding-bottom:6pt;margin-bottom:10pt;font-size:9pt;color:#555}
 .print-brand b{font-family:var(--serif);font-size:14pt;color:#111}
+/* light theme: stats row sits on a solid card so it never blends into the video */
+html[data-theme="light"] .record{position:relative;z-index:1;width:fit-content;max-width:100%;padding:18px 28px;border-radius:18px;background:rgba(255,255,255,.94);border:1px solid var(--rule);box-shadow:0 12px 32px rgba(60,45,20,.12);backdrop-filter:blur(10px)}
+html[data-theme="light"] .record span{color:var(--soft)}
+html[data-theme="light"] .record b{color:#9a7212}
+.mark,.top .btn{white-space:nowrap}
