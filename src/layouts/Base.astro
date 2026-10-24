@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import '../styles/pages.css';
 import { site } from '../data/site';
+import { directions } from '../data/directions';
 interface Props { title: string; description: string; jsonld?: string; lang?: 'ru' | 'en'; ogType?: string; ruPath?: string; enPath?: string }
 const { title, description, jsonld, lang = 'ru', ogType = 'website' } = Astro.props;
 const path = Astro.url.pathname;
@@ -57,8 +58,53 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       <svg class="sun" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="3.6"/><path d="M10 1.8v2M10 16.2v2M1.8 10h2M16.2 10h2M4.2 4.2l1.4 1.4M14.4 14.4l1.4 1.4M4.2 15.8l1.4-1.4M14.4 5.6l1.4-1.4"/></svg>
     </button>
     <a class="btn btn-fill" href={home + '#request'}>{t.cta}</a>
+    <button class="burger" type="button" aria-label={en ? 'Menu' : 'Меню'} aria-expanded="false" aria-controls="mnav">
+      <span></span><span></span><span></span>
+    </button>
   </div>
+  <nav class="mnav" id="mnav" aria-label={t.nav} hidden>
+    <div class="wrap">
+      {en ? (
+        <ul class="mnav-main">
+          <li><a href="/en/#directions">{t.dir}</a></li>
+          <li><a href="/en/#request">Send your scans</a></li>
+          <li><a href="/en/#results">{t.res}</a></li>
+          <li><a href="/en/#about">{t.about}</a></li>
+          <li><a href="/en/#contacts">{t.contacts}</a></li>
+        </ul>
+      ) : (
+        <Fragment>
+          <p class="mnav-h"><a href="/lechenie/">Болезни и лечение</a></p>
+          <ul class="mnav-sub">
+            {directions.map((d) => <li><a href={`/lechenie/${d.slug}/`} aria-current={path.startsWith(`/lechenie/${d.slug}/`) ? 'page' : undefined}>{d.title}</a></li>)}
+          </ul>
+          <ul class="mnav-main">
+            <li><a href="/pacientam/">Пациентам</a></li>
+            <li><a href="/#results">Результаты</a></li>
+            <li><a href="/obo-mne/">Обо мне</a></li>
+            <li><a href="/#contacts">Контакты</a></li>
+          </ul>
+        </Fragment>
+      )}
+      <div class="mnav-foot">
+        <div class="lang"><a href={ruPath} lang="ru" aria-current={en ? undefined : "true"}>RU</a><a href={enPath} lang="en" aria-current={en ? "true" : undefined}>EN</a></div>
+        <button class="theme-btn" type="button" aria-label={t.theme} onclick="(function(d){var t=d.dataset.theme==='light'?'dark':'light';d.dataset.theme=t;try{localStorage.setItem('theme',t)}catch(e){}})(document.documentElement)">
+          <svg class="moon" viewBox="0 0 20 20" aria-hidden="true"><path d="M16 12.5A7 7 0 0 1 7.5 4a6.5 6.5 0 1 0 8.5 8.5z"/></svg>
+          <svg class="sun" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="3.6"/><path d="M10 1.8v2M10 16.2v2M1.8 10h2M16.2 10h2M4.2 4.2l1.4 1.4M14.4 14.4l1.4 1.4M4.2 15.8l1.4-1.4M14.4 5.6l1.4-1.4"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
 </header>
+<script is:inline>
+(function(){
+  var b=document.querySelector('.burger'),n=document.getElementById('mnav');
+  function set(open){b.setAttribute('aria-expanded',open);n.hidden=!open;document.documentElement.classList.toggle('menu-open',open)}
+  b.addEventListener('click',function(){set(n.hidden)});
+  n.addEventListener('click',function(e){if(e.target.closest('a'))set(false)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false)});
+})();
+</script>
 <slot />
 <footer>
   <div class="wrap">

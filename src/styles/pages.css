@@ -220,3 +220,33 @@ html[data-theme="light"] .form-msg.err{color:#a33a24}
 .cookie .btn{min-height:40px;padding:0 18px;flex:none}
 /* images can't be dragged out or long-pressed to save */
 img,video{-webkit-user-drag:none;user-select:none;-webkit-touch-callout:none}
+
+/* mobile menu */
+.burger{display:none;width:44px;height:44px;flex:none;border:1px solid var(--rule);border-radius:12px;background:transparent;cursor:pointer;position:relative}
+.burger span{position:absolute;left:12px;right:12px;height:2px;border-radius:2px;background:var(--ivory);transition:transform .2s,opacity .2s}
+.burger span:nth-child(1){top:14px}.burger span:nth-child(2){top:21px}.burger span:nth-child(3){top:28px}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mnav{border-top:1px solid var(--rule);background:var(--ground);max-height:calc(100dvh - 76px);overflow-y:auto}
+.mnav[hidden]{display:none}
+.mnav .wrap{padding-top:18px;padding-bottom:24px}
+.mnav ul{list-style:none;margin:0;padding:0}
+.mnav a{display:block;text-decoration:none;color:var(--ivory)}
+.mnav-h a{font-family:var(--serif);font-weight:600;font-size:1.6rem;padding:6px 0}
+.mnav-sub{margin:4px 0 14px!important;border-left:1px solid var(--rule)}
+.mnav-sub a{padding:9px 0 9px 16px;color:var(--soft);font-size:1rem}
+.mnav-sub a[aria-current="page"]{color:var(--gold)}
+.mnav-main{border-top:1px solid var(--rule)}
+.mnav-main a{font-family:var(--serif);font-weight:600;font-size:1.45rem;padding:12px 0;border-bottom:1px solid var(--rule)}
+.mnav-foot{display:flex;align-items:center;justify-content:space-between;margin-top:18px}
+.mnav-foot .lang{display:flex!important}
+.mnav-foot .lang a{display:inline-block;padding:8px 12px}
+.mnav-foot .lang a[aria-current]{display:inline-block!important}
+html.menu-open{overflow:hidden}
+@media (max-width:1000px){.burger{display:block}}
+@media (max-width:1000px){.top .wrap>.lang,.top .wrap>.theme-btn{display:none}}
+@media (min-width:1001px){.mnav{display:none!important}}
+html[data-theme="light"] .mnav a{color:var(--ivory)}
+html[data-theme="light"] .mnav-sub a{color:var(--soft)}
+.top .mnav .wrap{display:block;min-height:0;gap:0}
