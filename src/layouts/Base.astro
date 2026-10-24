@@ -81,6 +81,21 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     </script>
   </Fragment>
 )}
-<script is:inline>try{if('scrollRestoration' in history)history.scrollRestoration='manual';if(!location.hash){window.scrollTo(0,0);var h=document.querySelector('header.top');if(h&&window.parent!==window)h.scrollIntoView({block:'start'});}}catch(e){}</script>
+<script is:inline>
+(function(){
+  // защита изображений и видео: без контекстного меню, перетаскивания и долгого нажатия
+  document.addEventListener('contextmenu',function(e){if(e.target.closest('img,video,picture,figure,.ill'))e.preventDefault()});
+  document.addEventListener('dragstart',function(e){if(e.target.closest('img,video'))e.preventDefault()});
+  // при копировании большого фрагмента текста добавляем ссылку на источник
+  document.addEventListener('copy',function(e){
+    var sel=String(document.getSelection()||'');
+    if(sel.length<200||!e.clipboardData)return;
+    var src=location.href.split('#')[0];
+    e.clipboardData.setData('text/plain',sel+'\n\nИсточник: '+src+' — Тимур Гасанов, нейрохирург');
+    e.preventDefault();
+  });
+})();
+</script>
+<script is:inline>try{if('scrollRestoration' in history)history.scrollRestoration='manual';if(!location.hash){window.scrollTo(0,0);if(window.parent!==window){document.body.scrollIntoView({block:'start'});addEventListener('load',function(){document.body.scrollIntoView({block:'start'})})}}}catch(e){}</script>
 </body>
 </html>
