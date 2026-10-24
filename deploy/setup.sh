@@ -7,6 +7,12 @@ REPO="https://github.com/Gasanovdoc/gasanovdoc-site.git"
 APP=/var/www/gasanovdoc
 DOMAIN=gasanovdoc.ru
 
+echo "== Файл подкачки 1 ГБ (чтобы сборке сайта хватило памяти на тарифе с 1 ГБ)"
+if ! swapon --show | grep -q .; then
+  fallocate -l 1G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile
+  grep -q '/swapfile' /etc/fstab || echo '/swapfile none swap sw 0 0' >> /etc/fstab
+fi
+
 echo "== Обновление системы и установка пакетов"
 export DEBIAN_FRONTEND=noninteractive
 apt-get update -y && apt-get upgrade -y
