@@ -36,9 +36,9 @@ iptables -t mangle -S | grep TCPMSS | sed 's/^/  /'
 
 echo "== Включаю HTTP/2 для HTTPS (быстрее на мобильных)"
 CONF=/etc/nginx/sites-available/gasanovdoc
-if grep -q 'listen 443 ssl;' "$CONF" && ! grep -q 'http2 on' "$CONF"; then
-  sed -i 's/listen 443 ssl;/listen 443 ssl;\n    http2 on;/' "$CONF"
-fi
-nginx -t && systemctl reload nginx
+cp "$CONF" /root/gasanovdoc-nginx.bak
+sed -i -E 's/listen (\[::\]:)?443 ssl( ipv6only=on)?;/listen \1443 ssl http2\2;/' "$CONF"
+if nginx -t 2>/dev/null; then systemctl reload nginx; echo "  HTTP/2 включён"
+else cp /root/gasanovdoc-nginx.bak "$CONF"; nginx -t && systemctl reload nginx; echo "  HTTP/2 не включён, настройки возвращены"; fi
 
 echo "Готово. Проверьте сайт с телефона без VPN."
