@@ -109,21 +109,37 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 <footer>
   <div class="wrap">
     <p class="warn">{t.warn}</p>
-    <p><a href="/politika-konfidencialnosti/">{t.privacy}</a>&nbsp;&nbsp;&nbsp;<a href="/soglasie-na-obrabotku-dannyh/">{t.consent}</a></p>
+    <p><a href="/politika-konfidencialnosti/">{t.privacy}</a>&nbsp;&nbsp;&nbsp;<a href="/soglasie-na-obrabotku-dannyh/">{t.consent}</a>&nbsp;&nbsp;&nbsp;<a href="/soglasie-cookie/">{en ? 'Cookies' : 'Файлы cookie'}</a>{site.yandexMetrikaId && <Fragment>&nbsp;&nbsp;&nbsp;<a href="#" onclick="window.cookieSettings&&window.cookieSettings();return false">{en ? 'Cookie settings' : 'Настройки cookie'}</a></Fragment>}</p>
   </div>
 </footer>
 {site.yandexMetrikaId && (
   <Fragment>
-    <script is:inline define:vars={{ id: Number(site.yandexMetrikaId) }}>
-      (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js','ym');
-      ym(id,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true});
-    </script>
-    <div class="cookie" id="cookie" hidden>
-      <p>{en ? 'This site uses cookies and Yandex Metrica to analyse traffic.' : 'Сайт использует файлы cookie и Яндекс Метрику для анализа посещаемости.'} <a href="/politika-konfidencialnosti/">{en ? 'Privacy policy' : 'Подробнее'}</a></p>
-      <button type="button" class="btn btn-line" id="cookieOk">{en ? 'OK' : 'Понятно'}</button>
+    <div class="cookie" id="cookie" role="dialog" aria-live="polite" aria-label={en ? 'Cookie consent' : 'Согласие на cookie'} hidden>
+      <p>{en
+        ? <Fragment>We use cookies and Yandex Metrica to understand how patients use the site. By clicking “Accept”, you consent to the processing of cookies under the <a href="/soglasie-cookie/">cookie consent</a> and the <a href="/politika-konfidencialnosti/">privacy policy</a> (in Russian).</Fragment>
+        : <Fragment>Мы используем файлы cookie и Яндекс Метрику, чтобы понимать, как пациенты пользуются сайтом. Нажимая «Принять», вы даёте <a href="/soglasie-cookie/">согласие на обработку файлов cookie</a> в соответствии с <a href="/politika-konfidencialnosti/">политикой обработки персональных данных</a>.</Fragment>}
+      </p>
+      <div class="cookie-btns">
+        <button type="button" class="btn btn-fill" id="cookieYes">{en ? 'Accept' : 'Принять'}</button>
+        <button type="button" class="btn btn-line" id="cookieNo">{en ? 'Decline' : 'Отказаться'}</button>
+      </div>
     </div>
-    <script is:inline>
-      try{var c=document.getElementById('cookie');if(!localStorage.getItem('cookieOk')){c.hidden=false}document.getElementById('cookieOk').onclick=function(){c.hidden=true;try{localStorage.setItem('cookieOk','1')}catch(e){}}}catch(e){}
+    <script is:inline define:vars={{ id: Number(site.yandexMetrikaId) }}>
+      (function(){
+        var KEY='cookieConsent', VER='2026-10-25';
+        function get(){try{var v=JSON.parse(localStorage.getItem(KEY)||'null');return v&&v.ver===VER?v.ok:null}catch(e){return null}}
+        function put(ok){try{localStorage.setItem(KEY,JSON.stringify({ok:ok,ver:VER,at:new Date().toISOString()}))}catch(e){}}
+        function metrika(){
+          if(window.ym)return;
+          (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js','ym');
+          ym(id,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true});
+        }
+        var box=document.getElementById('cookie'), st=get();
+        if(st===true)metrika(); else if(st===null)box.hidden=false;
+        document.getElementById('cookieYes').onclick=function(){put(true);box.hidden=true;metrika()};
+        document.getElementById('cookieNo').onclick=function(){put(false);box.hidden=true};
+        window.cookieSettings=function(){try{localStorage.removeItem(KEY)}catch(e){};location.reload()};
+      })();
     </script>
   </Fragment>
 )}

@@ -250,3 +250,8 @@ html.menu-open{overflow:hidden}
 html[data-theme="light"] .mnav a{color:var(--ivory)}
 html[data-theme="light"] .mnav-sub a{color:var(--soft)}
 .top .mnav .wrap{display:block;min-height:0;gap:0}
+.cookie{flex-wrap:wrap;max-width:640px}
+.cookie p{margin:0;flex:1 1 320px}
+.cookie-btns{display:flex;gap:10px;flex:none}
+.cookie-btns .btn{min-height:42px;padding:0 20px}
+@media (max-width:520px){.cookie-btns{width:100%}.cookie-btns .btn{flex:1}}
