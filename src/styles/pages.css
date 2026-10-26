@@ -243,7 +243,7 @@ img,video{-webkit-user-drag:none;user-select:none;-webkit-touch-callout:none}
 .mnav-foot .lang{display:flex!important}
 .mnav-foot .lang a{display:inline-block;padding:8px 12px}
 .mnav-foot .lang a[aria-current]{display:inline-block!important}
-html.menu-open{overflow:hidden}
+
 @media (max-width:1000px){.burger{display:block}}
 @media (max-width:1000px){.top .wrap>.lang,.top .wrap>.theme-btn{display:none}}
 @media (min-width:1001px){.mnav{display:none!important}}

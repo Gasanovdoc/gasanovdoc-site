@@ -113,6 +113,11 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   b.addEventListener('click',function(){set(n.hidden)});
   n.addEventListener('click',function(e){if(e.target.closest('a'))set(false)});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false)});
+  // касание или клик мимо меню закрывает его, а свайп сразу листает страницу
+  function outside(e){if(!n.hidden&&!e.target.closest('.top'))set(false)}
+  document.addEventListener('touchstart',outside,{passive:true});
+  document.addEventListener('mousedown',outside);
+  addEventListener('scroll',function(){if(!n.hidden&&scrollY>n.offsetHeight+120)set(false)},{passive:true});
 })();
 </script>
 <slot />
