@@ -153,6 +153,19 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         if(st===true)metrika(); else if(st===null)box.hidden=false;
         document.getElementById('cookieYes').onclick=function(){put(true);box.hidden=true;metrika()};
         document.getElementById('cookieNo').onclick=function(){put(false);box.hidden=true};
+        // цели Метрики: клики по контактам (срабатывают, только если посетитель принял cookie)
+        window.goal=function(g){try{if(window.ym)ym(id,'reachGoal',g)}catch(e){}};
+        document.addEventListener('click',function(e){
+          var a=e.target.closest('a');if(!a)return;var h=a.getAttribute('href')||'';
+          if(h.indexOf('tel:')===0)goal('click_phone');
+          else if(h.indexOf('mailto:')===0)goal('click_email');
+          else if(/t\.me\/gasanov_doc/i.test(h))goal('click_telegram');
+          else if(/clc\.li\/jmoBz/.test(h))goal('click_max');
+          else if(/t\.me\/gasanovDOC/.test(h))goal('click_channel');
+          else if(/prodoctorov\.ru/.test(h))goal('click_prodoctorov');
+          else if(/\.pdf$/i.test(h))goal('download_pdf');
+          else if(/#request$/.test(h))goal('click_zapis');
+        });
         window.cookieSettings=function(){try{localStorage.removeItem(KEY)}catch(e){};location.reload()};
       })();
     </script>

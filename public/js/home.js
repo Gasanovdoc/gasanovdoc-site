@@ -51,7 +51,7 @@
     btn.disabled=true;say(T.send);
     fetch('/api/zayavka',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)})
       .then(function(r){if(!r.ok)throw 0;return r.json()})
-      .then(function(){f.classList.add('sent');try{localStorage.setItem('zayavkaSent',String(Date.now()))}catch(e){};say(T.done,'ok')})
+      .then(function(){f.classList.add('sent');try{localStorage.setItem('zayavkaSent',String(Date.now()))}catch(e){};say(T.done,'ok');if(window.goal)goal('zayavka_sent')})
       .catch(function(){say(T.err,'err')})
       .then(function(){btn.disabled=false});
   }
