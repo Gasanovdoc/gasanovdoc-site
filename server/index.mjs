@@ -47,12 +47,24 @@ function clean(v, max) {
   return String(v ?? '').replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, '').trim().slice(0, max);
 }
 
+const reEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+const reTg = /^(@|https?:\/\/t\.me\/|t\.me\/)?[A-Za-z][A-Za-z0-9_]{4,31}$/;
+export function phoneOk(x) {
+  const d = x.replace(/\D/g, '');
+  if (!/^[+\d\s()\-.]+$/.test(x) || d.length < 10 || d.length > 15) return false;
+  if (/^[78]/.test(d) && d.length !== 11 && !x.startsWith('+')) return false;
+  return true;
+}
+export function contactOk(x) { return reEmail.test(x) || reTg.test(x) || phoneOk(x); }
+
 function validate(body) {
   const d = {};
   for (const [k, max] of Object.entries(LIMITS)) d[k] = clean(body[k], max);
   d.lang = body.lang === 'en' ? 'en' : 'ru';
   if (!d.name) return [null, 'name'];
   if (!d.contact && !d.phone) return [null, 'contact'];
+  if (d.contact && !contactOk(d.contact)) return [null, 'contact'];
+  if (d.phone && !phoneOk(d.phone)) return [null, 'phone'];
   if (body.consent !== true) return [null, 'consent'];
   return [d, null];
 }

@@ -25,21 +25,51 @@
   pair.addEventListener('touchend',function(e){if(sx===null)return;var dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>50)show(cur+(dx<0?1:-1));sx=null});
   ['mening','cea2d','cea3d','aneurysm','bypass'].forEach(function(k){['before','after'].forEach(function(t){var i=new Image();i.src='/media/cases/'+k+'-'+t+'.webp'})});
   var f=document.getElementById('reqForm'),msg=document.getElementById('formMsg'),btn=f.querySelector('button[type=submit]');
-  var T=isEn?{need:'Please fill in your name and a way to contact you.',ok:'Please tick the consent box.',send:'Sending…',done:'Thank you! Your request has been received. I will reply personally, usually within a few days.',err:'Could not send the request. Please try again or write to me on Telegram: @gasanov_doc'}
-            :{need:'Укажите, как к вам обращаться, и почту, Telegram или телефон.',ok:'Отметьте согласие на обработку данных.',send:'Отправляю…',done:'Спасибо! Заявка получена. Я отвечу лично, обычно в течение нескольких дней.',err:'Не удалось отправить заявку. Попробуйте ещё раз или напишите мне в Telegram: @gasanov_doc'};
+  var T=isEn?{name:'Please tell me your name.',contact:'Enter an email, Telegram @username or WhatsApp number.',badContact:'Check the contact: it should be an email (name@mail.com), a Telegram @username or a phone number.',badPhone:'Check the phone number: 10–15 digits, for example +7 963 050-35-39.',ok:'Please tick the consent box.',send:'Sending…',done:'Thank you! Your request has been received. I will reply personally, usually within a few days.',err:'Could not send the request. Please try again or write to me on Telegram: @gasanov_doc',again:'Your request has already been sent. Send another one?',yes:'Yes, send',no:'No'}
+            :{name:'Укажите, как к вам обращаться.',contact:'Укажите почту, Telegram или номер телефона.',badContact:'Проверьте контакт: нужна почта (name@mail.ru) или имя пользователя Telegram (@username).',badPhone:'Проверьте номер телефона: 10–15 цифр, например +7 963 050-35-39.',ok:'Отметьте согласие на обработку данных.',send:'Отправляю…',done:'Спасибо! Заявка получена. Я отвечу лично, обычно в течение нескольких дней.',err:'Не удалось отправить заявку. Попробуйте ещё раз или напишите мне в Telegram: @gasanov_doc',again:'Заявка уже отправлена. Отправить ещё одну?',yes:'Да, отправить',no:'Нет'};
+  var E=f.elements, val=function(k){return (E[k].value||'').trim()};
+  var reEmail=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/, reTg=/^(@|https?:\/\/t\.me\/|t\.me\/)?[A-Za-z][A-Za-z0-9_]{4,31}$/;
+  function digits(x){return x.replace(/[^\d]/g,'')}
+  function phoneOk(x){var d=digits(x);if(!/^[+\d\s()\-.]+$/.test(x))return false;if(d.length<10||d.length>15)return false;if(/^[78]/.test(d)&&d.length!==11&&!/^\+/.test(x))return false;return true}
+  function contactOk(x){return reEmail.test(x)||reTg.test(x)||phoneOk(x)}
   function say(t,kind){msg.textContent=t;msg.className='form-msg '+(kind||'')}
-  f.addEventListener('submit',function(e){
-    e.preventDefault();
-    var E=f.elements,v=function(k){return (E[k].value||'').trim()};
-    var d={name:v('name'),contact:v('contact'),phone:v('phone'),link:v('link'),text:v('text'),consent:E['consent'].checked,website:E['website'].value,lang:isEn?'en':'ru'};
-    if(!d.name||!(d.contact||d.phone)){say(T.need,'err');return}
-    if(!d.consent){say(T.ok,'err');return}
+  function mark(k,bad){E[k].classList.toggle('invalid',!!bad);E[k].setAttribute('aria-invalid',bad?'true':'false')}
+  ['name','contact','phone'].forEach(function(k){E[k].addEventListener('input',function(){mark(k,false)})});
+  function sentRecently(){try{return Date.now()-Number(localStorage.getItem('zayavkaSent')||0)<864e5}catch(e){return f.classList.contains('sent')}}
+  function check(){
+    var name=val('name'),c=val('contact'),ph=val('phone');
+    ['name','contact','phone'].forEach(function(k){mark(k,false)});
+    if(!name){mark('name',1);E['name'].focus();return T.name}
+    if(!c&&!ph){mark('contact',1);E['contact'].focus();return T.contact}
+    if(c&&!contactOk(c)){mark('contact',1);E['contact'].focus();return T.badContact}
+    if(ph&&!phoneOk(ph)){mark('phone',1);E['phone'].focus();return T.badPhone}
+    if(!E['consent'].checked)return T.ok;
+    return '';
+  }
+  function send(){
+    var d={name:val('name'),contact:val('contact'),phone:val('phone'),link:val('link'),text:val('text'),consent:E['consent'].checked,website:E['website'].value,lang:isEn?'en':'ru'};
     btn.disabled=true;say(T.send);
     fetch('/api/zayavka',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)})
       .then(function(r){if(!r.ok)throw 0;return r.json()})
-      .then(function(){f.reset();f.classList.add('sent');say(T.done,'ok')})
+      .then(function(){f.classList.add('sent');try{localStorage.setItem('zayavkaSent',String(Date.now()))}catch(e){};say(T.done,'ok')})
       .catch(function(){say(T.err,'err')})
       .then(function(){btn.disabled=false});
+  }
+  function askAgain(){
+    msg.className='form-msg ask';msg.textContent='';
+    var p=document.createElement('span');p.textContent=T.again;
+    var y=document.createElement('button');y.type='button';y.className='btn btn-fill';y.textContent=T.yes;
+    var n=document.createElement('button');n.type='button';n.className='btn btn-line';n.textContent=T.no;
+    var w=document.createElement('span');w.className='ask-btns';w.appendChild(y);w.appendChild(n);
+    msg.appendChild(p);msg.appendChild(w);
+    y.onclick=function(){send()};
+    n.onclick=function(){say(T.done,'ok')};
+  }
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var err=check(); if(err){say(err,'err');return}
+    if(sentRecently()){askAgain();return}
+    send();
   });
 
   var v=document.getElementById('heroVideo');
