@@ -255,3 +255,23 @@ html[data-theme="light"] .mnav-sub a{color:var(--soft)}
 .cookie-btns{display:flex;gap:10px;flex:none}
 .cookie-btns .btn{min-height:42px;padding:0 20px}
 @media (max-width:520px){.cookie-btns{width:100%}.cookie-btns .btn{flex:1}}
+
+/* mobile menu: collapsible groups */
+.mnav-group{border-bottom:1px solid var(--rule)}
+.mnav-group summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:12px 0;font-family:var(--serif);font-weight:600;font-size:1.45rem;color:var(--ivory)}
+.mnav-group summary::-webkit-details-marker{display:none}
+.mnav-group summary::after{content:"";width:10px;height:10px;margin-right:6px;border-right:1.5px solid var(--gold);border-bottom:1.5px solid var(--gold);transform:rotate(45deg) translateY(-3px);transition:transform .2s}
+.mnav-group[open] summary::after{transform:rotate(-135deg) translateY(-3px)}
+.mnav-group .mnav-sub{margin:0 0 14px!important}
+.mnav-main{border-top:0!important}
+
+/* request block: compact, more visible on phones */
+.req{background:radial-gradient(55% 60% at 78% 50%,rgba(212,166,42,.10),transparent 70%)}
+.form{border:1.5px solid rgba(212,166,42,.6);box-shadow:0 22px 50px rgba(0,0,0,.35)}
+html[data-theme="light"] .form{box-shadow:0 18px 40px rgba(60,45,20,.12)}
+.req .note{margin-top:18px}
+@media (max-width:860px){
+  .req{padding-block:56px;background:radial-gradient(90% 45% at 50% 72%,rgba(212,166,42,.12),transparent 70%)}
+  .req .wrap{gap:22px}
+  .req h2{font-size:2rem}
+}

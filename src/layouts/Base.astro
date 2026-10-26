@@ -74,12 +74,22 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         </ul>
       ) : (
         <Fragment>
-          <p class="mnav-h"><a href="/lechenie/">Болезни и лечение</a></p>
-          <ul class="mnav-sub">
-            {directions.map((d) => <li><a href={`/lechenie/${d.slug}/`} aria-current={path.startsWith(`/lechenie/${d.slug}/`) ? 'page' : undefined}>{d.title}</a></li>)}
-          </ul>
+          <details class="mnav-group" open={path.startsWith('/lechenie/') ? true : undefined}>
+            <summary>Болезни и лечение</summary>
+            <ul class="mnav-sub">
+              <li><a href="/lechenie/">Все направления</a></li>
+              {directions.map((d) => <li><a href={`/lechenie/${d.slug}/`} aria-current={path.startsWith(`/lechenie/${d.slug}/`) ? 'page' : undefined}>{d.title}</a></li>)}
+            </ul>
+          </details>
+          <details class="mnav-group" open={path.startsWith('/pacientam/') ? true : undefined}>
+            <summary>Пациентам</summary>
+            <ul class="mnav-sub">
+              <li><a href="/pacientam/analizy-dlya-gospitalizacii/" aria-current={path.startsWith('/pacientam/analizy') ? 'page' : undefined}>Анализы для госпитализации</a></li>
+              <li><a href="/pacientam/uhod-za-ranoy/" aria-current={path.startsWith('/pacientam/uhod') ? 'page' : undefined}>Как ухаживать за раной</a></li>
+              <li><a href="https://t.me/gasanovDOC/28" target="_blank" rel="noopener">Упражнения для кистей</a></li>
+            </ul>
+          </details>
           <ul class="mnav-main">
-            <li><a href="/pacientam/">Пациентам</a></li>
             <li><a href="/#results">Результаты</a></li>
             <li><a href="/obo-mne/">Обо мне</a></li>
             <li><a href="/#contacts">Контакты</a></li>
