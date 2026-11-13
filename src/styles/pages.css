@@ -303,4 +303,16 @@ html[data-theme="light"] .record a.pd .go{color:#8f6a0c}
 .scheme figcaption{margin-top:10px;font-size:.9rem;color:var(--quiet)}
 html[data-theme="light"] .scheme .tissue{fill:#efe2d6}
 html[data-theme="light"] .scheme .gyr{stroke:#e0cfbf}
-@media (max-width:640px){.scheme-pair{grid-template-columns:1fr}.scheme.wide svg .t{font-size:22px}}
+@media (max-width:640px){.scheme-pair{grid-template-columns:1fr}.scheme.wide svg .t{font-size:22px}.scheme.wide svg .s{font-size:19px}}
+.scheme .bone{fill:none;stroke:#cfc6b6;opacity:.75}
+.scheme .basebone{stroke:#cfc6b6;opacity:.75}
+.scheme .vent{fill:#11100e;opacity:.85}
+.scheme .air{fill:#11100e;opacity:.6}
+.scheme .brainfill{fill:#3a322b}
+.scheme .sheath{fill:none;stroke:#cfc6b6;stroke-width:1.5;stroke-dasharray:4 4;opacity:.6}
+html[data-theme="light"] .scheme .bone,html[data-theme="light"] .scheme .basebone{stroke:#8f8370}
+html[data-theme="light"] .scheme .vent,html[data-theme="light"] .scheme .air{fill:#fff;opacity:.9}
+html[data-theme="light"] .scheme .brainfill{fill:#e3cfbd}
+.photo-fig{margin:26px 0 0}
+.photo-fig img{width:100%;height:auto;display:block;border-radius:14px;border:1px solid var(--rule)}
+.photo-fig figcaption{margin-top:10px;font-size:.9rem;color:var(--quiet)}
