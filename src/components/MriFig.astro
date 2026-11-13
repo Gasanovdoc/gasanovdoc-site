@@ -1,0 +1,33 @@
+---
+// Реалистичная иллюстрация в стиле МРТ / ангиографии с номерами-метками и легендой.
+interface Mark { n: number; x: number; y: number; lx: number; ly: number }
+interface Panel { src: string; w: number; h: number; tag: string; alt: string; marks?: Mark[]; paths?: string[] }
+interface Props { panels: Panel[]; legend: [number, string][]; caption: string }
+const { panels, legend, caption } = Astro.props;
+---
+<figure class="mri-fig">
+  <div class={`mri-grid n${panels.length}`}>
+    {panels.map((p) => (
+      <div class="mri-box">
+        <img src={p.src} alt={p.alt} width={p.w} height={p.h} loading="lazy" />
+        <svg viewBox={`0 0 ${p.w} ${p.h}`} preserveAspectRatio="none" aria-hidden="true">
+          {(p.paths ?? []).map((d) => <path d={d} class="mri-route" vector-effect="non-scaling-stroke" />)}
+          {(p.marks ?? []).map((m) => (
+            <g>
+              <line x1={m.x} y1={m.y} x2={m.lx} y2={m.ly} class="mri-lead" vector-effect="non-scaling-stroke" />
+              <circle cx={m.x} cy={m.y} r={p.w * 0.006} class="mri-dot" />
+            </g>
+          ))}
+        </svg>
+        {(p.marks ?? []).map((m) => (
+          <span class="mri-num" style={`left:${(m.lx / p.w) * 100}%;top:${(m.ly / p.h) * 100}%`}>{m.n}</span>
+        ))}
+        <span class="mri-tag">{p.tag}</span>
+      </div>
+    ))}
+  </div>
+  <ol class="mri-legend">
+    {legend.map(([n, t]) => <li><span class="mri-num static">{n}</span><span>{t}</span></li>)}
+  </ol>
+  <figcaption>{caption}</figcaption>
+</figure>
