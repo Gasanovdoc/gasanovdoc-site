@@ -280,3 +280,13 @@ html[data-theme="light"] .form{box-shadow:0 18px 40px rgba(60,45,20,.12)}
 .form-msg.ask .ask-btns{display:flex;gap:10px}
 .form-msg.ask .btn{width:auto!important;min-height:42px;padding:0 20px;flex:1}
 .form-msg.ask .btn{white-space:nowrap;font-size:.92rem;padding:0 14px}
+
+/* ProDoctorov stats: clearly clickable */
+.record a.pd{position:relative}
+.record a.pd b::after{content:"↗";font-size:.55em;margin-left:6px;vertical-align:super;color:var(--gold);opacity:.8}
+.record a.pd .go{font-style:normal;font-weight:600;font-size:.88rem;color:var(--gold);text-decoration:underline;text-underline-offset:3px;margin-top:2px}
+.record a.pd:hover .go{color:var(--ivory)}
+html[data-theme="light"] .record a.pd .go{color:#8f6a0c}
+.award{margin:26px 0 0;max-width:560px}
+.award img{width:100%;height:auto;border-radius:12px;display:block;border:1px solid var(--rule)}
+.award figcaption{margin-top:10px;font-size:.9rem;color:var(--quiet)}
