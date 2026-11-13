@@ -290,3 +290,17 @@ html[data-theme="light"] .record a.pd .go{color:#8f6a0c}
 .award{margin:26px 0 0;max-width:560px}
 .award img{width:100%;height:auto;border-radius:12px;display:block;border:1px solid var(--rule)}
 .award figcaption{margin-top:10px;font-size:.9rem;color:var(--quiet)}
+
+/* Medical schemes (inline SVG) */
+.scheme{margin:26px 0 0}
+.scheme-pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.scheme svg{display:block;width:100%;height:auto;background:var(--panel);border:1px solid var(--rule);border-radius:14px}
+.scheme .h{font-family:var(--serif);font-size:24px;font-weight:600;fill:var(--ivory)}
+.scheme .t{font-family:var(--sans);font-size:15px;fill:var(--soft)}
+.scheme .s{font-family:var(--sans);font-size:13px;fill:var(--quiet)}
+.scheme .tissue{fill:#2a2420}
+.scheme .gyr{fill:none;stroke:#3a322b;stroke-width:1.5}
+.scheme figcaption{margin-top:10px;font-size:.9rem;color:var(--quiet)}
+html[data-theme="light"] .scheme .tissue{fill:#efe2d6}
+html[data-theme="light"] .scheme .gyr{stroke:#e0cfbf}
+@media (max-width:640px){.scheme-pair{grid-template-columns:1fr}.scheme.wide svg .t{font-size:22px}}
