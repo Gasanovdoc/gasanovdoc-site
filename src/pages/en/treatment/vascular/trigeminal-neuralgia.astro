@@ -1,0 +1,64 @@
+---
+import Article from '../../../../layouts/Article.astro';
+const tg = 'https://t.me/gasanovDOC';
+---
+<Article
+  lang="en"
+  title="Trigeminal neuralgia: treatment and MVD surgery"
+  description="Shooting facial pain when eating, talking or brushing teeth. Why trigeminal neuralgia occurs, when medication helps and how microvascular decompression removes the cause."
+  path="/en/treatment/vascular/trigeminal-neuralgia/"
+  h1="Trigeminal neuralgia"
+  lede="An electric shock in the face — when eating, talking, brushing your teeth, even from a breeze. People with trigeminal neuralgia are afraid to smile or go outside. Here is why this pain occurs, when medication is enough and how surgery removes its cause."
+  hub={{ name: 'Cerebrovascular surgery', href: '/en/treatment/vascular/' }}
+  condition={{ name: 'Trigeminal neuralgia', alternateName: ['Tic douloureux'], procedures: ['Microvascular decompression of the trigeminal nerve'] }}
+  keyfacts={[['Electric shock', 'type of pain'], ['Trigger zones', 'eating, talking, washing'], ['MRI', 'shows vessel–nerve contact'], ['MVD', 'removes the cause in a conflict']]}
+  toc={[['chto-eto', 'What it is'], ['simptomy', 'Symptoms'], ['diagnostika', 'Diagnosis'], ['lechenie', 'Treatment'], ['operaciya', 'MVD surgery']]}
+  faq={[
+    ['Can medication be enough?', 'Often yes, especially early on. Anticonvulsant drugs chosen by a neurologist control attacks well in many people. Surgery is considered when medication stops working, doses keep rising or side effects get in the way of life.'],
+    ['Will the pain come back after surgery?', 'In most patients the pain goes after microvascular decompression and medication can be stopped. In some patients a recurrence is possible over time — then the strategy is discussed again.'],
+    ['Is the operation dangerous?', 'It is an operation in the posterior fossa next to other cranial nerves, so it requires experience and microsurgical precision. I discuss the risks in detail with every patient before surgery.'],
+    ['Does removing teeth help?', 'No. The pain is often mistaken for toothache, and patients have healthy teeth removed. If the pain is shooting and triggered by touch, see a neurologist first.'],
+  ]}
+  cta={{ title: 'Tell me about your situation', text: 'Send your brain MRI and briefly describe the pain: where, for how long, which drugs you take. I will tell you whether there are signs of a vessel–nerve conflict and whether surgery suits you.' }}
+>
+  <section id="chto-eto">
+    <h2>What it is</h2>
+    <p>The <strong>trigeminal nerve</strong> supplies sensation to the face: forehead, cheek, jaw, teeth. When it is irritated, even a light touch is felt as extreme pain.</p>
+    <p>One of the causes is a <strong>neurovascular conflict</strong>: where the nerve leaves the brainstem, an artery lies against it and injures its sheath with every pulse. Over time the nerve starts to "short-circuit" — and attacks begin.</p>
+    <p>People often go from doctor to doctor for years — neurologist, ENT specialist, dentist — treatment does not help, and specialists shrug. In such cases the cause may be exactly this vessel–nerve conflict.</p>
+    <p>Important: <strong>not every neurovascular conflict causes symptoms</strong>, and not everyone in whom it is seen on MRI needs surgery. The decision is based on typical complaints together with the images. Neuralgia can also be caused by tumours, multiple sclerosis and other conditions, so investigation is essential.</p>
+  </section>
+
+  <section id="simptomy">
+    <h2>Symptoms</h2>
+    <p><strong>Classical trigeminal neuralgia</strong> is characterised by:</p>
+    <ul>
+      <li><strong>short attacks of sharp pain</strong> — like an electric shock, from seconds to a couple of minutes, usually on one side of the face;</li>
+      <li><strong>trigger zones</strong>: an attack is provoked by eating, talking, brushing teeth, shaving, washing, wind;</li>
+      <li><strong>a good response to anticonvulsants</strong> such as carbamazepine — prescribed by a neurologist;</li>
+      <li>between attacks there may be no pain at all, but over time attacks become more frequent.</li>
+    </ul>
+    <p>People start avoiding food, conversation and going outside. The pain is often mistaken for toothache and healthy teeth are removed. Constant aching or burning pain without attacks is a different type of facial pain with a different approach.</p>
+  </section>
+
+  <section id="diagnostika">
+    <h2>Diagnosis</h2>
+    <ul>
+      <li><strong>Examination by a neurologist or neurosurgeon</strong> — the diagnosis is made above all by the nature of the pain.</li>
+      <li><strong>Brain MRI</strong> with a dedicated protocol — shows whether a vessel touches the nerve and rules out other causes: tumours, multiple sclerosis.</li>
+    </ul>
+  </section>
+
+  <section id="lechenie">
+    <h2>Treatment</h2>
+    <p><strong>Treatment starts with medication</strong> — anticonvulsants chosen by a neurologist. In many people they control attacks well. But over time the effect may weaken, doses rise, and with them drowsiness, dizziness and other side effects.</p>
+    <p><strong>Surgery</strong> is considered when medication stops working or is poorly tolerated. One of my patients took medication for three years, constantly increasing the dose, and the pain did not go away. After surgery the drugs were stopped and the pain was gone — <a href={`${tg}/151`} target="_blank" rel="noopener">her story on video</a> (in Russian).</p>
+  </section>
+
+  <section id="operaciya">
+    <h2>Microvascular decompression</h2>
+    <p>This operation <strong>removes the cause</strong> of the pain rather than just masking it. Through a small approach behind the ear, under the microscope, I find where the vessel presses on the nerve, separate the vessel and place a microscopic pad between them. The nerve is no longer injured, and the attacks stop.</p>
+    <p>The work is done at great depth, next to the facial and hearing nerves — microsurgical precision is needed. What it looks like — <a href={`${tg}/153`} target="_blank" rel="noopener">surgery video</a> (contains surgical footage, in Russian).</p>
+    <p>If open surgery is contraindicated, there are other methods — for example radiofrequency and radiosurgical procedures on the nerve; they are discussed individually.</p>
+  </section>
+</Article>

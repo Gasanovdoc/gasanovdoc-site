@@ -1,0 +1,91 @@
+---
+import Article from '../../../../layouts/Article.astro';
+import Scheme from '../../../../components/schemes/OpuholiEn.astro';
+const tg = 'https://t.me/gasanovDOC';
+---
+<Article
+  lang="en"
+  title="Brain tumours: types, symptoms, treatment"
+  description="A brain tumour on MRI: what types exist, warning symptoms, what to do after the finding, when to observe and when to operate."
+  path="/en/treatment/tumors/brain-tumors/"
+  h1="Brain tumours"
+  lede="Hearing “brain tumour”, most people panic. But tumours are very different: many grow slowly, and some do not need surgery at all. Here is what types exist, what to watch for and what to do if a tumour is found on MRI."
+  hub={{ name: 'Brain and nerve tumours', href: '/en/treatment/tumors/' }}
+  condition={{ name: 'Brain tumour', alternateName: ['Brain neoplasm'], procedures: ['Microsurgical tumour removal with neuronavigation', 'Endoscopic transnasal surgery'] }}
+  keyfacts={[['MRI with contrast', 'the main test'], ['Benign and malignant', 'very different strategies'], ['Histology', 'gives the final diagnosis'], ['Navigation', 'helps remove tumours more precisely and safely']]}
+  toc={[['vidy', 'Types of tumours'], ['simptomy', 'Symptoms'], ['nashli', 'If a tumour is found on MRI'], ['lechenie', 'Treatment'], ['operaciya', 'How surgery is done']]}
+  faq={[
+    ['The tumour was found by chance and there are no symptoms. Can I leave it untreated?', 'Sometimes — yes. Small benign tumours without symptoms are often observed with follow-up MRI. But the decision is made by a neurosurgeon based on the images: "no symptoms" does not mean "not dangerous". A benign tumour simply gives you time.'],
+    ['Can MRI tell for sure whether a tumour is malignant?', 'It can often suggest, but not confirm. The final diagnosis is made only after examining tumour tissue under the microscope — histology.'],
+    ['Will the tumour grow back after surgery?', 'It depends on its type and whether it was removed completely. Benign tumours rarely come back after complete removal. With malignant ones, further treatment and regular MRI are almost always needed after surgery.'],
+    ['Will my head be shaved before surgery?', 'Usually not. Typically only a narrow strip of hair along the incision line is shaved.'],
+    ['Whom should I see if a tumour is found on MRI?', 'A neurosurgeon. You can send me your images and report: I will tell you whether surgery is needed, which tests are still required and how urgently to act.'],
+  ]}
+  cta={{ title: 'Send me your scans', text: 'Send your brain MRI with contrast and the report. I will tell you what it may be, whether surgery is needed and how urgently to act.' }}
+>
+  <section id="vidy">
+    <h2>Types of tumours</h2>
+    <p>A tumour is any growth of tissue that should not be there. More than a hundred types are known in and around the brain. For a patient two questions matter most: where the tumour grows from and how aggressive it is.</p>
+    <h3>By origin</h3>
+    <ul>
+      <li><strong>Primary</strong> — grow from tissues of the head itself: from the brain coverings (<a href="/en/treatment/tumors/meningioma/">meningioma</a>), from brain cells (<a href="/en/treatment/tumors/glioma/">glioma</a>), from the pituitary (<a href="/en/treatment/tumors/pituitary-adenoma/">adenoma</a>), from nerve sheaths (<a href="/en/treatment/tumors/schwannoma/">schwannoma</a>).</li>
+      <li><strong>Secondary</strong> — <a href="/en/treatment/tumors/brain-metastases/">metastases</a> of tumours from other organs that reached the brain with the blood.</li>
+    </ul>
+    <h3>By growth pattern</h3>
+    <ul>
+      <li><strong>Benign</strong> tumours grow slowly, have a clear border and push the brain aside rather than invading it. They can often be removed completely.</li>
+      <li><strong>Malignant</strong> tumours grow faster and invade surrounding tissue. Removal is the first step; radiotherapy and chemotherapy are usually needed afterwards.</li>
+    </ul>
+    <p>But "benign" in the brain does not mean "safe". Even such a tumour can press on the brain, nerves and vessels, because there is no spare room in the skull.</p>
+    <Scheme />
+  </section>
+
+  <section id="simptomy">
+    <h2>Symptoms</h2>
+    <p>A tumour may stay silent for a long time: the brain adapts to slow growth. Watch for:</p>
+    <ul>
+      <li>headache that is worse in the morning, with nausea or vomiting;</li>
+      <li>first-ever seizures — especially in an adult;</li>
+      <li>increasing weakness or numbness of an arm, leg or half of the face;</li>
+      <li>problems with speech or vision, double vision;</li>
+      <li>changes in behaviour and memory noticed by family;</li>
+      <li>hormonal problems: menstrual changes, discharge from the breast, changes in appearance (with pituitary tumours).</li>
+    </ul>
+    <p>These symptoms do not necessarily mean a tumour, but they should not be ignored: see a neurologist. Headache red flags that should not wait — <a href={`${tg}/141`} target="_blank" rel="noopener">on my Telegram channel</a> (in Russian).</p>
+  </section>
+
+  <section id="nashli">
+    <h2>If a tumour is found on MRI</h2>
+    <p>More and more often a tumour is an incidental finding — the MRI was done for another reason. <a href={`${tg}/236`} target="_blank" rel="noopener">Here is one such case</a> (in Russian).</p>
+    <ol>
+      <li><strong>Do not panic, but do not postpone.</strong> An MRI report is not yet a diagnosis.</li>
+      <li><strong>Have an MRI with contrast</strong> if you have not had one: many tumours are poorly seen without contrast.</li>
+      <li><strong>Show the images to a neurosurgeon</strong> — not just the report, but the images themselves on a disc or via a link. They show whether surgery is needed, how urgent it is and which tests are still required.</li>
+    </ol>
+  </section>
+
+  <section id="lechenie">
+    <h2>Treatment</h2>
+    <ul>
+      <li><strong>Observation</strong> — for small benign tumours without symptoms: follow-up MRI on the schedule set by the doctor.</li>
+      <li><strong>Surgery</strong> — the main method for most tumours that grow, cause symptoms or look suspicious for malignancy. It removes the tumour and provides tissue for histology.</li>
+      <li><strong>Radiotherapy and radiosurgery</strong> — after surgery for malignant tumours, or instead of it when a tumour is small and hard to reach.</li>
+      <li><strong>Chemotherapy and drug treatment</strong> — prescribed by an oncologist based on histology. Some pituitary tumours are treated with tablets.</li>
+    </ul>
+    <p>For malignant tumours the strategy is discussed at a tumour board — a neurosurgeon, an oncologist and a radiation oncologist together.</p>
+  </section>
+
+  <section id="operaciya">
+    <h2>How surgery is done</h2>
+    <p>I remove most tumours microsurgically, under the microscope. Before surgery the MRI is loaded into the <strong>neuronavigation</strong> system: it matches the images to the patient's head in real time. I point a probe and see where the tumour border is, where healthy tissue is and where not to go. This allows a smaller approach and a more precise, safer removal. This is how we removed <a href={`${tg}/96`} target="_blank" rel="noopener">a large temporal lobe tumour</a> (in Russian).</p>
+    <p>Some skull base and pituitary tumours are removed <strong>endoscopically through the nose</strong> — without an incision on the head. More in the article <a href="/en/treatment/tumors/pituitary-adenoma/">"Pituitary adenoma"</a>.</p>
+    <p>After surgery the tumour tissue is sent for <strong>histology</strong>. Its result determines whether further treatment is needed.</p>
+  </section>
+
+  <section id="srochno" slot="urgent">
+    <h2>When to seek urgent help</h2>
+    <div class="callout alert">
+      <p>First-ever seizures, a sudden severe headache, rapidly increasing weakness of an arm or leg, speech problems, confusion or drowsiness — <strong>call emergency services immediately (112; 103 in Russia).</strong></p>
+    </div>
+  </section>
+</Article>

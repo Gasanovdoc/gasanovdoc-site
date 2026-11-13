@@ -1,0 +1,90 @@
+---
+import Article from '../../../../layouts/Article.astro';
+import Scheme from '../../../../components/schemes/AdenomaEn.astro';
+---
+<Article
+  lang="en"
+  title="Pituitary adenoma: symptoms and removal through the nose"
+  description="Pituitary adenoma is a benign tumour at the base of the brain. How it presents, when observation or medication is enough and how endoscopic transnasal removal is done."
+  path="/en/treatment/tumors/pituitary-adenoma/"
+  h1="Pituitary adenoma"
+  lede="A pituitary adenoma is a benign tumour of the gland at the base of the brain. It can disrupt hormones or compress the optic nerves. Most adenomas that need surgery are now removed through the nose — without an incision on the head."
+  hub={{ name: 'Brain and nerve tumours', href: '/en/treatment/tumors/' }}
+  condition={{ name: 'Pituitary adenoma', alternateName: ['Pituitary tumour', 'Pituitary neuroendocrine tumour'], procedures: ['Endoscopic transnasal transsphenoidal surgery'] }}
+  keyfacts={[['Benign', 'in most cases'], ['Vision and hormones', 'the main problems'], ['Through the nose', 'no incision on the head'], ['A team', 'neurosurgeon, endocrinologist, ophthalmologist']]}
+  toc={[['chto-eto', 'What it is'], ['simptomy', 'Symptoms'], ['diagnostika', 'Diagnosis'], ['lechenie', 'Treatment'], ['operaciya', 'Surgery through the nose'], ['posle', 'After surgery']]}
+  faq={[
+    ['Does an adenoma always need removing?', 'No. Small non-functioning adenomas that do not press on the optic nerves are often observed with follow-up MRI. Prolactinoma — an adenoma producing prolactin — is usually treated with tablets.'],
+    ['Will there be scars on the face?', 'No. The operation is done through the nose with an endoscope; there are no incisions on the face or head.'],
+    ['Will my vision come back?', 'If the optic nerves were compressed recently, vision often improves after the tumour is removed. With compression lasting years, recovery may be incomplete — so with vision problems surgery should not be delayed.'],
+    ['Can an adenoma grow back?', 'It can, especially if it could not be removed completely. So follow-up MRI and endocrinologist review are needed after surgery.'],
+  ]}
+  cta={{ title: 'Send me your scans', text: 'Send your pituitary MRI with contrast, hormone tests and an ophthalmologist\'s report if you have one. I will tell you whether surgery is needed and which tests are still required.' }}
+>
+  <section id="chto-eto">
+    <h2>What it is</h2>
+    <p>The <strong>pituitary gland</strong> is a small, pea-sized gland at the base of the brain, sitting in a hollow of the bone called the sella turcica. It controls the thyroid, adrenal glands, sex glands, growth and metabolism.</p>
+    <p>An <strong>adenoma</strong> is a benign pituitary tumour. There are:</p>
+    <ul>
+      <li><strong>functioning</strong> adenomas — produce excess hormones (prolactin, growth hormone, ACTH and others);</li>
+      <li><strong>non-functioning</strong> adenomas — produce no hormones but, as they grow, compress surrounding structures — above all the optic chiasm right above the pituitary.</li>
+    </ul>
+    <Scheme />
+  </section>
+
+  <section id="simptomy">
+    <h2>Symptoms</h2>
+    <ul>
+      <li><strong>Vision problems</strong> — narrowing of the visual field at the sides ("tunnel vision"), reduced sharpness. A person may not notice this for a long time.</li>
+      <li><strong>Hormonal disorders</strong> — depending on the adenoma type: menstrual problems and breast discharge, infertility, reduced potency; enlarged hands, feet and facial features; weight gain, raised blood pressure and blood sugar.</li>
+      <li><strong>Headache</strong>.</li>
+    </ul>
+    <p>An adenoma is often found by chance, on an MRI done for another reason.</p>
+  </section>
+
+  <section id="diagnostika">
+    <h2>Diagnosis</h2>
+    <ul>
+      <li><strong>Pituitary MRI with contrast</strong> — size of the adenoma and its relation to the optic nerves and carotid arteries.</li>
+      <li><strong>Hormone tests</strong> — show whether the tumour is functioning and which hormone it produces.</li>
+      <li><strong>Ophthalmologist examination</strong> with visual field testing.</li>
+    </ul>
+    <p>Treatment of an adenoma is teamwork between a neurosurgeon, an endocrinologist and an ophthalmologist.</p>
+  </section>
+
+  <section id="lechenie">
+    <h2>Treatment</h2>
+    <ul>
+      <li><strong>Observation</strong> — for small non-functioning adenomas that do not affect vision.</li>
+      <li><strong>Medication</strong> — the main treatment for prolactinoma; prescribed by an endocrinologist.</li>
+      <li><strong>Surgery</strong> — with optic nerve compression, functioning adenomas (except most prolactinomas), tumour growth.</li>
+      <li><strong>Radiosurgery</strong> — for tumour remnants or recurrence.</li>
+    </ul>
+  </section>
+
+  <section id="operaciya">
+    <h2>Surgery through the nose</h2>
+    <p>Most adenomas are removed <strong>endoscopically through the nose</strong> — by a transnasal transsphenoidal approach. An endoscope is passed through the nasal passage to the sella turcica, the thin bony wall is opened and the tumour is removed, freeing the optic nerves. There are no incisions on the face or head.</p>
+    <p>I have completed special training in endoscopic transnasal and skull base surgery and perform these operations. Very large adenomas of complex shape sometimes require an open approach or a combination of methods.</p>
+    <figure class="photo-fig">
+      <img src="/media/navigation.webp" alt="Endoscopic surgery through the nose: endoscope view and neuronavigation on the monitors" width="1400" height="1050" loading="lazy">
+      <figcaption>During endoscopic surgery: the endoscope view on the central monitor, neuronavigation based on MRI on the left.</figcaption>
+    </figure>
+  </section>
+
+  <section id="posle">
+    <h2>After surgery</h2>
+    <ul>
+      <li>For the first weeks — do not blow your nose forcefully, lift heavy things or dive; a blocked nose is possible.</li>
+      <li>Endocrinologist follow-up: hormone monitoring and replacement therapy if needed.</li>
+      <li>Follow-up MRI — after a few months, then on schedule.</li>
+    </ul>
+  </section>
+
+  <section id="srochno" slot="urgent">
+    <h2>When to seek urgent help</h2>
+    <div class="callout alert">
+      <p>A sudden very severe headache with sharp vision loss, double vision and vomiting may be bleeding into the adenoma. <strong>Call emergency services immediately (112; 103 in Russia).</strong> After surgery — also if clear fluid drips from the nose.</p>
+    </div>
+  </section>
+</Article>

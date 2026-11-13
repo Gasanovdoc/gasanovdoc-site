@@ -1,0 +1,89 @@
+---
+import Article from '../../../../layouts/Article.astro';
+import Scheme from '../../../../components/schemes/GliomaEn.astro';
+const tg = 'https://t.me/gasanovDOC';
+---
+<Article
+  lang="en"
+  title="Brain glioma: surgery and further treatment"
+  description="Glioma is a tumour of brain cells. How gliomas of different grades differ, how surgery with neuronavigation is done and why histology is needed afterwards."
+  path="/en/treatment/tumors/glioma/"
+  h1="Glioma"
+  lede="A glioma grows from the cells of the brain itself. Some gliomas are slow and people live with them for years; others are aggressive, where every week counts. Here is how they differ, why surgery is needed and why treatment usually continues afterwards."
+  hub={{ name: 'Brain and nerve tumours', href: '/en/treatment/tumors/' }}
+  condition={{ name: 'Brain glioma', alternateName: ['Glial tumour', 'Astrocytoma', 'Oligodendroglioma', 'Glioblastoma'], procedures: ['Microsurgical tumour removal with neuronavigation', 'Tumour biopsy'] }}
+  keyfacts={[['Grades 1–4', 'from slow to aggressive'], ['MRI with contrast', 'the main test'], ['Histology', 'determines further treatment'], ['Neuronavigation', 'helps remove more, more safely']]}
+  toc={[['chto-eto', 'What it is'], ['simptomy', 'Symptoms'], ['diagnostika', 'Diagnosis'], ['lechenie', 'Treatment'], ['posle', 'After surgery']]}
+  faq={[
+    ['Can a glioma be removed completely?', 'The part visible on MRI can often be removed completely or almost completely. But glioma cells spread into the surrounding brain beyond the visible border, so further treatment and MRI follow-up are usually needed after surgery.'],
+    ['Why have surgery if radiotherapy and chemotherapy are needed anyway?', 'Surgery reduces the tumour volume and pressure on the brain, often eases symptoms and provides tissue for histology and molecular testing. Without this, the right treatment cannot be chosen. The more tumour is safely removed, the more effective the subsequent treatment.'],
+    ['What is a biopsy and when is it done instead of removal?', 'A biopsy is taking a small piece of tumour for analysis. It is chosen when the tumour is deep or in an area where removal is too risky.'],
+    ['Is glioma inherited?', 'In the vast majority of cases — no. Rare hereditary syndromes exist, but they are the exception.'],
+    ['Who looks after the patient after surgery?', 'The neurosurgeon — during surgery and early recovery. Then the oncologist and radiation oncologist, as decided by the tumour board, with regular MRI follow-up.'],
+  ]}
+  cta={{ title: 'Send me your scans', text: 'Send your brain MRI with contrast and the report. I will tell you whether the tumour can be removed and how best to plan treatment.' }}
+>
+  <section id="chto-eto">
+    <h2>What it is</h2>
+    <p>Besides neurons, the brain contains <strong>glial cells</strong> — supporting tissue. A glioma grows from them. It is the most common primary tumour arising from the brain tissue itself.</p>
+    <p>Gliomas are graded by malignancy from 1 to 4:</p>
+    <ul>
+      <li><strong>Grades 1–2</strong> — grow slowly, over years. They are sometimes called low-grade gliomas.</li>
+      <li><strong>Grades 3–4</strong> — grow fast. The most aggressive is <strong>glioblastoma</strong>, grade 4.</li>
+    </ul>
+    <p>Today the type and grade of a glioma are determined not only under the microscope but also by molecular features of the tumour. They determine the prognosis and the choice of treatment.</p>
+    <p>The key feature of a glioma is that it has no clear capsule. Tumour cells spread into the surrounding brain beyond the border seen on MRI.</p>
+    <Scheme />
+  </section>
+
+  <section id="simptomy">
+    <h2>Symptoms</h2>
+    <ul>
+      <li><strong>Seizures</strong> — a common first sign, especially with slow gliomas.</li>
+      <li><strong>Headache</strong>, worse in the morning, with nausea.</li>
+      <li><strong>Increasing weakness</strong> or numbness of an arm or leg, problems with speech or vision — depending on where the tumour is.</li>
+      <li><strong>Changes in memory and behaviour</strong>, first noticed by family.</li>
+    </ul>
+    <p>Slow gliomas may cause only occasional seizures for years. Aggressive ones lead to noticeable problems within weeks.</p>
+  </section>
+
+  <section id="diagnostika">
+    <h2>Diagnosis</h2>
+    <ul>
+      <li><strong>Brain MRI with contrast</strong> — the main test: shows the size and location of the tumour and the swelling around it.</li>
+      <li><strong>Advanced MRI sequences</strong> — perfusion, spectroscopy, tractography. They help assess tumour aggressiveness and plan surgery so as not to damage important pathways.</li>
+      <li><strong>Histology and molecular testing</strong> — the final diagnosis. Done on tissue obtained at surgery or biopsy.</li>
+    </ul>
+    <p>An MRI report is not yet a diagnosis. Images can suggest a glioma, but only tissue can confirm it.</p>
+  </section>
+
+  <section id="lechenie">
+    <h2>Treatment</h2>
+    <h3>Surgery</h3>
+    <p>The first and main step is <strong>maximal safe resection</strong> of the tumour. The goal is to remove as much as possible while preserving speech, movement and other functions.</p>
+    <p>Here <strong>neuronavigation</strong> helps me: the MRI is matched to the patient's head in real time, and I see the tumour borders and important brain areas on the screen. This makes the approach smaller and the removal more precise. An example is <a href={`${tg}/96`} target="_blank" rel="noopener">removal of a large temporal lobe tumour</a> and <a href={`${tg}/97`} target="_blank" rel="noopener">the surgery video</a> (surgical footage, in Russian).</p>
+    <p>If the tumour is deep or in an area where removal is too risky, a <strong>biopsy</strong> is done — a piece of tissue is taken for analysis.</p>
+    <h3>After surgery</h3>
+    <p>Further treatment depends on histology and molecular testing:</p>
+    <ul>
+      <li>with slow gliomas, after complete removal observation with follow-up MRI is sometimes enough;</li>
+      <li>with high-grade gliomas, <strong>radiotherapy and chemotherapy</strong> are usually needed. They are prescribed by an oncologist as decided by the tumour board.</li>
+    </ul>
+  </section>
+
+  <section id="posle">
+    <h2>After surgery</h2>
+    <ul>
+      <li>Follow-up MRI — soon after surgery to assess the extent of removal, then on the oncologist's schedule.</li>
+      <li>If there were seizures, antiepileptic drugs continue; the decision to stop them is made by a neurologist.</li>
+      <li>With neurological deficits — rehabilitation: exercise therapy, speech therapy.</li>
+    </ul>
+  </section>
+
+  <section id="srochno" slot="urgent">
+    <h2>When to seek urgent help</h2>
+    <div class="callout alert">
+      <p>A seizure that does not stop or keeps recurring, rapidly increasing weakness, speech problems, severe headache with vomiting, confusion or drowsiness — <strong>call emergency services immediately (112; 103 in Russia).</strong></p>
+    </div>
+  </section>
+</Article>

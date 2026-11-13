@@ -1,0 +1,96 @@
+---
+import Article from '../../../../layouts/Article.astro';
+const tg = 'https://t.me/gasanovDOC';
+---
+<Article
+  lang="en"
+  title="Brain aneurysm: symptoms and surgery"
+  description="A brain aneurysm often causes no symptoms until it ruptures. How it is found, when observation is enough, how clipping is done and recovery after surgery."
+  path="/en/treatment/vascular/brain-aneurysm/"
+  h1="Brain aneurysm"
+  lede="An aneurysm can stay silent for years and then rupture, causing bleeding in the brain. If it is found before rupture, there is a chance to assess the risk calmly and, if needed, exclude it from the circulation as a planned procedure. Here is how this works."
+  hub={{ name: 'Cerebrovascular surgery', href: '/en/treatment/vascular/' }}
+  condition={{ name: 'Intracranial aneurysm', alternateName: ['Cerebral aneurysm', 'Brain aneurysm'], procedures: ['Microsurgical aneurysm clipping', 'Endovascular aneurysm coiling'] }}
+  keyfacts={[['Often silent', 'found by chance on MRI'], ['CT or MR angiography', 'shows the aneurysm'], ['Clipping', 'excludes the aneurysm from blood flow'], ['≈ a week', 'in hospital after planned surgery']]}
+  toc={[['chto-eto', 'What it is'], ['simptomy', 'Symptoms'], ['diagnostika', 'Diagnosis'], ['lechenie', 'Treatment'], ['operaciya', 'Clipping'], ['posle', 'After surgery']]}
+  faq={[
+    ['Does an aneurysm always need surgery?', 'No. Small aneurysms with a low risk of rupture are often observed with follow-up imaging. The decision depends on the size and shape of the aneurysm, its location, age, family history and other factors — it is made individually.'],
+    ['Which is better — clipping or endovascular treatment?', 'There is no universal answer. In endovascular treatment the aneurysm is filled from inside with coils through a catheter; in clipping it is closed from outside with a titanium clip. The method is chosen by the shape and location of the aneurysm, sometimes together with an endovascular surgeon.'],
+    ['Should relatives be screened?', 'If two or more close relatives have had aneurysms or brain haemorrhages, discuss screening with a neurologist. Angiography "just in case" without risk factors is not needed.'],
+    ['How long is the hospital stay after planned surgery?', 'Usually about a week. Follow-up CT angiography is typically done after a month.'],
+    ['Will there be a scar?', 'The incision is made behind the hairline, so after healing the scar is usually hidden by hair.'],
+  ]}
+  cta={{ title: 'Send me your scans', text: 'Send your MRI, MR or CT angiography and briefly describe what bothers you. I will tell you what I see on the images, how high the risk is and whether surgery is needed.' }}
+>
+  <section id="chto-eto">
+    <h2>What it is</h2>
+    <p>An <strong>aneurysm</strong> is a local bulge in an artery wall, like a swelling on a garden hose under pressure. Aneurysms most often form where large arteries branch at the base of the brain: the anterior communicating, middle cerebral and internal carotid arteries.</p>
+    <p>The danger is that the thinned wall can <strong>rupture</strong>. Blood spills under the brain coverings — a subarachnoid haemorrhage, a severe form of haemorrhagic stroke. The first day after rupture is especially dangerous: the aneurysm can bleed again, and each rebleed is more severe.</p>
+    <h3>Risk factors</h3>
+    <p>Aneurysms or brain haemorrhages in close relatives, inherited connective tissue disorders, polycystic kidney disease, as well as smoking and high blood pressure.</p>
+  </section>
+
+  <section id="simptomy">
+    <h2>Symptoms</h2>
+    <p>Most aneurysms <strong>cause no symptoms</strong> before rupture — they are found by chance on an MRI done for another reason. Warning signs may be:</p>
+    <ul>
+      <li><strong>A sentinel bleed</strong> — a sudden, very severe headache, like a blow to the head, with nausea, vomiting and sensitivity to light. It may pass, but it is a warning.</li>
+      <li><strong>Nerve compression by a large aneurysm</strong> — double vision, a drooping eyelid, a dilated pupil on one side, pain behind the eye, numbness of half of the face.</li>
+    </ul>
+    <p>More about warning signs — <a href={`${tg}/220`} target="_blank" rel="noopener">on my Telegram channel</a> (in Russian).</p>
+  </section>
+
+  <section id="diagnostika">
+    <h2>Diagnosis</h2>
+    <ul>
+      <li><strong>MR or CT angiography</strong> — shows whether there is an aneurysm, its size and shape.</li>
+      <li><strong>Cerebral angiography</strong> — the most accurate study of brain vessels; done to plan treatment.</li>
+    </ul>
+    <p>If you have risk factors, the route starts with a neurologist: they assess symptoms and family history and decide whether vessel imaging is needed.</p>
+  </section>
+
+  <section id="lechenie">
+    <h2>Treatment</h2>
+    <ul>
+      <li><strong>Observation</strong> — for small aneurysms with a low risk of rupture: follow-up imaging, blood pressure control, stopping smoking.</li>
+      <li><strong>Microsurgical clipping</strong> — open surgery: the aneurysm is closed from outside with a titanium clip.</li>
+      <li><strong>Endovascular treatment</strong> — the aneurysm is filled from inside with coils through a catheter, sometimes with a stent.</li>
+    </ul>
+    <p>The strategy is chosen by the size, shape and location of the aneurysm and the patient's age and condition. If an aneurysm is dangerous, it is better treated as a planned operation — before rupture, when the outlook is much better.</p>
+  </section>
+
+  <section id="operaciya">
+    <h2>How clipping is done</h2>
+    <p>The operation is done under general anaesthesia. Through a small approach in the fronto-temporal area, behind the hairline, under the microscope:</p>
+    <ol>
+      <li>the parent arteries and the aneurysm neck are dissected;</li>
+      <li>if needed, blood flow is temporarily stopped to work on the aneurysm safely;</li>
+      <li>a permanent titanium clip is placed on the neck — the aneurysm is excluded from the circulation;</li>
+      <li>fluorescence angiography during surgery confirms that the aneurysm is excluded and nearby vessels are open;</li>
+      <li>the bone is put back.</li>
+    </ol>
+    <figure class="case-fig">
+      <div class="pair2">
+        <div><img src="/media/cases/aneurysm-before.webp" alt="3D CT angiography: brain artery aneurysm before surgery" loading="lazy" width="900" height="900"><span>Before</span></div>
+        <div><img src="/media/cases/aneurysm-after.webp" alt="3D CT angiography after aneurysm clipping" loading="lazy" width="900" height="900"><span>After</span></div>
+      </div>
+      <figcaption>A case from my practice: an aneurysm on 3D CT angiography before and after clipping. Surgery videos on my Telegram channel (contain surgical footage, in Russian): <a href={`${tg}/27`} target="_blank" rel="noopener">middle cerebral artery aneurysm</a>, <a href={`${tg}/104`} target="_blank" rel="noopener">anterior cerebral artery aneurysm</a>, <a href={`${tg}/66`} target="_blank" rel="noopener">clipping after a haemorrhage</a>.</figcaption>
+    </figure>
+  </section>
+
+  <section id="posle">
+    <h2>After surgery</h2>
+    <ul>
+      <li>After planned surgery the hospital stay is usually about a week.</li>
+      <li>Follow-up CT angiography — typically after a month: it shows the clip position and patency of the vessels.</li>
+      <li>Blood pressure control and not smoking remain important after surgery.</li>
+    </ul>
+  </section>
+
+  <section id="srochno" slot="urgent">
+    <h2>When to seek urgent help</h2>
+    <div class="callout alert">
+      <p>A sudden "thunderclap" headache — the worst of your life, especially with vomiting, loss of consciousness or seizures — <strong>call emergency services immediately (112; 103 in Russia).</strong> Even if the pain has passed, it may have been a sentinel bleed.</p>
+    </div>
+  </section>
+</Article>

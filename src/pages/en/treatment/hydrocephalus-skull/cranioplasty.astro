@@ -1,0 +1,77 @@
+---
+import Article from '../../../../layouts/Article.astro';
+const tg = 'https://t.me/gasanovDOC';
+---
+<Article
+  lang="en"
+  title="Cranioplasty: closing a skull defect with a titanium implant"
+  description="A skull defect after trauma or surgery: why close it, what the implant is made of, how cranioplasty with a custom titanium implant is done and recovery."
+  path="/en/treatment/hydrocephalus-skull/cranioplasty/"
+  h1="Cranioplasty"
+  lede="After severe trauma, a stroke or brain surgery, part of the skull bone sometimes has to be removed. Once the dangerous period is over, the defect is closed — this is cranioplasty. Here is why it is needed, what the implant is made of and how the operation goes."
+  hub={{ name: 'Hydrocephalus and skull defects', href: '/en/treatment/hydrocephalus-skull/' }}
+  condition={{ name: 'Skull defect', alternateName: ['Post-craniectomy skull defect'], procedures: ['Cranioplasty'] }}
+  keyfacts={[['3D model', 'an implant shaped to your skull'], ['Titanium', 'strong and light'], ['Micro-screws', 'secure fixation'], ['Brain protection', 'and restored head shape']]}
+  toc={[['chto-eto', 'What it is'], ['zachem', 'Why close the defect'], ['materialy', 'What the implant is made of'], ['operaciya', 'Surgery'], ['vosstanovlenie', 'Recovery']]}
+  faq={[
+    ['When can cranioplasty be done?', 'Usually when brain swelling has gone, the wound has fully healed and there are no signs of infection. Most often this is several months after the first operation; the exact timing is set by the surgeon based on imaging and the patient\'s condition.'],
+    ['Why not put the patient\'s own bone back?', 'Sometimes this is possible. But stored bone may partly resorb over time or become a source of infection, and after severe trauma it may be shattered. A custom titanium implant is a more predictable option in such cases.'],
+    ['Will the implant be visible?', 'A custom implant follows the shape of the skull, so after healing the head contour looks natural, and the scar is usually hidden by hair.'],
+    ['Can I have an MRI with a titanium implant?', 'Titanium is not magnetic, so MRI after cranioplasty can usually be done. Tell the doctor about the implant before the scan.'],
+  ]}
+  cta={{ title: 'Tell me about your situation', text: 'Send your head CT and the discharge summary after the first operation. I will tell you whether the defect can be closed, when and with what material.' }}
+>
+  <section id="chto-eto">
+    <h2>What it is</h2>
+    <p>With severe head injury, an extensive stroke or marked brain swelling, surgeons sometimes remove part of the skull bone — a <strong>decompressive craniectomy</strong>. It saves lives: the swollen brain gets room and does not compress itself. Bone is also removed if it is shattered or affected by a tumour or infection.</p>
+    <p>This leaves a <strong>skull defect</strong> — an area where the brain is protected only by skin and soft tissue. Sometimes it reaches 10–12 centimetres. <strong>Cranioplasty</strong> is the operation that closes this defect.</p>
+  </section>
+
+  <section id="zachem">
+    <h2>Why close the defect</h2>
+    <ul>
+      <li><strong>Brain protection.</strong> Without bone, any blow or fall on this area is dangerous.</li>
+      <li><strong>Wellbeing.</strong> Many patients with a large defect have headaches, dizziness, fatigue and weather sensitivity. After cranioplasty these complaints often decrease.</li>
+      <li><strong>Recovery.</strong> Closing the defect helps normalise blood flow and fluid circulation in the brain, which matters for rehabilitation.</li>
+      <li><strong>Appearance.</strong> The natural shape of the head returns, and with it self-confidence.</li>
+    </ul>
+  </section>
+
+  <section id="materialy">
+    <h2>What the implant is made of</h2>
+    <ul>
+      <li><strong>The patient's own bone</strong>, stored after the first operation. Sometimes it can be put back, but over time it may partly resorb.</li>
+      <li><strong>A custom titanium implant.</strong> A 3D model of the skull is built from CT data and an implant is made that exactly follows its shape. Titanium is strong, light and well tolerated by the body.</li>
+      <li>Other materials — chosen individually.</li>
+    </ul>
+    <p>I most often use custom titanium implants: they fit the defect precisely and give a predictable result even with very large defects.</p>
+  </section>
+
+  <section id="operaciya">
+    <h2>Surgery</h2>
+    <p>The operation is done under general anaesthesia. The incision is usually made along the old scar. The surgeon frees the edges of the defect, places the implant and fixes it to the bone edges with micro-screws. A temporary drain may stay for the first day. The hospital stay after surgery is about a week on average.</p>
+    <figure class="case-fig">
+      <div class="pair2">
+        <div><img src="/media/cases/cranio-before.webp" alt="CT reconstruction of a skull with a large defect before cranioplasty" loading="lazy" width="900" height="900"><span>Before</span></div>
+        <div><img src="/media/cases/cranio-after.webp" alt="CT reconstruction of the skull after cranioplasty with a titanium implant" loading="lazy" width="900" height="900"><span>After</span></div>
+      </div>
+      <figcaption>A case from my practice: a large defect closed with a custom titanium implant. Videos — <a href={`${tg}/92`} target="_blank" rel="noopener">cranioplasty of a 12 × 10 cm defect</a> and <a href={`${tg}/162`} target="_blank" rel="noopener">the story of a patient after a road accident</a>, where I explain why we did not put back his own bone (in Russian).</figcaption>
+    </figure>
+  </section>
+
+  <section id="vosstanovlenie">
+    <h2>Recovery</h2>
+    <ul>
+      <li>Wound care: keep the wound clean and dry until the stitches are removed; washing the head is allowed a few days after stitch removal; hair colouring — not earlier than 2–3 months.</li>
+      <li>If movement or speech problems remain after trauma or stroke, rehabilitation continues after cranioplasty.</li>
+      <li>Contact sports and heavy exertion — only in agreement with the surgeon.</li>
+    </ul>
+  </section>
+
+  <section id="srochno" slot="urgent">
+    <h2>When to seek urgent help</h2>
+    <div class="callout alert">
+      <p>A worsening headache, repeated vomiting, seizures, drowsiness or confusion, weakness in an arm or leg — <strong>call emergency services immediately (112; 103 in Russia).</strong> Redness, swelling, discharge from the wound or a temperature above 38 °C — contact your surgeon the same day.</p>
+    </div>
+  </section>
+</Article>

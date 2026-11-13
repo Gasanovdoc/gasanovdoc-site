@@ -1,0 +1,108 @@
+---
+import Article from '../../../../layouts/Article.astro';
+const tg = 'https://t.me/gasanovDOC';
+---
+<Article
+  lang="en"
+  title="Carotid artery occlusion: EC-IC bypass surgery"
+  description="A completely blocked carotid artery: when treatment and monitoring are enough and when EC-IC bypass is needed. Three conditions for surgery, CT perfusion, recovery."
+  path="/en/treatment/vascular/carotid-occlusion-bypass/"
+  h1="Carotid occlusion and EC-IC bypass"
+  lede="Occlusion means the artery is completely blocked. As a rule it can no longer be reopened, but sometimes blood can be brought to the brain another way. Here is who really needs such surgery and who is better off with monitoring and treatment."
+  hub={{ name: 'Cerebrovascular surgery', href: '/en/treatment/vascular/' }}
+  condition={{ name: 'Internal carotid artery occlusion', alternateName: ['Chronic ICA occlusion'], procedures: ['Extracranial-intracranial (EC-IC) bypass'] }}
+  keyfacts={[['3 conditions', 'all needed before surgery is offered'], ['CT perfusion', 'the key test for the decision'], ['1–2 mm', 'vessels sewn under the microscope'], ['Goal', 'reduce the risk of another stroke']]}
+  toc={[['chto-eto', 'What it is'], ['simptomy', 'Symptoms'], ['diagnostika', 'Diagnosis'], ['komu', 'Who needs surgery'], ['operaciya', 'EC-IC bypass'], ['posle', 'After surgery']]}
+  faq={[
+    ['Can a blocked artery simply be "cleaned out" like with a plaque?', 'With a complete chronic occlusion — as a rule, no: the lumen is filled with clot and plaque over a long segment. So instead of restoring the old route, a new one is created — a bypass around the blocked segment.'],
+    ['The artery is blocked but I have no symptoms. Do I need surgery?', 'Most often not. If the brain gets enough blood through collateral vessels and CT perfusion shows no deficit, treatment of atherosclerosis and monitoring are enough.'],
+    ['Will the operation restore speech and movement after a stroke?', 'This cannot be promised. The main goal is to reduce the risk of another stroke. In some patients recovery goes better after surgery, but blood flow cannot bring back what the stroke has already damaged.'],
+    ['Where does the bypass artery come from?', 'Usually it is the superficial temporal artery — it runs under the skin of the temple and supplies the scalp. A branch of it is dissected and sewn to an artery on the surface of the brain. The scalp continues to get blood from other vessels.'],
+    ['How do you check that the bypass works?', 'With ultrasound and CT angiography: the images show the temporal artery entering the skull and supplying the brain vessels. The surgeon sets the follow-up schedule.'],
+  ]}
+  cta={{ title: 'Send me your scans', text: 'Send your CT angiography or neck ultrasound and CT perfusion if you have it. I will tell you whether there is an indication for surgery or monitoring is enough.' }}
+>
+  <section id="chto-eto">
+    <h2>What it is</h2>
+    <p>The internal carotid arteries are the two main routes carrying blood to the brain. <strong>Occlusion</strong> is complete blockage of the artery, most often by a plaque with a clot on it. Blood no longer flows through it.</p>
+    <p>Yet the brain is not left without supply straight away. It has a safety net: the other carotid artery, two vertebral arteries and a network of vessels connecting them — <strong>collaterals</strong>. If they cope, a person may have no symptoms. If not, the brain is "starved", and sooner or later this ends in ischaemic attacks or a stroke.</p>
+    <h3>Risk factors</h3>
+    <p>The same as for carotid plaques: atherosclerosis, high cholesterol, high blood pressure, diabetes, smoking, age over 50. More about plaques — in the article <a href="/en/treatment/vascular/carotid-stenosis/">"Carotid artery stenosis"</a>.</p>
+  </section>
+
+  <section id="simptomy">
+    <h2>Symptoms</h2>
+    <p>Occlusion is often found after a stroke. But there may be warning signs — <strong>transient ischaemic attacks</strong>, episodes that pass on their own within minutes or hours:</p>
+    <ul>
+      <li>weakness or numbness of an arm, leg or half of the face;</li>
+      <li>speech problems;</li>
+      <li>brief loss of vision in one eye;</li>
+      <li>dizziness and unsteadiness, especially on standing up.</li>
+    </ul>
+    <p>Repeated attacks despite treatment are one of the main signs that collateral flow is not enough.</p>
+  </section>
+
+  <section id="diagnostika">
+    <h2>Diagnosis</h2>
+    <ul>
+      <li><strong>Neck ultrasound</strong> — often the first test showing that there is no flow in the artery.</li>
+      <li><strong>CT or MR angiography</strong> — confirms the occlusion and shows which vessels have taken over the load.</li>
+      <li><strong>Brain MRI</strong> — shows whether there have been strokes, including silent ones.</li>
+      <li><strong>CT perfusion</strong> — the key test for the decision. It shows how much blood each area of the brain actually gets, so the hemispheres can be compared.</li>
+    </ul>
+  </section>
+
+  <section id="komu">
+    <h2>Who needs surgery</h2>
+    <p>Not everyone with a blocked artery needs surgery. I offer it only when three conditions are met together:</p>
+    <ol>
+      <li><strong>The occlusion is confirmed</strong> by imaging.</li>
+      <li><strong>There are symptoms</strong> of insufficient blood supply: ischaemic attacks or a stroke, especially repeated despite treatment.</li>
+      <li><strong>CT perfusion shows a deficit</strong> of blood supply on the side of the blocked artery.</li>
+    </ol>
+    <p>If even one condition is missing, medication chosen by a doctor and monitoring are usually enough. I explain these criteria <a href={`${tg}/197`} target="_blank" rel="noopener">in cards on my Telegram channel</a> (in Russian).</p>
+    <div class="callout">
+      <p>Revascularisation is also done for <a href="/en/treatment/vascular/moyamoya/">moyamoya disease</a> — there the brain arteries narrow for a different reason, but the task is the same: give the brain extra blood flow.</p>
+    </div>
+  </section>
+
+  <section id="operaciya">
+    <h2>EC-IC bypass</h2>
+    <p><strong>EC-IC bypass</strong> (extracranial-intracranial microanastomosis) is bypass surgery for brain vessels: a detour for blood around the blocked segment.</p>
+    <ul>
+      <li>A branch of the <strong>superficial temporal artery</strong>, which normally supplies the scalp, is dissected under the skin of the temple.</li>
+      <li>Through a small window in the bone it is brought to an artery on the surface of the brain — usually a branch of the middle cerebral artery.</li>
+      <li>Under the microscope the vessels are sewn together with the finest thread. Their diameter is about 1–2 mm.</li>
+      <li>The bone is put back and fixed with titanium plates.</li>
+    </ul>
+    <p>This is not "cleaning" a vessel, as in endarterectomy, but creating a new route. Its goal is to <strong>reduce the risk of another stroke</strong>. Quality of life does not always improve after surgery, and I discuss this honestly with every patient before the decision.</p>
+    <figure class="case-fig">
+      <div class="pair2">
+        <div><img src="/media/cases/bypass-before.webp" alt="CT angiography before EC-IC bypass" loading="lazy" width="900" height="900"><span>Before</span></div>
+        <div><img src="/media/cases/bypass-after.webp" alt="CT angiography after EC-IC bypass: temporal artery sewn to a brain artery" loading="lazy" width="900" height="900"><span>After</span></div>
+      </div>
+      <figcaption>A case from my practice: after bypass a branch of the temporal artery enters the skull and supplies brain vessels.</figcaption>
+    </figure>
+    <h3>Cases from my practice</h3>
+    <ul>
+      <li>Both internal carotid arteries are blocked, blood flows only through the vertebral arteries, and there has already been a stroke. <a href={`${tg}/185`} target="_blank" rel="noopener">Surgery video and follow-up</a> (in Russian).</li>
+      <li>A man of about 40: a stroke, one side of the body failed. After EC-IC bypass the ischaemic attacks stopped — <a href={`${tg}/237`} target="_blank" rel="noopener">case review</a> and <a href={`${tg}/238`} target="_blank" rel="noopener">his feedback two months later</a> (in Russian).</li>
+      <li>After a stroke with speech problems: at follow-up a few months later speech and memory are better and the bypass works — <a href={`${tg}/219`} target="_blank" rel="noopener">on my Telegram channel</a> (in Russian).</li>
+    </ul>
+  </section>
+
+  <section id="posle">
+    <h2>After surgery</h2>
+    <ul>
+      <li>Drugs to prevent clots and treat atherosclerosis continue for life — the regimen is prescribed by a doctor. Surgery does not treat atherosclerosis itself.</li>
+      <li>Bypass function is checked with ultrasound and CT angiography on the schedule set by the surgeon. What a follow-up looks like I showed <a href={`${tg}/77`} target="_blank" rel="noopener">on a 3D reconstruction</a> (in Russian).</li>
+    </ul>
+  </section>
+
+  <section id="srochno" slot="urgent">
+    <h2>When to seek urgent help</h2>
+    <div class="callout alert">
+      <p>Sudden weakness or numbness of an arm, leg or half of the face, speech problems, loss of vision in one eye — even if it quickly passed — <strong>call emergency services immediately (112; 103 in Russia).</strong></p>
+    </div>
+  </section>
+</Article>

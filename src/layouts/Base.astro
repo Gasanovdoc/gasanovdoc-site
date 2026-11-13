@@ -3,14 +3,16 @@ import '../styles/global.css';
 import '../styles/pages.css';
 import { site } from '../data/site';
 import { directions } from '../data/directions';
+import { pairFor } from '../data/i18n';
 interface Props { title: string; description: string; jsonld?: string; lang?: 'ru' | 'en'; ogType?: string; ruPath?: string; enPath?: string }
 const { title, description, jsonld, lang = 'ru', ogType = 'website' } = Astro.props;
 const path = Astro.url.pathname;
 const en = lang === 'en';
 // pages that exist in both languages pass both paths; others fall back to the home page of the other language
-const ruPath = Astro.props.ruPath ?? (en ? '/' : path);
-const enPath = Astro.props.enPath ?? (en ? path : '/en/');
-const hasPair = !!(Astro.props.ruPath && Astro.props.enPath);
+const pair = pairFor(path);
+const ruPath = Astro.props.ruPath ?? pair?.ru ?? (en ? '/' : path);
+const enPath = Astro.props.enPath ?? pair?.en ?? (en ? path : '/en/');
+const hasPair = !!((Astro.props.ruPath && Astro.props.enPath) || pair);
 const home = en ? '/en/' : '/';
 const t = en
   ? { name: 'Timur Gasanov', role: 'neurosurgeon', nav: 'Site sections', dir: 'Conditions & treatment', res: 'Results', about: 'About me', contacts: 'Contact', lang: 'Language', theme: 'Light or dark theme', cta: 'Send scans', warn: 'Contraindications apply. A specialist consultation is required.', privacy: 'Privacy policy', consent: 'Consent to data processing', locale: 'en_US' }
@@ -46,7 +48,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   <div class="wrap">
     <a class="mark" href={home}>{t.name}<small>{t.role}</small></a>
     <nav class="menu" aria-label={t.nav}>
-      <a href={en ? '/en/#directions' : '/lechenie/'} aria-current={path.startsWith('/lechenie/') ? 'page' : undefined}>{t.dir}</a>
+      <a href={en ? '/en/treatment/' : '/lechenie/'} aria-current={path.startsWith('/lechenie/') || path.startsWith('/en/treatment/') ? 'page' : undefined}>{t.dir}</a>
       {!en && <a href="/pacientam/" aria-current={path.startsWith('/pacientam/') ? 'page' : undefined}>Пациентам</a>}
       <a href={home + '#results'}>{t.res}</a>
       <a href={en ? '/en/#about' : '/obo-mne/'} aria-current={path.startsWith('/obo-mne/') ? 'page' : undefined}>{t.about}</a>
@@ -66,7 +68,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <div class="wrap">
       {en ? (
         <ul class="mnav-main">
-          <li><a href="/en/#directions">{t.dir}</a></li>
+          <li><a href="/en/treatment/">{t.dir}</a></li>
           <li><a href="/en/#request">Send your scans</a></li>
           <li><a href="/en/#results">{t.res}</a></li>
           <li><a href="/en/#about">{t.about}</a></li>

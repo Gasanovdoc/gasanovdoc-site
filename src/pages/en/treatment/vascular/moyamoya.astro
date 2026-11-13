@@ -1,0 +1,80 @@
+---
+import Article from '../../../../layouts/Article.astro';
+import Scheme from '../../../../components/schemes/MoyamoyaEn.astro';
+const tg = 'https://t.me/gasanovDOC';
+---
+<Article
+  lang="en"
+  title="Moyamoya disease: symptoms, diagnosis, surgery"
+  description="Moyamoya disease in children and adults: why brain arteries narrow, warning signs, how it is diagnosed and how revascularisation surgery lowers stroke risk."
+  path="/en/treatment/vascular/moyamoya/"
+  h1="Moyamoya disease"
+  lede="A rare disease in which the main brain arteries gradually narrow. It occurs in both children and adults, and the first sign is often a stroke. Here is what should raise suspicion, which tests are needed and why surgery is the main treatment."
+  hub={{ name: 'Cerebrovascular surgery', href: '/en/treatment/vascular/' }}
+  condition={{ name: 'Moyamoya disease', alternateName: ['Moyamoya syndrome'], procedures: ['Extracranial-intracranial (EC-IC) bypass', 'Indirect revascularisation (encephalo-myo-synangiosis)'] }}
+  keyfacts={[['Children and adults', 'it occurs at any age'], ['Angiography', 'the gold standard'], ['Surgery', 'the main treatment'], ['Goal', 'new routes for blood to the brain']]}
+  toc={[['chto-eto', 'What it is'], ['simptomy', 'Symptoms'], ['diagnostika', 'Diagnosis'], ['lechenie', 'Treatment'], ['posle', 'After surgery']]}
+  faq={[
+    ['Why is it called moyamoya?', 'Moyamoya is Japanese for "puff of smoke". That is how the network of small vessels the brain grows around the narrowed arteries looks on angiography. The disease was first described by Japanese doctors.'],
+    ['Can moyamoya be treated with tablets?', 'Medication does not stop the narrowing. A doctor may prescribe drugs to prevent clots, but the main method that lowers stroke risk is revascularisation surgery.'],
+    ['Is it inherited?', 'There is a hereditary component: the disease is more common in relatives of patients and in people of East Asian descent. But most patients have no family history. If a close relative has moyamoya and suspicious symptoms appear, discuss testing with a neurologist.'],
+    ['How is moyamoya disease different from moyamoya syndrome?', 'The picture on the images is the same. "Disease" means no obvious cause. "Syndrome" is when the same changes develop with another condition or after radiotherapy to the head.'],
+    ['Are children operated on?', 'Yes. In children the disease often progresses faster, so the decision on surgery is not postponed. Indirect techniques are chosen more often for children.'],
+  ]}
+  cta={{ title: 'Send me your scans', text: 'Send your MR or CT angiography, perfusion and reports if you have them. I will tell you which tests are still needed and whether there is an indication for surgery.' }}
+>
+  <section id="chto-eto">
+    <h2>What it is</h2>
+    <p>In moyamoya disease the <strong>internal carotid arteries</strong> inside the skull and the large arteries branching from them gradually narrow and may close completely — usually on both sides.</p>
+    <p>The brain tries to compensate for the lack of blood and grows a network of small, fragile collateral vessels. On angiography they look like a puff of smoke — "moyamoya" in Japanese, hence the name. But these vessels are weak: they carry little blood and can burst under strain.</p>
+    <p>The exact cause is unknown. Heredity and features of the immune system are thought to play a role.</p>
+    <Scheme />
+  </section>
+
+  <section id="simptomy">
+    <h2>Symptoms</h2>
+    <p>The disease occurs in children, more often aged 5–12, and in adults. The presentation differs between these groups.</p>
+    <h3>In children</h3>
+    <p>Most often <strong>ischaemia</strong>, i.e. lack of blood: episodes of weakness or numbness of an arm or leg, speech problems, headaches, seizures. Typically an attack can be triggered by fast breathing — crying, blowing out candles, playing a wind instrument. With a long course, development may lag.</p>
+    <h3>In adults</h3>
+    <p>More often <strong>bleeding</strong> from the fragile collateral vessels, but ischaemic strokes also occur. Also headaches, problems with speech, memory and movement.</p>
+    <p>Warning signs are repeated episodes when an arm or leg "switches off", brief speech problems, and the words "stenosis", "occlusion" or "reduced flow" in an MR or CT angiography report of a young person or child.</p>
+  </section>
+
+  <section id="diagnostika">
+    <h2>Diagnosis</h2>
+    <ul>
+      <li><strong>Brain MRI and MR angiography</strong> — show narrowed arteries, previous strokes and bleeds.</li>
+      <li><strong>Cerebral angiography</strong> — the gold standard. Contrast is injected through an arterial puncture and all vessels are seen, including the "puff of smoke" network and the routes by which the brain gets blood.</li>
+      <li><strong>Perfusion imaging</strong> (CT or MRI) — shows whether each area of the brain gets enough blood. This matters for the decision on surgery and the choice of side.</li>
+    </ul>
+    <p>An imaging report is not yet a diagnosis. The diagnosis is made by a doctor based on all tests and symptoms together.</p>
+  </section>
+
+  <section id="lechenie">
+    <h2>Treatment</h2>
+    <p>Medication does not stop the narrowing. The main method is <strong>revascularisation surgery</strong>: it brings extra blood flow to the brain from the vessels of the scalp and muscles. This lowers the risk of stroke.</p>
+    <h3>Direct revascularisation — EC-IC bypass</h3>
+    <p>A branch of the temporal artery, which supplies the scalp, is sewn under the microscope to an artery on the surface of the brain. New blood flow appears immediately after surgery. More about the operation — in the article <a href="/en/treatment/vascular/carotid-occlusion-bypass/">"Carotid occlusion and EC-IC bypass"</a>.</p>
+    <h3>Indirect revascularisation</h3>
+    <p>Well-vascularised tissues — the temporal muscle, periosteum, an artery with surrounding tissue — are laid on the surface of the brain. Over several months new vessels grow from them into the brain. These operations are chosen more often in children, whose arteries are too thin for direct suturing.</p>
+    <h3>Combined operations</h3>
+    <p>A direct bypass and an indirect technique are done in one operation: the first gives flow immediately, the second over time. This is a frequent choice in adults.</p>
+    <p>I choose the strategy — which technique and which side to start with — individually, based on angiography and perfusion. More about the disease — <a href={`${tg}/59`} target="_blank" rel="noopener">a post on my Telegram channel</a>, and <a href={`${tg}/61`} target="_blank" rel="noopener">here is the story of a teenage girl</a> on whom we performed revascularisation (in Russian).</p>
+  </section>
+
+  <section id="posle">
+    <h2>After surgery</h2>
+    <ul>
+      <li>Follow-up with a neurologist and neurosurgeon, with control imaging on the schedule set by the surgeon.</li>
+      <li>It is important to avoid dehydration and sharp drops in blood pressure: they reduce blood flow to the brain. Medication is prescribed by a doctor.</li>
+    </ul>
+  </section>
+
+  <section id="srochno" slot="urgent">
+    <h2>When to seek urgent help</h2>
+    <div class="callout alert">
+      <p>Sudden weakness or numbness of an arm, leg or half of the face, speech problems, seizures, a sudden severe headache, loss of consciousness — in a child or an adult — <strong>call emergency services immediately (112; 103 in Russia).</strong></p>
+    </div>
+  </section>
+</Article>

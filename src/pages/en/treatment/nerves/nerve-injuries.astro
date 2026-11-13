@@ -1,0 +1,86 @@
+---
+import Article from '../../../../layouts/Article.astro';
+const tg = 'https://t.me/gasanovDOC';
+---
+<Article
+  lang="en"
+  title="Nerve injuries: nerve repair after trauma and cuts"
+  description="A nerve injured by a cut, fracture or wound: how to tell the nerve is damaged, why timing matters, when nerve repair is needed and how recovery goes."
+  path="/en/treatment/nerves/nerve-injuries/"
+  h1="Nerve injuries and ruptures"
+  lede="A cut from glass or metal, a fracture, a wound — and afterwards the fingers will not move or sensation is gone. Often the skin is stitched and the nerve is remembered weeks later. Here is why timing matters in nerve injury and when surgery is needed."
+  hub={{ name: 'Peripheral nerves', href: '/en/treatment/nerves/' }}
+  condition={{ name: 'Peripheral nerve injury', alternateName: ['Nerve laceration', 'Nerve rupture'], procedures: ['Nerve repair (neurorrhaphy)', 'Nerve grafting', 'Neurolysis'] }}
+  keyfacts={[['Numbness and weakness', 'after an injury'], ['Time matters', 'the earlier the repair, the better'], ['Nerve conduction & ultrasound', 'assess the damage'], ['Months', 'nerves recover slowly']]}
+  toc={[['chto-eto', 'How nerves are injured'], ['simptomy', 'Signs'], ['diagnostika', 'Diagnosis'], ['lechenie', 'Treatment'], ['vosstanovlenie', 'Recovery']]}
+  faq={[
+    ['The emergency department stitched the skin. Is anything else needed?', 'If after a cut your fingers do not move or are numb, the nerve may be damaged. See a neurosurgeon as soon as possible, without waiting for the stitches to come out. A cut nerve does not heal on its own.'],
+    ['How fast does a nerve recover after repair?', 'Nerves grow slowly — on average about a millimetre a day. So recovery takes months, and longer for injuries high up the arm or leg. The first signs do not appear immediately, and this is normal.'],
+    ['What if the nerve ends cannot be brought together?', 'If there is a large gap between the ends, it is bridged with a graft from the patient\'s own sensory nerve, usually from the lower leg. This is called nerve grafting.'],
+    ['Does a bruised nerve need surgery?', 'After a contusion or stretch the nerve often recovers on its own. Such patients are observed with repeat nerve conduction studies. If recovery does not happen in the expected time, surgery is discussed.'],
+  ]}
+  cta={{ title: 'Tell me about your situation', text: 'Describe the injury, what does not move and where it is numb, and send nerve conduction or ultrasound results if you have them. I will tell you whether surgery is needed and how urgently.' }}
+>
+  <section id="chto-eto">
+    <h2>How nerves are injured</h2>
+    <p>A nerve is like a cable made of many fibres in a common sheath. An injury can:</p>
+    <ul>
+      <li><strong>bruise or stretch it</strong> — the sheath is intact, the fibres temporarily stop conducting. It often recovers on its own;</li>
+      <li><strong>cut it partly or completely</strong> — with cuts from glass, knives, metal, open fractures. It will not heal by itself: repair is needed;</li>
+      <li><strong>compress it</strong> with scar tissue, fracture callus or a haematoma.</li>
+    </ul>
+    <p>Arm nerves are injured most often — median, ulnar, radial — especially with cuts at the wrist and forearm.</p>
+  </section>
+
+  <section id="simptomy">
+    <h2>Signs</h2>
+    <ul>
+      <li>after an injury the fingers or an area of skin went numb;</li>
+      <li>fingers, the hand or the foot will not bend or straighten;</li>
+      <li>touching the injury site sends an electric jolt;</li>
+      <li>over time the muscles waste.</li>
+    </ul>
+    <p>If any of this appears after a cut, the nerve is most likely damaged, even if the wound is small.</p>
+  </section>
+
+  <section id="diagnostika">
+    <h2>Diagnosis</h2>
+    <ul>
+      <li><strong>Examination</strong> — the area of numbness and which movements are lost show which nerve is injured.</li>
+      <li><strong>Nerve ultrasound</strong> — shows whether the nerve is intact, where it is torn and how far the ends have separated.</li>
+      <li><strong>Nerve conduction study</strong> — assesses conduction. Signs of injury do not appear immediately, so the test is sometimes repeated after a few weeks.</li>
+    </ul>
+  </section>
+
+  <section id="lechenie">
+    <h2>Treatment</h2>
+    <h3>Nerve repair</h3>
+    <p>When a nerve is cut, its ends are trimmed under the microscope — the damaged edges are removed — and sewn together with the finest sutures through the sheath. The sooner this is done, the better the result: over time the nerve ends retract and scar, and the muscles left without a nerve weaken.</p>
+    <figure class="case-fig">
+      <figcaption>A case from my practice: a man cut his hand on metal, and the emergency department stitched the skin. A week and a half later, at surgery, the nerve turned out to be almost completely cut, with the ends 3–4 cm apart. I trimmed the damaged edges and repaired the nerve. <a href={`${tg}/138`} target="_blank" rel="noopener">The story and video are on my Telegram channel</a> (in Russian).</figcaption>
+    </figure>
+    <h3>Nerve grafting</h3>
+    <p>If the ends cannot be brought together without tension, the gap is bridged with a graft from the patient's own thin sensory nerve.</p>
+    <h3>Neurolysis</h3>
+    <p>If the nerve is intact but compressed by scar or fracture callus, it is freed.</p>
+    <h3>Observation</h3>
+    <p>With a bruised or stretched nerve without rupture, patients are usually observed with repeat nerve conduction studies, and surgery is considered if recovery does not progress.</p>
+  </section>
+
+  <section id="vosstanovlenie">
+    <h2>Recovery</h2>
+    <ul>
+      <li>After repair the arm or leg is immobilised for a while so the nerve is not stretched and heals properly.</li>
+      <li>Nerves grow slowly — on average about a millimetre a day. Recovery takes months.</li>
+      <li>Rehabilitation matters: exercise therapy supervised by a physiotherapist, sensory retraining and braces if needed.</li>
+      <li>A follow-up nerve conduction study shows how recovery is going.</li>
+    </ul>
+  </section>
+
+  <section id="srochno" slot="urgent">
+    <h2>When to seek urgent help</h2>
+    <div class="callout alert">
+      <p>Heavy bleeding from a wound — <strong>call emergency services immediately (112; 103 in Russia)</strong> and press on the wound. If after a cut or injury your fingers are numb or do not move — <strong>go to an emergency department the same day</strong> and then see a neurosurgeon, without waiting for the stitches to come out.</p>
+    </div>
+  </section>
+</Article>

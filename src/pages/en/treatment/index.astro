@@ -1,0 +1,25 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { directionsEn } from '../../../data/directions-en';
+---
+<Base lang="en" title="Conditions & treatment: neurosurgery" description="Cerebrovascular surgery, brain tumours, spine, peripheral nerves, hydrocephalus and skull defects — the conditions I treat and the operations I perform.">
+<main id="top">
+  <header class="page-head">
+    <div class="wrap">
+      <ol class="crumbs"><li><a href="/en/">Home</a></li><li aria-current="page">Conditions & treatment</li></ol>
+      <h1>Conditions & treatment</h1>
+      <p class="lede">The five areas I operate in. Each contains conditions, articles about them and operations.</p>
+    </div>
+  </header>
+  <div class="wrap hub">
+    <div class="cards">
+      {directionsEn.map((d) => (
+        <a class="card" href={`/en/treatment/${d.slug}/`}>
+          <h3>{d.title}</h3>
+          <p>{d.conditions.map((c) => c.name).join(' · ')}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</main>
+</Base>

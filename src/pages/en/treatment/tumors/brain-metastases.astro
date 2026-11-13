@@ -1,0 +1,83 @@
+---
+import Article from '../../../../layouts/Article.astro';
+import Scheme from '../../../../components/schemes/MetastazyEn.astro';
+---
+<Article
+  lang="en"
+  title="Brain metastases: when surgery is needed"
+  description="Brain metastases: where they come from, how they present, when removal is indicated and when radiosurgery, and how surgery combines with oncology treatment."
+  path="/en/treatment/tumors/brain-metastases/"
+  h1="Brain metastases"
+  lede="Metastases are tumours that reached the brain from another organ. They are found in patients already treated by an oncologist, and sometimes a metastasis is the first sign of the disease. Here is when surgery helps and how it combines with other treatment."
+  hub={{ name: 'Brain and nerve tumours', href: '/en/treatment/tumors/' }}
+  condition={{ name: 'Brain metastases', alternateName: ['Metastatic brain tumour'], procedures: ['Microsurgical removal with neuronavigation', 'Radiosurgery'] }}
+  keyfacts={[['Via the bloodstream', 'they reach the brain from other organs'], ['MRI with contrast', 'the main test'], ['Surgery or radiosurgery', 'depends on number and size'], ['Tumour board', 'strategy decided with the oncologist']]}
+  toc={[['chto-eto', 'What it is'], ['simptomy', 'Symptoms'], ['diagnostika', 'Diagnosis'], ['lechenie', 'Treatment'], ['posle', 'After treatment']]}
+  faq={[
+    ['If there are brain metastases, is surgery pointless?', 'No. With a single or large metastasis, removal often eases symptoms, relieves pressure on the brain and gives time to treat the underlying disease. The decision is individual, considering general condition and prognosis.'],
+    ['A metastasis was found in the brain but the primary tumour is unknown. What now?', 'A whole-body work-up is needed to find the source. Sometimes removal of the brain lesion and histology themselves point to where to look for the primary tumour.'],
+    ['Which is better — surgery or radiosurgery?', 'They are not rivals. Large lesions pressing on the brain are more often removed. Small and multiple ones are irradiated precisely. The methods are often combined: after removal, the tumour bed is irradiated.'],
+    ['How quickly do I need to act?', 'Most often within the next few weeks, and urgently with marked symptoms. Do not delay having your scans reviewed by a neurosurgeon and an oncologist.'],
+  ]}
+  cta={{ title: 'Send me your scans', text: 'Send your brain MRI with contrast and your oncologist\'s reports. I will tell you whether surgery will help and how to combine it with other treatment.' }}
+>
+  <section id="chto-eto">
+    <h2>What it is</h2>
+    <p>A <strong>metastasis</strong> is a deposit of tumour whose cells reached the brain with the bloodstream from another organ. In adults it is one of the most common brain tumours.</p>
+    <p>Lung cancer, breast cancer, melanoma, kidney and bowel cancer most often spread to the brain. A metastasis keeps the properties of the original tumour: a lung cancer metastasis in the brain is still lung cancer, and it is treated with that in mind.</p>
+    <p>On MRI metastases usually look like round lesions with swelling around them. There may be one lesion or several.</p>
+    <Scheme />
+  </section>
+
+  <section id="simptomy">
+    <h2>Symptoms</h2>
+    <ul>
+      <li>headache, nausea, vomiting;</li>
+      <li>weakness or numbness of an arm or leg, problems with speech, vision or coordination;</li>
+      <li>seizures;</li>
+      <li>changes in behaviour and memory, confusion.</li>
+    </ul>
+    <p>In patients already being treated for cancer, any new neurological symptom is a reason for a brain MRI.</p>
+  </section>
+
+  <section id="diagnostika">
+    <h2>Diagnosis</h2>
+    <ul>
+      <li><strong>Brain MRI with contrast</strong> — the main test: shows the number, size and location of lesions. Small metastases can be missed without contrast.</li>
+      <li><strong>Whole-body work-up</strong> (CT, PET-CT and others) — to find the primary tumour and assess the extent of the disease.</li>
+      <li><strong>Histology</strong> — after removal of a lesion, if the primary tumour is unknown or the diagnosis needs clarifying.</li>
+    </ul>
+  </section>
+
+  <section id="lechenie">
+    <h2>Treatment</h2>
+    <p>The strategy is discussed at a <strong>tumour board</strong>: a neurosurgeon, an oncologist and a radiation oncologist. They consider the number and size of lesions, their location, the patient's condition and how well the underlying disease is controlled.</p>
+    <h3>Surgery</h3>
+    <p>Removal is most often considered if:</p>
+    <ul>
+      <li>there is one lesion or a few, and they are accessible;</li>
+      <li>the metastasis is large and causes swelling, brain compression and symptoms;</li>
+      <li>the primary tumour is unknown and histology is needed.</li>
+    </ul>
+    <p>I perform the operation microsurgically with neuronavigation — this helps locate the lesion precisely and remove it completely without damaging the surrounding brain.</p>
+    <h3>Radiosurgery and radiotherapy</h3>
+    <p>Small lesions, including multiple ones, are irradiated precisely with radiosurgery. After removal of a large metastasis its bed is irradiated to reduce the risk of recurrence.</p>
+    <h3>Drug treatment</h3>
+    <p>Chemotherapy, targeted therapy and immunotherapy are prescribed by an oncologist. Drugs to reduce brain swelling are also prescribed by a doctor.</p>
+  </section>
+
+  <section id="posle">
+    <h2>After treatment</h2>
+    <ul>
+      <li>Brain MRI follow-up — regularly, on the oncologist's schedule: new lesions may appear, and they are best found when small.</li>
+      <li>Treatment of the underlying disease continues with the oncologist.</li>
+    </ul>
+  </section>
+
+  <section id="srochno" slot="urgent">
+    <h2>When to seek urgent help</h2>
+    <div class="callout alert">
+      <p>Seizures, rapidly increasing weakness, speech problems, severe headache with vomiting, confusion or drowsiness — <strong>call emergency services immediately (112; 103 in Russia).</strong></p>
+    </div>
+  </section>
+</Article>

@@ -1,0 +1,86 @@
+---
+import Article from '../../../../layouts/Article.astro';
+import Scheme from '../../../../components/schemes/KavernomaEn.astro';
+---
+<Article
+  lang="en"
+  title="Brain cavernoma: when surgery is needed"
+  description="Brain cavernoma: what it is, why it shows on MRI but not on angiography, why it is dangerous, when observation is enough and when removal is indicated."
+  path="/en/treatment/vascular/cavernoma/"
+  h1="Brain cavernoma"
+  lede="A cavernoma is a small vascular lesion that looks like a raspberry. It is most often found by chance, and many people live with it all their lives. Here is when a cavernoma needs attention and when observation is enough."
+  hub={{ name: 'Cerebrovascular surgery', href: '/en/treatment/vascular/' }}
+  condition={{ name: 'Cerebral cavernous malformation', alternateName: ['Cavernoma', 'Cavernous angioma'], procedures: ['Microsurgical cavernoma removal'] }}
+  keyfacts={[['MRI', 'the key test; invisible on angiography'], ['Often silent', 'found by chance'], ['Seizures', 'a common reason to see a doctor'], ['Observation', 'enough for many patients']]}
+  toc={[['chto-eto', 'What it is'], ['simptomy', 'Symptoms'], ['diagnostika', 'Diagnosis'], ['lechenie', 'Treatment'], ['posle', 'After surgery']]}
+  faq={[
+    ['Is a cavernoma a tumour?', 'No. It is a vascular malformation — a cluster of dilated thin-walled vessels. It does not spread and does not turn into cancer.'],
+    ['A cavernoma was found by chance. What should I do?', 'Most often — observe: a repeat MRI on the schedule set by your doctor and a visit to a doctor if new symptoms appear. Surgery for an incidental finding without symptoms is rarely offered.'],
+    ['Why is a cavernoma not seen on angiography?', 'Flow inside it is very slow and there are no large feeding arteries. So contrast on angiography does not fill it. The main test is MRI.'],
+    ['Can I get pregnant, do sport or fly with a cavernoma?', 'In most cases there are no restrictions, but it depends on the location and whether there have been bleeds. Discuss this with a neurosurgeon individually.'],
+    ['Several cavernomas were found. Is that dangerous?', 'Multiple cavernomas are often seen in the familial form. The approach is the same — observation and treatment of the lesions causing symptoms. Relatives may benefit from testing, including with a geneticist.'],
+  ]}
+  cta={{ title: 'Send me your scans', text: 'Send your brain MRI and report. I will tell you whether surgery is needed or observation is enough.' }}
+>
+  <section id="chto-eto">
+    <h2>What it is</h2>
+    <p>A <strong>cavernoma</strong> (cavernous malformation) is a cluster of dilated vessels with very thin walls. It looks like a raspberry or mulberry, from a few millimetres to a few centimetres in size.</p>
+    <p>Blood flows slowly in a cavernoma. The thin walls sometimes "leak" — small bleeds happen in and around it. They are usually limited, but if the cavernoma lies in an important area — for example the brainstem — even a small bleed can cause noticeable symptoms.</p>
+    <p>Cavernomas can be single or multiple. Multiple ones are often linked to a <strong>familial form</strong>, which is inherited.</p>
+    <p>A <strong>developmental venous anomaly</strong> — a variation in the structure of a vein — is often found next to a cavernoma. It is harmless, and normal drainage of the brain sometimes goes through it, so it is preserved during surgery.</p>
+    <Scheme />
+  </section>
+
+  <section id="simptomy">
+    <h2>Symptoms</h2>
+    <p>Many cavernomas cause no symptoms and are found by chance on MRI. If there are symptoms, most often these are:</p>
+    <ul>
+      <li><strong>epileptic seizures</strong> — especially with cavernomas in the cerebral cortex;</li>
+      <li><strong>a bleed</strong> — a sudden headache, weakness or numbness, problems with speech, vision or coordination;</li>
+      <li><strong>gradually increasing neurological problems</strong> — with repeated small bleeds, especially in the brainstem: double vision, facial asymmetry, swallowing problems, unsteadiness.</li>
+    </ul>
+  </section>
+
+  <section id="diagnostika">
+    <h2>Diagnosis</h2>
+    <ul>
+      <li><strong>Brain MRI</strong> — the main test. A cavernoma looks typical: a mottled lesion with a dark rim of iron deposits from old bleeds.</li>
+      <li><strong>SWI or SWAN sequences</strong> — special MRI sequences sensitive to blood breakdown products. They find even small cavernomas not visible on standard sequences. Worth doing if multiple cavernomas are suspected.</li>
+      <li><strong>CT</strong> — if a fresh bleed is suspected.</li>
+      <li><strong>Angiography</strong> does not show a cavernoma, but is sometimes done to rule out other vascular causes.</li>
+      <li><strong>EEG</strong> — if there were seizures.</li>
+    </ul>
+    <p>An MRI report is not yet a diagnosis. The diagnosis is made by a doctor based on images and symptoms together.</p>
+  </section>
+
+  <section id="lechenie">
+    <h2>Treatment</h2>
+    <h3>Observation</h3>
+    <p>If a cavernoma causes no symptoms, it is usually observed: repeat MRI on the schedule set by the doctor and a visit if new complaints appear. If there were seizures, a neurologist chooses antiepileptic treatment.</p>
+    <h3>Surgery</h3>
+    <p>Removal is usually discussed if:</p>
+    <ul>
+      <li>it causes epileptic seizures, especially ones poorly controlled by medication;</li>
+      <li>there has been a bleed with neurological problems, especially a repeated one;</li>
+      <li>the cavernoma is growing and lies where it can be removed with acceptable risk.</li>
+    </ul>
+    <p>The operation is microsurgical, with neuronavigation: the cavernoma is removed entirely along with the altered tissue around it. Cavernomas in the brainstem and deep areas are removed only on strict indications — the cost of error there is especially high.</p>
+    <h3>Radiosurgery</h3>
+    <p>Precise irradiation is sometimes used for cavernomas that cannot be removed safely. Its effectiveness for cavernomas is lower than for AVMs, so it is chosen rarely and individually.</p>
+  </section>
+
+  <section id="posle">
+    <h2>After surgery</h2>
+    <ul>
+      <li>Follow-up MRI — to confirm complete removal.</li>
+      <li>If there were seizures, antiepileptic treatment continues; the decision to stop it is made by a neurologist.</li>
+    </ul>
+  </section>
+
+  <section id="srochno" slot="urgent">
+    <h2>When to seek urgent help</h2>
+    <div class="callout alert">
+      <p>A sudden severe headache, weakness or numbness of an arm, leg or half of the face, speech problems, double vision, first-ever seizures, loss of consciousness — <strong>call emergency services immediately (112; 103 in Russia).</strong></p>
+    </div>
+  </section>
+</Article>

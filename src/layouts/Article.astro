@@ -12,42 +12,47 @@ interface Props {
   faq: [string, string][];
   cta: { title: string; text: string };
   updated?: string;
+  lang?: 'ru' | 'en';
 }
 const p = Astro.props;
+const en = p.lang === 'en';
+const L = en
+  ? { home: 'Home', homeHref: '/en/', dir: 'Conditions & treatment', dirHref: '/en/treatment/', author: 'Author:', role: 'neurosurgeon', aboutHref: '/en/#about', upd: 'Updated:', updDefault: 'November 2026', brief: 'In brief', faq: 'Frequently asked questions', urgent: 'Urgent care', toc: 'Contents', req: 'Send your scans', reqHref: '/en/#request', tgBtn: 'Message on Telegram', name: 'Timur Gasanov', inLang: 'en' }
+  : { home: 'Главная', homeHref: '/', dir: 'Болезни и лечение', dirHref: '/lechenie/', author: 'Автор:', role: 'нейрохирург', aboutHref: '/#about', upd: 'Обновлено:', updDefault: 'октябрь 2026', brief: 'Коротко', faq: 'Частые вопросы', urgent: 'Срочная помощь', toc: 'Содержание', req: 'Оставить заявку', reqHref: '/#request', tgBtn: 'Написать в Telegram', name: 'Тимур Гасанов', inLang: 'ru' };
 const url = new URL(p.path, 'https://gasanovdoc.ru').href;
 const jsonld = JSON.stringify({
   '@context': 'https://schema.org',
   '@graph': [
-    { '@type': 'MedicalWebPage', '@id': url, url, name: p.title, description: p.description, inLanguage: 'ru', lastReviewed: '2026-10-23',
-      author: { '@type': 'Physician', name: 'Тимур Гасанов', url: 'https://gasanovdoc.ru/' },
+    { '@type': 'MedicalWebPage', '@id': url, url, name: p.title, description: p.description, inLanguage: L.inLang, lastReviewed: '2026-10-23',
+      author: { '@type': 'Physician', name: L.name, url: new URL(L.homeHref, 'https://gasanovdoc.ru').href },
       about: { '@type': 'MedicalCondition', name: p.condition.name, alternateName: p.condition.alternateName,
         possibleTreatment: (p.condition.procedures ?? []).map((n) => ({ '@type': 'MedicalProcedure', name: n })) } },
     { '@type': 'BreadcrumbList', itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Главная', item: 'https://gasanovdoc.ru/' },
-      { '@type': 'ListItem', position: 2, name: 'Болезни и лечение', item: 'https://gasanovdoc.ru/lechenie/' },
+      { '@type': 'ListItem', position: 1, name: L.home, item: new URL(L.homeHref, 'https://gasanovdoc.ru').href },
+      { '@type': 'ListItem', position: 2, name: L.dir, item: new URL(L.dirHref, 'https://gasanovdoc.ru').href },
       { '@type': 'ListItem', position: 3, name: p.hub.name, item: new URL(p.hub.href, 'https://gasanovdoc.ru').href },
       { '@type': 'ListItem', position: 4, name: p.h1, item: url } ] },
     { '@type': 'FAQPage', mainEntity: p.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
   ],
 });
 ---
-<Base title={p.title} description={p.description} jsonld={jsonld} ogType="article">
+<Base title={p.title} description={p.description} jsonld={jsonld} ogType="article" lang={en ? 'en' : 'ru'}>
 <main id="top">
   <header class="page-head">
     <div class="wrap">
       <ol class="crumbs">
-        <li><a href="/">Главная</a></li>
-        <li><a href="/lechenie/">Болезни и лечение</a></li>
+        <li><a href={L.homeHref}>{L.home}</a></li>
+        <li><a href={L.dirHref}>{L.dir}</a></li>
         <li><a href={p.hub.href}>{p.hub.name}</a></li>
         <li aria-current="page">{p.h1}</li>
       </ol>
       <h1>{p.h1}</h1>
       <p class="lede">{p.lede}</p>
       <div class="byline">
-        <span>Автор: <a href="/#about">Тимур Гасанов</a>, нейрохирург</span>
-        <span>Обновлено: {p.updated ?? 'октябрь 2026'}</span>
+        <span>{L.author} <a href={L.aboutHref}>{L.name}</a>, {L.role}</span>
+        <span>{L.upd} {p.updated ?? L.updDefault}</span>
       </div>
-      <div class="keyfacts" aria-label="Коротко">
+      <div class="keyfacts" aria-label={L.brief}>
         {p.keyfacts.map(([b, s]) => <div><b>{b}</b><span>{s}</span></div>)}
       </div>
     </div>
@@ -56,7 +61,7 @@ const jsonld = JSON.stringify({
     <article class="body">
       <slot />
       <section id="voprosy" class="faq">
-        <h2>Частые вопросы</h2>
+        <h2>{L.faq}</h2>
         <div style="margin-top:18px">
           {p.faq.map(([q, a]) => (<details><summary>{q}</summary><p>{a}</p></details>))}
         </div>
@@ -66,14 +71,14 @@ const jsonld = JSON.stringify({
         <h2>{p.cta.title}</h2>
         <p class="lede">{p.cta.text}</p>
         <div class="btns">
-          <a class="btn btn-fill" href="/#request">Оставить заявку</a>
-          <a class="btn btn-line" href="https://t.me/gasanov_doc" target="_blank" rel="noopener">Написать в Telegram</a>
+          <a class="btn btn-fill" href={L.reqHref}>{L.req}</a>
+          <a class="btn btn-line" href="https://t.me/gasanov_doc" target="_blank" rel="noopener">{L.tgBtn}</a>
         </div>
       </aside>
     </article>
-    <nav class="toc" aria-label="Содержание">
-      <p>Содержание</p>
-      <ol>{[...p.toc, ['voprosy', 'Частые вопросы'], ...(Astro.slots.has('urgent') ? [['srochno', 'Срочная помощь']] : [])].map(([id, name]) => <li><a href={`#${id}`}>{name}</a></li>)}</ol>
+    <nav class="toc" aria-label={L.toc}>
+      <p>{L.toc}</p>
+      <ol>{[...p.toc, ['voprosy', L.faq], ...(Astro.slots.has('urgent') ? [['srochno', L.urgent]] : [])].map(([id, name]) => <li><a href={`#${id}`}>{name}</a></li>)}</ol>
     </nav>
   </div>
 </main>

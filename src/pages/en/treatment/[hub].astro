@@ -1,0 +1,57 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { directionsEn } from '../../../data/directions-en';
+
+export function getStaticPaths() {
+  return directionsEn.map((d) => ({ params: { hub: d.slug }, props: { d } }));
+}
+const { d } = Astro.props;
+const url = `https://gasanovdoc.ru/en/treatment/${d.slug}/`;
+const jsonld = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'MedicalWebPage', name: d.title, description: d.description, url, inLanguage: 'en',
+      author: { '@type': 'Physician', name: 'Timur Gasanov' },
+      about: d.conditions.map((c) => ({ '@type': 'MedicalCondition', name: c.name })) },
+    { '@type': 'BreadcrumbList', itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://gasanovdoc.ru/en/' },
+      { '@type': 'ListItem', position: 2, name: 'Conditions & treatment', item: 'https://gasanovdoc.ru/en/treatment/' },
+      { '@type': 'ListItem', position: 3, name: d.title, item: url } ] },
+  ],
+});
+---
+<Base lang="en" title={d.seoTitle} description={d.description} jsonld={jsonld}>
+<main id="top">
+  <header class="page-head">
+    <div class="wrap">
+      <ol class="crumbs">
+        <li><a href="/en/">Home</a></li>
+        <li><a href="/en/treatment/">Conditions & treatment</a></li>
+        <li aria-current="page">{d.title}</li>
+      </ol>
+      <h1>{d.title}</h1>
+      <p class="lede">{d.intro}</p>
+    </div>
+  </header>
+  <div class="wrap hub">
+    <h2 class="hub-h">Conditions</h2>
+    <div class="cards">
+      {d.conditions.map((c) => c.href
+        ? <a class="card" href={c.href}><h3>{c.name}</h3><p>{c.text}</p><span class="go">Read the article</span></a>
+        : <div class="card card-plain"><h3>{c.name}</h3><p>{c.text}</p></div>)}
+    </div>
+    <div class="hub-ops">
+      <h2 class="hub-h">Operations</h2>
+      <ul>{d.operations.map((o) => <li>{o}</li>)}</ul>
+    </div>
+    <aside class="cta-box">
+      <h2>Send me your scans</h2>
+      <p class="lede">Send your MRI or CT and briefly describe what bothers you. I will reply with what I see on the images and what steps make sense next.</p>
+      <div class="btns">
+        <a class="btn btn-fill" href="/en/#request">Send your scans</a>
+        <a class="btn btn-line" href="https://t.me/gasanov_doc" target="_blank" rel="noopener">Message on Telegram</a>
+      </div>
+    </aside>
+  </div>
+</main>
+</Base>

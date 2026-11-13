@@ -1,0 +1,79 @@
+---
+import Article from '../../../../layouts/Article.astro';
+import Scheme from '../../../../components/schemes/NevrinomaEn.astro';
+---
+<Article
+  lang="en"
+  title="Schwannoma (neurinoma): symptoms and removal"
+  description="Schwannoma is a benign tumour of a nerve sheath. Vestibular schwannoma and schwannomas of other nerves: symptoms, observation, surgery, radiosurgery."
+  path="/en/treatment/tumors/schwannoma/"
+  h1="Schwannoma (neurinoma)"
+  lede="A schwannoma is a benign tumour that grows from the sheath of a nerve. It most often arises on the hearing nerve, but also occurs on spinal nerves and nerves of the arms and legs. Here is when it is observed and when it is removed."
+  hub={{ name: 'Brain and nerve tumours', href: '/en/treatment/tumors/' }}
+  condition={{ name: 'Schwannoma', alternateName: ['Neurinoma', 'Vestibular schwannoma', 'Acoustic neuroma'], procedures: ['Microsurgical schwannoma removal', 'Radiosurgery'] }}
+  keyfacts={[['Benign', 'a nerve sheath tumour'], ['Slow-growing', 'often over years'], ['Hearing nerve', 'the most common site in the head'], ['Observation, surgery or radiation', 'depends on size and symptoms']]}
+  toc={[['chto-eto', 'What it is'], ['simptomy', 'Symptoms'], ['diagnostika', 'Diagnosis'], ['lechenie', 'Treatment'], ['posle', 'After surgery']]}
+  faq={[
+    ['Is a schwannoma cancer?', 'No. It is a benign tumour: it does not spread and grows slowly. Malignant nerve sheath tumours exist but are rare.'],
+    ['Will hearing come back after surgery?', 'As a rule, no: if hearing has already declined, surgery usually does not restore it. The goal is to stop tumour growth and preserve what remains — above all facial nerve function.'],
+    ['Can it just be observed?', 'Yes, small schwannomas without significant symptoms are often observed with MRI once a year or on the doctor\'s schedule. If the tumour grows or symptoms appear, surgery or radiation is discussed.'],
+    ['I found a painful lump along a nerve under the skin of my arm. Could it be a schwannoma?', 'It could. Such schwannomas are usually removed while preserving the nerve: the tumour pushes the nerve fibres aside, and they can be separated. An ultrasound or MRI and a neurosurgeon\'s examination are needed.'],
+  ]}
+  cta={{ title: 'Send me your scans', text: 'Send your MRI with contrast and, if you have it, an audiogram. I will tell you whether observation is possible or surgery is needed.' }}
+>
+  <section id="chto-eto">
+    <h2>What it is</h2>
+    <p>Nerves are covered with a sheath of <strong>Schwann cells</strong> — like insulation on a wire. A schwannoma (neurinoma) grows from these cells. It does not invade the nerve but pushes its fibres apart, so the nerve can often be preserved during removal.</p>
+    <p>Most often a schwannoma arises on the <strong>vestibulocochlear (hearing) nerve</strong> — in the angle between the cerebellum and the brainstem. It is called a vestibular schwannoma. Less often — on the trigeminal and other cranial nerves, spinal nerve roots, and nerves of the arms and legs.</p>
+    <p>Multiple schwannomas, especially on both hearing nerves, occur in a hereditary condition — neurofibromatosis type 2.</p>
+    <Scheme />
+  </section>
+
+  <section id="simptomy">
+    <h2>Symptoms</h2>
+    <h3>Vestibular schwannoma</h3>
+    <ul>
+      <li>gradual hearing loss in one ear — the most common first symptom;</li>
+      <li>noise or ringing in one ear;</li>
+      <li>unsteadiness, dizziness;</li>
+      <li>with a large tumour — numbness of half of the face, weakness of facial muscles, headache.</li>
+    </ul>
+    <p>If hearing in one ear has declined without an obvious reason, it is a reason for an MRI.</p>
+    <h3>Schwannomas of spinal and limb nerves</h3>
+    <p>Pain, numbness or an "electric shock" along the nerve, sometimes a lump under the skin that hurts when pressed.</p>
+  </section>
+
+  <section id="diagnostika">
+    <h2>Diagnosis</h2>
+    <ul>
+      <li><strong>MRI with contrast</strong> — the main test. For the hearing nerve, a brain MRI with thin slices through the internal auditory canals is done.</li>
+      <li><strong>Audiogram</strong> — a hearing test, needed to choose the strategy.</li>
+      <li>For limb schwannomas — <strong>nerve ultrasound</strong> and nerve conduction studies.</li>
+    </ul>
+  </section>
+
+  <section id="lechenie">
+    <h2>Treatment</h2>
+    <ul>
+      <li><strong>Observation</strong> — for a small tumour without significant symptoms: follow-up MRI on the doctor's schedule.</li>
+      <li><strong>Radiosurgery</strong> — precise irradiation. Chosen for small and medium tumours; the goal is to stop growth.</li>
+      <li><strong>Microsurgical removal</strong> — for large tumours pressing on the brainstem, with tumour growth or worsening symptoms. Besides removal, the main task is to preserve the facial nerve running nearby. For this, intraoperative neuromonitoring — continuous checking of nerve function — is used.</li>
+    </ul>
+    <p>Schwannomas of the arm, leg and spinal nerves are usually removed if they cause pain or compress the nerve. The tumour is separated from the nerve fibres under the microscope, preserving the nerve.</p>
+  </section>
+
+  <section id="posle">
+    <h2>After surgery</h2>
+    <ul>
+      <li>Follow-up MRI — on the schedule set by the surgeon.</li>
+      <li>After removal of a vestibular schwannoma — follow-up with an ENT specialist; rehabilitation if facial nerve function is affected.</li>
+    </ul>
+  </section>
+
+  <section id="srochno" slot="urgent">
+    <h2>When to seek urgent help</h2>
+    <div class="callout alert">
+      <p>A sudden severe headache with vomiting, increasing unsteadiness and drowsiness, problems swallowing or breathing — <strong>call emergency services immediately (112; 103 in Russia)</strong>. With sudden complete hearing loss — see an ENT specialist urgently.</p>
+    </div>
+  </section>
+</Article>

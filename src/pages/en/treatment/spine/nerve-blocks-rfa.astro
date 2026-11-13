@@ -1,0 +1,77 @@
+---
+import Article from '../../../../layouts/Article.astro';
+const tg = 'https://t.me/gasanovDOC';
+---
+<Article
+  lang="en"
+  title="Nerve blocks and radiofrequency ablation for back pain"
+  description="Types of injections for back pain and disc herniation, how a radicular block differs from a facet block, when radiofrequency ablation helps and how the procedures go."
+  path="/en/treatment/spine/nerve-blocks-rfa/"
+  h1="Nerve blocks and radiofrequency ablation"
+  lede="Back pain does not always come from a herniation. Muscle spasm, arthritis of the small spinal joints and sacroiliac joint inflammation hurt differently and are treated differently. Here is what blocks exist, when radiofrequency ablation is needed and why hitting the exact source of pain matters."
+  hub={{ name: 'Spine', href: '/en/treatment/spine/' }}
+  condition={{ name: 'Back and neck pain', alternateName: ['Facet joint syndrome', 'Low back pain'], procedures: ['Radicular (transforaminal) block', 'Facet joint block', 'Radiofrequency ablation'] }}
+  keyfacts={[['Under X-ray', 'targeted blocks and RFA'], ['Local anaesthesia', 'you are awake'], ['≈ 30 minutes', 'RFA takes'], ['Same day', 'home after RFA']]}
+  toc={[['istochnik', 'Where back pain comes from'], ['blokady', 'Types of blocks'], ['kak', 'How a block is done'], ['rcha', 'Radiofrequency ablation'], ['kogda', 'What is needed when']]}
+  faq={[
+    ['Is the steroid in a block dangerous?', 'The anti-inflammatory steroid acts mainly at the injection site and, used correctly, rarely causes side effects. Be sure to tell the doctor about allergies, diabetes and the drugs you take.'],
+    ['Why did my leg go numb after the block?', 'After a radicular block the local anaesthetic temporarily "switches off" the nerve: the leg or arm may be numb and weak for a few hours. This is expected and passes when the drug wears off.'],
+    ['How many times can blocks be done?', 'The number and intervals are decided by the doctor. A block is a step in treatment, not a replacement for it: if the pain keeps returning without it, another solution is needed.'],
+    ['How long does the effect of RFA last?', 'Usually from several months to a couple of years. If needed, the procedure can be repeated.'],
+  ]}
+  cta={{ title: 'Tell me about your situation', text: 'Send your spine MRI and briefly describe where and for how long it hurts and what you have already tried. I will tell you where the pain most likely comes from and which procedure may help.' }}
+>
+  <section id="istochnik">
+    <h2>Where back pain comes from</h2>
+    <ul>
+      <li><strong>Muscles</strong> — spasm and strain, inflammation where muscles and ligaments attach. The most common cause.</li>
+      <li><strong>Facet joints</strong> — small joints between the vertebrae. With arthritis, pain increases on extension, rotation and long standing; morning stiffness is common.</li>
+      <li><strong>Sacroiliac joint (SIJ)</strong> — the joint between the spine and the pelvis. Pain low in the back on one side, radiating to the buttock and thigh.</li>
+      <li><strong>A nerve root</strong> — with a <a href="/en/treatment/spine/disc-herniation/">disc herniation</a>. Pain shoots into the leg or arm, with possible numbness and weakness.</li>
+    </ul>
+    <p>A block helps only if the medication reaches the source of pain. So the source has to be found first — by examination and imaging.</p>
+  </section>
+
+  <section id="blokady">
+    <h2>Types of blocks</h2>
+    <p>A block is a targeted injection of two drugs: a <strong>local anaesthetic</strong>, which quickly relieves pain, and an <strong>anti-inflammatory steroid</strong>, which reduces inflammation and swelling and acts longer.</p>
+    <ul>
+      <li><strong>Paravertebral</strong> — into the tense muscles next to the spine. The simplest; helps with muscle pain. The effect often comes within 10–30 minutes.</li>
+      <li><strong>Facet joint and SIJ block</strong> — precisely into the joint under X-ray or ultrasound guidance. For spinal joint arthritis and SIJ inflammation.</li>
+      <li><strong>Radicular</strong> — to the inflamed nerve root under X-ray guidance. The only truly effective type of block for a disc herniation. More — <a href={`${tg}/49`} target="_blank" rel="noopener">on my Telegram channel</a> (in Russian).</li>
+    </ul>
+  </section>
+
+  <section id="kak">
+    <h2>How a block is done</h2>
+    <p>You lie on your stomach; the skin is cleaned with antiseptic and numbed. Under X-ray (C-arm) or ultrasound guidance a thin needle is guided precisely to the joint or root and the drugs are injected. The procedure takes a few minutes.</p>
+    <p>A block is not the first step. Medication, exercise therapy and physiotherapy are tried first. A block is needed when pain persists despite them, and its task is to settle the flare-up and open a "window" for active rehabilitation.</p>
+  </section>
+
+  <section id="rcha">
+    <h2>Radiofrequency ablation</h2>
+    <p>If a facet or SIJ block helps but only briefly, the next step is <strong>radiofrequency ablation (RFA)</strong>. Through a thin needle under X-ray guidance, a probe is brought to the small nerve branches carrying pain from the joint, and a radiofrequency current is applied. The nerve is "switched off" from the pain circuit.</p>
+    <ul>
+      <li>under local anaesthesia, about 30 minutes;</li>
+      <li>home the same day;</li>
+      <li>the effect lasts from several months to a couple of years; the procedure can be repeated if needed.</li>
+    </ul>
+    <p>RFA is not used for pain from a disc herniation — it works specifically for pain from the spinal and pelvic joints.</p>
+  </section>
+
+  <section id="kogda">
+    <h2>What is needed when</h2>
+    <ul>
+      <li><strong>Acute muscle pain</strong> — medication, movement, and a paravertebral block if needed.</li>
+      <li><strong>Facet or SIJ pain</strong> — a targeted block; if the effect is short-lived — RFA.</li>
+      <li><strong>Leg or arm pain from a herniation</strong> — a radicular block; if it does not help or weakness increases — we discuss removing the herniation.</li>
+    </ul>
+  </section>
+
+  <section id="srochno" slot="urgent">
+    <h2>When to seek urgent help</h2>
+    <div class="callout alert">
+      <p>Numbness in the groin area, bladder or bowel problems, rapidly increasing leg weakness — <strong>call emergency services immediately (112; 103 in Russia).</strong></p>
+    </div>
+  </section>
+</Article>

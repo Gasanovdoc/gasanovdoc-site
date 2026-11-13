@@ -1,0 +1,61 @@
+---
+import Article from '../../../../layouts/Article.astro';
+---
+<Article
+  lang="en"
+  title="Meralgia paresthetica: burning and numbness of the thigh"
+  description="Meralgia paresthetica (Bernhardt–Roth syndrome) is compression of the lateral femoral cutaneous nerve. Why the thigh burns and goes numb, what helps and when surgery is needed."
+  path="/en/treatment/nerves/meralgia-paresthetica/"
+  h1="Meralgia paresthetica"
+  lede="Burning, tingling and a “foreign” feeling of the skin on the outer thigh are the typical picture of compression of the lateral femoral cutaneous nerve under the inguinal ligament. It is unpleasant but not dangerous, and most often settles without surgery."
+  hub={{ name: 'Peripheral nerves', href: '/en/treatment/nerves/' }}
+  condition={{ name: 'Meralgia paresthetica', alternateName: ['Bernhardt–Roth syndrome', 'Lateral femoral cutaneous nerve entrapment'], procedures: ['Lateral femoral cutaneous nerve block', 'Nerve decompression'] }}
+  keyfacts={[['Outer thigh', 'area of numbness'], ['No weakness', 'the nerve is purely sensory'], ['Tight clothes, weight', 'common causes'], ['Mostly non-surgical', 'removing the cause helps']]}
+  toc={[['chto-eto', 'What it is'], ['simptomy', 'Symptoms'], ['diagnostika', 'Diagnosis'], ['lechenie', 'Treatment']]}
+  faq={[
+    ['Is it dangerous for the leg?', 'No. This nerve only supplies sensation to the thigh skin and does not control muscles. It does not cause leg weakness. If there is weakness, the cause is different and needs investigation.'],
+    ['Could it come from the spine?', 'Lumbar disc herniations sometimes give similar sensations. In meralgia there is no back pain and the numb area is strictly limited to the outer thigh. If in doubt, a lumbar spine MRI is done.'],
+    ['Does a nerve block help?', 'A block — an injection of local anaesthetic next to the nerve — both relieves symptoms and confirms the diagnosis: if the burning goes away afterwards, the problem is in this nerve.'],
+  ]}
+  cta={{ title: 'Ask a question', text: 'Describe where it is numb and send any tests you have. I will tell you whether it looks like meralgia and what will help.' }}
+>
+  <section id="chto-eto">
+    <h2>What it is</h2>
+    <p>The lateral femoral cutaneous nerve leaves the pelvis next to the anterior superior iliac spine — the bony point at the front of the pelvis — and passes under the inguinal ligament. Here it bends and is easily compressed.</p>
+    <h3>Causes</h3>
+    <ul>
+      <li>tight belts, low-rise jeans, corsets, tool belts;</li>
+      <li>excess weight, rapid weight gain, pregnancy;</li>
+      <li>long sitting or standing in one position;</li>
+      <li>surgery and injuries in the pelvic area.</li>
+    </ul>
+  </section>
+
+  <section id="simptomy">
+    <h2>Symptoms</h2>
+    <ul>
+      <li>burning, tingling, numbness on the outer and front of the thigh;</li>
+      <li>the skin feels "foreign", the touch of clothing is unpleasant;</li>
+      <li>worse when walking, standing, extending the hip;</li>
+      <li>no leg weakness.</li>
+    </ul>
+  </section>
+
+  <section id="diagnostika">
+    <h2>Diagnosis</h2>
+    <p>The diagnosis is usually made on examination. If in doubt — nerve conduction study or nerve ultrasound, a diagnostic block, lumbar and pelvic MRI to rule out other causes.</p>
+  </section>
+
+  <section id="lechenie">
+    <h2>Treatment</h2>
+    <p>Most patients improve without surgery: loose clothing without a tight belt, weight loss, avoiding the long postures that trigger symptoms. Medication is prescribed by a doctor. If symptoms persist, a nerve block is performed.</p>
+    <p>Surgery — releasing the nerve under the inguinal ligament — is considered rarely: when marked symptoms persist despite treatment and the diagnosis is confirmed by a block.</p>
+  </section>
+
+  <section id="srochno" slot="urgent">
+    <h2>When to seek urgent help</h2>
+    <div class="callout alert">
+      <p>Thigh numbness together with leg weakness, severe back pain, numbness in the groin area or problems passing urine — <strong>call emergency services immediately (112; 103 in Russia)</strong>: this is not meralgia but possible nerve compression in the spine.</p>
+    </div>
+  </section>
+</Article>

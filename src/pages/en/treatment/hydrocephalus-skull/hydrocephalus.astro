@@ -1,0 +1,70 @@
+---
+import Article from '../../../../layouts/Article.astro';
+const tg = 'https://t.me/gasanovDOC';
+---
+<Article
+  lang="en"
+  title="Hydrocephalus in adults: symptoms, shunting, ETV"
+  description="Hydrocephalus is a build-up of fluid in the brain ventricles. How to recognise it, which forms need treatment, and how shunting differs from endoscopic third ventriculostomy."
+  path="/en/treatment/hydrocephalus-skull/hydrocephalus/"
+  h1="Hydrocephalus"
+  lede="Headache, an unsteady gait, worsening memory — in older people this is often put down to age. Sometimes the cause is hydrocephalus, which can be treated. Here is how to recognise it and which operations exist."
+  hub={{ name: 'Hydrocephalus and skull defects', href: '/en/treatment/hydrocephalus-skull/' }}
+  condition={{ name: 'Hydrocephalus', alternateName: ['Normal pressure hydrocephalus'], procedures: ['Ventriculoperitoneal shunting', 'Endoscopic third ventriculostomy'] }}
+  keyfacts={[['Gait, memory, bladder', 'the classic triad in older people'], ['MRI', 'the main diagnostic test'], ['Shunt or ETV', 'the two main operations'], ['Not every', 'hydrocephalus needs surgery']]}
+  toc={[['chto-eto', 'What it is'], ['simptomy', 'Symptoms'], ['diagnostika', 'Diagnosis'], ['lechenie', 'Treatment']]}
+  faq={[
+    ['My MRI says "enlarged ventricles". Is this hydrocephalus that needs surgery?', 'Not necessarily. Ventricles are enlarged when brain volume shrinks with age or after illness (atrophy). Then fluid simply fills the freed space, and the cause of atrophy needs treatment, not a shunt. Only a doctor can tell one from the other, based on images and symptoms.'],
+    ['Is a shunt for life?', 'A shunt is placed permanently. Over time it may need adjustment or replacement of individual parts, so follow-up is needed after surgery.'],
+    ['Which is better — a shunt or ETV?', 'It depends on the type of hydrocephalus. Endoscopic third ventriculostomy suits cases where fluid outflow is blocked by an obstruction inside the ventricles; other forms usually need a shunt.'],
+  ]}
+  cta={{ title: 'Send me your scans', text: 'Send your brain MRI and briefly describe the symptoms. I will tell you whether there is hydrocephalus, whether surgery is needed and which method suits you.' }}
+>
+  <section id="chto-eto">
+    <h2>What it is</h2>
+    <p>Inside the brain there are cavities — the <strong>ventricles</strong>. Cerebrospinal fluid is constantly produced in them; it bathes the brain and is reabsorbed. If outflow is blocked or the fluid is poorly absorbed, it accumulates, the ventricles enlarge and compress the brain. This is hydrocephalus.</p>
+    <ul>
+      <li><strong>Obstructive</strong> — outflow is blocked by an obstruction: a tumour, a cyst, narrowing of the cerebral aqueduct.</li>
+      <li><strong>Communicating</strong> — the fluid is poorly absorbed, for example after a haemorrhage or meningitis.</li>
+      <li><strong>Normal pressure hydrocephalus</strong> — a special form in older people that develops slowly and often goes unrecognised.</li>
+    </ul>
+    <p>It is important to distinguish hydrocephalus from <strong>atrophy</strong> — a reduction in brain volume where fluid simply fills the freed space. That condition is not treated with surgery.</p>
+  </section>
+
+  <section id="simptomy">
+    <h2>Symptoms</h2>
+    <p>With acute hydrocephalus — severe headache, nausea and vomiting, vision problems, drowsiness. With normal pressure hydrocephalus in older people — a classic combination:</p>
+    <ul>
+      <li><strong>an unsteady, shuffling gait</strong> — "feet stuck to the floor";</li>
+      <li><strong>worsening memory and attention</strong>;</li>
+      <li><strong>loss of bladder control</strong>.</li>
+    </ul>
+    <p>If you notice this combination in yourself or your relatives, do not put it down to age — it is a reason for an MRI and a neurosurgeon's review.</p>
+  </section>
+
+  <section id="diagnostika">
+    <h2>Diagnosis</h2>
+    <ul>
+      <li><strong>Brain MRI</strong> with assessment of the fluid spaces — shows ventricle size, the cause of obstructed outflow, and distinguishes hydrocephalus from atrophy.</li>
+      <li><strong>CT</strong> — in acute situations and for follow-up after surgery.</li>
+      <li>If normal pressure hydrocephalus is suspected — a <strong>lumbar tap test</strong> removing fluid: if gait clearly improves afterwards, surgery is likely to help.</li>
+    </ul>
+    <p>A short overview of hydrocephalus in cards — <a href={`${tg}/179`} target="_blank" rel="noopener">on my Telegram channel</a> (in Russian).</p>
+  </section>
+
+  <section id="lechenie">
+    <h2>Treatment</h2>
+    <h3>Shunting</h3>
+    <p>A thin tube with a valve is placed in a brain ventricle; under the skin it drains excess fluid into the abdominal cavity, where it is absorbed. This is <strong>ventriculoperitoneal shunting</strong> — the main treatment for communicating and normal pressure hydrocephalus. The valve regulates outflow so fluid does not drain too fast.</p>
+    <h3>Endoscopic third ventriculostomy (ETV)</h3>
+    <p>Through a small opening in the skull an endoscope is passed into the ventricle and a new route for fluid outflow is created — bypassing the obstruction. No shunt is needed. The method suits obstructive hydrocephalus.</p>
+    <p>After surgery, follow-up and control imaging are needed.</p>
+  </section>
+
+  <section id="srochno" slot="urgent">
+    <h2>When to seek urgent help</h2>
+    <div class="callout alert">
+      <p>A severe, worsening headache with vomiting, drowsiness, confusion, vision problems, seizures — especially if a shunt is in place — <strong>call emergency services immediately (112; 103 in Russia).</strong></p>
+    </div>
+  </section>
+</Article>
