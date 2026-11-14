@@ -1,6 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
-const jsonld = `{"@context":"https://schema.org","@type":"Physician","name":"Timur Gasanov","medicalSpecialty":"Neurosurgery","description":"Neurosurgeon: brain, cerebrovascular, spine and peripheral nerve surgery","url":"https://gasanovdoc.ru/en/","areaServed":"Worldwide","availableLanguage":["ru","en"],"email":"gasanov.ns@yandex.ru","telephone":"+7-963-050-35-39","sameAs":["https://t.me/gasanovDOC","https://prodoctorov.ru/ekaterinburg/vrach/678776-gasanov/","https://www.instagram.com/gasanov_doc"]}`;
+const jsonld = `{"@context":"https://schema.org","@type":"Physician","name":"Timur Gasanov","jobTitle":"Neurosurgeon","medicalSpecialty":"Neurosurgery","image":"https://gasanovdoc.ru/media/portrait.webp","address":{"@type":"PostalAddress","addressLocality":"Yekaterinburg","addressCountry":"RU"},"description":"Neurosurgeon: brain, cerebrovascular, spine and peripheral nerve surgery","url":"https://gasanovdoc.ru/en/","areaServed":"Worldwide","availableLanguage":["ru","en"],"email":"gasanov.ns@yandex.ru","telephone":"+7-963-050-35-39","sameAs":["https://t.me/gasanovDOC","https://prodoctorov.ru/ekaterinburg/vrach/678776-gasanov/","https://www.instagram.com/gasanov_doc"]}`;
 ---
 <Base lang="en" title="Neurosurgeon Timur Gasanov: brain and spine surgery" description="Neurosurgeon Timur Gasanov: brain tumours, aneurysms, AVMs, carotid stenosis, disc herniation, trigeminal neuralgia, nerve entrapment. MRI and CT review for patients from any country." jsonld={jsonld} ruPath="/" enPath="/en/">
 <main id="top">
@@ -53,6 +53,10 @@ const jsonld = `{"@context":"https://schema.org","@type":"Physician","name":"Tim
             <li><span>2019</span>Surgical revascularization of the brain, Moscow</li>
           </ul>
         </details>
+        <a class="reviews-link" href="https://prodoctorov.ru/ekaterinburg/vrach/678776-gasanov/" target="_blank" rel="noopener">
+          <span class="rl-text"><b>Patient reviews</b><small>240+ reviews on ProDoctorov (in Russian) — opens in a new tab</small></span>
+          <span class="rl-go" aria-hidden="true">↗</span>
+        </a>
         <a class="more" href="#contacts">Contact me</a>
       </div>
     </div>
