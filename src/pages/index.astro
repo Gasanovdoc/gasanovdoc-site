@@ -1,8 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
-const jsonld = `{"@context":"https://schema.org","@type":"Physician","name":"Тимур Гасанов","medicalSpecialty":"Neurosurgery","award":"1 место в рейтинге нейрохирургов Свердловской области «Выбор пациентов», Премия ПроДокторов 2026","description":"Нейрохирург: операции на головном мозге, сосудах, позвоночнике и периферических нервах","areaServed":["Россия","Казахстан","Киргизия","Таджикистан","Узбекистан"],"availableLanguage":["ru","en"],"email":"gasanov.ns@yandex.ru","telephone":"+7-963-050-35-39","sameAs":["https://t.me/gasanovDOC","https://prodoctorov.ru/ekaterinburg/vrach/678776-gasanov/","https://www.instagram.com/gasanov_doc"]}`;
+const jsonld = `{"@context":"https://schema.org","@type":"Physician","name":"Тимур Гасанов","jobTitle":"Врач-нейрохирург","medicalSpecialty":"Neurosurgery","url":"https://gasanovdoc.ru/","image":"https://gasanovdoc.ru/media/portrait.webp","address":{"@type":"PostalAddress","addressLocality":"Екатеринбург","addressRegion":"Свердловская область","addressCountry":"RU"},"knowsAbout":["Опухоли головного мозга","Аневризма сосудов головного мозга","Артериовенозная мальформация","Стеноз сонной артерии","Грыжа межпозвонкового диска","Невралгия тройничного нерва","Туннельные синдромы","Гидроцефалия","Краниопластика"],"award":"1 место в рейтинге нейрохирургов Свердловской области «Выбор пациентов», Премия ПроДокторов 2026","description":"Нейрохирург: операции на головном мозге, сосудах, позвоночнике и периферических нервах","areaServed":["Россия","Казахстан","Киргизия","Таджикистан","Узбекистан"],"availableLanguage":["ru","en"],"email":"gasanov.ns@yandex.ru","telephone":"+7-963-050-35-39","sameAs":["https://t.me/gasanovDOC","https://prodoctorov.ru/ekaterinburg/vrach/678776-gasanov/","https://www.instagram.com/gasanov_doc"]}`;
 ---
-<Base title="Нейрохирург Тимур Гасанов: операции на мозге и позвоночнике" description="Нейрохирург Тимур Гасанов: операции на головном мозге и позвоночнике — опухоли мозга, аневризмы, АВМ, грыжи дисков, невралгия тройничного нерва, туннельные синдромы. Разбор МРТ и КТ для пациентов из России и других стран." jsonld={jsonld} ruPath="/" enPath="/en/">
+<Base title="Нейрохирург Тимур Гасанов, Екатеринбург: операции на мозге" description="Нейрохирург в Екатеринбурге Тимур Гасанов: операции на головном мозге и позвоночнике — опухоли мозга, аневризмы, АВМ, грыжи дисков, невралгия тройничного нерва, туннельные синдромы. Разбор МРТ и КТ для пациентов из России и других стран." jsonld={jsonld} ruPath="/" enPath="/en/">
 <main id="top">
   <section class="hero">
     <figure class="hero-video">
@@ -13,7 +13,7 @@ const jsonld = `{"@context":"https://schema.org","@type":"Physician","name":"Т�
       <div class="hero-text">
         <h1>Тимур Гасанов</h1>
         <p class="role">Нейрохирург. Оперирую заболевания головного мозга — опухоли и сосудистые заболевания, а также позвоночник и периферические нервы.</p>
-        <p class="reach">Принимаю пациентов со всей России и из других стран</p>
+        <p class="reach">Екатеринбург. Принимаю пациентов со всей России и из других стран</p>
         <div class="cta">
           <a class="btn btn-fill" href="#request">Записаться</a>
           <a class="btn btn-line" href="#directions">Выбрать заболевание</a>
@@ -53,6 +53,10 @@ const jsonld = `{"@context":"https://schema.org","@type":"Physician","name":"Т�
             <li><span>2019</span>«Хирургическая реваскуляризация головного мозга», Москва</li>
           </ul>
         </details>
+        <a class="reviews-link" href="https://prodoctorov.ru/ekaterinburg/vrach/678776-gasanov/" target="_blank" rel="noopener">
+          <span class="rl-text"><b>Отзывы пациентов</b><small>240+ отзывов на ПроДокторов — откроется в новой вкладке</small></span>
+          <span class="rl-go" aria-hidden="true">↗</span>
+        </a>
         <a class="more" href="/obo-mne/">Подробнее обо мне</a>
       </div>
     </div>

@@ -335,3 +335,10 @@ html[data-theme="light"] .scheme .brainfill{fill:#e3cfbd}
 .mri-legend li .mri-num{margin-top:1px}
 .mri-fig figcaption{margin-top:10px;font-size:.88rem;color:var(--quiet)}
 @media (max-width:640px){.mri-num{width:20px;height:20px;line-height:20px;font-size:.72rem}}
+
+.reviews-link{margin-top:12px;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 20px;border:1px solid var(--gold);border-radius:16px;background:var(--panel);text-decoration:none;color:inherit;transition:background .2s,transform .2s}
+.reviews-link:hover{background:color-mix(in srgb,var(--gold) 12%,var(--panel));transform:translateY(-1px)}
+.reviews-link .rl-text{display:flex;flex-direction:column;gap:3px}
+.reviews-link b{font-weight:600}
+.reviews-link small{font-size:.86em;opacity:.72}
+.reviews-link .rl-go{color:var(--gold);font-size:1.25em;line-height:1}
