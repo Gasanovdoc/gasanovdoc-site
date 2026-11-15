@@ -1,0 +1,119 @@
+---
+// Схемы к статье о запястном канале: срез канала, тест Фалена, ЭНМГ.
+interface Props { kind: 'section' | 'phalen' | 'enmg'; lang?: 'ru' | 'en' }
+const { kind, lang = 'ru' } = Astro.props;
+const en = lang === 'en';
+
+interface Shape { d: string; t: string; len: number; wb: number; wt: number }
+const taper = (x1: number, y1: number, x2: number, y2: number, wb: number, wt: number, back = 14): Shape => {
+  const len = +Math.hypot(x2 - x1, y2 - y1).toFixed(1);
+  const ang = (Math.atan2(y2 - y1, x2 - x1) * 180) / Math.PI;
+  return { d: `M${-back} ${-wb / 2} L${len} ${-wt / 2} A${wt / 2} ${wt / 2} 0 0 1 ${len} ${wt / 2} L${-back} ${wb / 2} Z`, t: `translate(${x1} ${y1}) rotate(${ang.toFixed(1)})`, len, wb, wt };
+};
+const fingers = [taper(65, 170, 56, 58, 27, 21), taper(92, 164, 92, 37, 28, 22), taper(118, 167, 125, 53, 27, 21), taper(141, 178, 156, 94, 23, 18), taper(54, 238, 15, 152, 34, 26)];
+const palmPath = 'M50 176 C46 152 62 148 100 148 C140 148 157 154 159 180 C163 218 160 252 148 278 C146 300 146 322 147 346 L65 346 C66 322 66 302 63 288 C50 272 35 252 36 224 C36 202 44 188 50 176 Z';
+
+// Срез запястья: кости, связка, сухожилия, нерв.
+const bones = [[96, 152, 32, 36], [152, 197, 38, 27], [236, 199, 42, 27], [300, 154, 32, 36]];
+const tendons = [[148, 160], [172, 163], [196, 164], [220, 163], [246, 160], [158, 138], [182, 141], [238, 140]];
+
+// Тест Фалена: предплечье, кисть и большой палец одной руки (вторая — зеркально).
+const arm = [taper(-10, 96, 172, 100, 64, 46, 0), taper(181, 104, 189, 218, 40, 15, 0), taper(166, 132, 150, 180, 18, 12, 6)];
+
+const t = en
+  ? { norm: 'Normal', sick: 'Nerve is squeezed', lig: 'Ligament', nerve: 'Median nerve', tend: 'Tendons', bone: 'Wrist bones', sec: '60 seconds', press: 'backs of the hands pressed together', stim: 'Impulse', sens: 'Sensor', ok: 'normal', slow: 'slowed', speed: 'Nerve response' }
+  : { norm: 'Норма', sick: 'Нерв сдавлен', lig: 'Связка', nerve: 'Срединный нерв', tend: 'Сухожилия', bone: 'Кости запястья', sec: '60 секунд', press: 'кисти прижаты тыльными сторонами', stim: 'Импульс', sens: 'Датчик', ok: 'норма', slow: 'замедление', speed: 'Ответ нерва' };
+const aria = {
+  section: en ? 'Cross-section of the carpal tunnel: normal and with the median nerve squeezed' : 'Запястный канал в разрезе: в норме и при сдавлении срединного нерва',
+  phalen: en ? "Phalen's test: wrists bent, backs of the hands pressed together for one minute" : 'Тест Фалена: кисти согнуты и прижаты тыльными сторонами на одну минуту',
+  enmg: en ? 'Nerve conduction study: an impulse at the wrist and a sensor on the finger' : 'ЭНМГ: импульс на запястье и датчик на пальце',
+}[kind];
+const caption = {
+  section: en
+    ? 'The carpal tunnel in cross-section, palm side up. When the ligament thickens or the tendons swell, the nerve has no room left.'
+    : 'Запястный канал в разрезе, ладонь сверху. Когда связка утолщается или отекают сухожилия, нерву не остаётся места.',
+  phalen: en
+    ? "Phalen's test. The wrists stay bent for a minute. If the thumb, index and middle fingers go numb, the median nerve is squeezed."
+    : 'Тест Фалена. Кисти согнуты одну минуту. Если за это время немеют большой, указательный и средний пальцы — срединный нерв сдавлен.',
+  enmg: en
+    ? 'Nerve conduction study. A weak impulse is given at the wrist, a sensor on the finger records the response. With compression the response comes later and is weaker.'
+    : 'ЭНМГ. На запястье подают слабый импульс, датчик на пальце записывает ответ. При сдавлении ответ приходит позже и слабее.',
+}[kind];
+---
+<figure class={`scheme nerve-fig ${kind === 'section' ? '' : 'single'}`}>
+  <svg class="nv-defs" width="0" height="0" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="nv-gx" x1="0" y1="0" x2="1" y2="0"><stop offset="0" class="s-lo" /><stop offset=".45" class="s-hi" /><stop offset="1" class="s-lo" /></linearGradient>
+      <linearGradient id="nv-gy" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="s-lo" /><stop offset=".5" class="s-hi" /><stop offset="1" class="s-lo" /></linearGradient>
+      <radialGradient id="nv-gr" cx=".45" cy=".4" r=".7"><stop offset="0" class="s-hi" /><stop offset="1" class="s-lo" /></radialGradient>
+    </defs>
+  </svg>
+
+  {kind === 'section' && (
+    <div class="scheme-pair">
+      {[false, true].map((sick) => (
+        <svg viewBox="0 0 400 300" role="img" aria-label={`${aria}: ${sick ? t.sick : t.norm}`} xmlns="http://www.w3.org/2000/svg">
+          <ellipse class="skin-line" cx="200" cy="162" rx="152" ry="96" fill="url(#nv-gr)" />
+          {bones.map(([x, y, rx, ry]) => <ellipse class="bone" cx={x} cy={y} rx={rx} ry={ry} />)}
+          <path class="tunnel" d="M118 118 Q200 96 282 118 L270 176 Q200 190 130 176 Z" />
+          {tendons.map(([x, y]) => <g><circle class={sick ? 'sheath sick' : 'sheath'} cx={x} cy={y} r={sick ? 14 : 12} /><circle class="tendon" cx={x} cy={y} r="9" /></g>)}
+          <path class="lig" d={sick ? 'M100 118 Q200 100 300 118' : 'M100 116 Q200 96 300 116'} stroke-width={sick ? 17 : 8} />
+          {sick && <circle cx="210" cy="133" r="24" class="pulse" />}
+          {sick && <circle cx="210" cy="133" r="19" class="glow" />}
+          <ellipse class="nerve" cx="210" cy={sick ? 133 : 128} rx={sick ? 17 : 13} ry={sick ? 5 : 9} />
+          <text x="200" y="26" text-anchor="middle" class="h">{sick ? t.sick : t.norm}</text>
+          {!sick && (
+            <g>
+              <g class="lab"><line x1="130" y1="108" x2="66" y2="62" /><text x="14" y="56" class="t">{t.lig}</text></g>
+              <g class="lab hot"><line x1="218" y1="122" x2="300" y2="62" /><text x="386" y="56" text-anchor="end" class="t">{t.nerve}</text></g>
+              <g class="lab"><line x1="150" y1="168" x2="60" y2="266" /><text x="14" y="286" class="t">{t.tend}</text></g>
+              <g class="lab"><line x1="252" y1="212" x2="318" y2="268" /><text x="386" y="286" text-anchor="end" class="t">{t.bone}</text></g>
+            </g>
+          )}
+        </svg>
+      ))}
+    </div>
+  )}
+
+  {kind === 'phalen' && (
+    <svg viewBox="0 0 400 250" role="img" aria-label={aria} xmlns="http://www.w3.org/2000/svg">
+      {[false, true].map((flip) => (
+        <g transform={flip ? 'translate(400 0) scale(-1 1)' : undefined}>
+          <g class="skin-edge">{arm.map((s) => <path d={s.d} transform={s.t} />)}<circle cx="179" cy="100" r="22" /></g>
+          <circle cx="179" cy="100" r="22" fill="url(#nv-gr)" />
+          {arm.map((s) => <path d={s.d} transform={s.t} fill="url(#nv-gy)" />)}
+          <g transform={arm[1].t}>{[0.42, 0.62, 0.82].map((k) => <line class="crease" x1={arm[1].len * k} y1={-8 + k * 4} x2={arm[1].len * k} y2={2} />)}</g>
+          <path class="nv nv-median thin2" d="M0 110 C80 112 140 112 166 118 C176 124 178 140 180 170" />
+          <circle cx="168" cy="120" r="15" class="pulse" /><circle cx="168" cy="120" r="12" class="glow" /><circle cx="168" cy="120" r="5" class="core" />
+          <path class="arrow" d="M118 176 L150 176 M142 169 L150 176 L142 183" />
+        </g>
+      ))}
+      <g class="clock"><circle cx="150" cy="34" r="12" /><path d="M150 26 V34 L156 38" /></g>
+      <text x="170" y="40" class="h">{t.sec}</text>
+      <text x="200" y="240" text-anchor="middle" class="s">{t.press}</text>
+    </svg>
+  )}
+
+  {kind === 'enmg' && (
+    <svg viewBox="0 0 400 250" role="img" aria-label={aria} xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(18 14) scale(.64)">
+        <g class="skin-edge"><path d={palmPath} />{fingers.map((f) => <path d={f.d} transform={f.t} />)}</g>
+        <path d={palmPath} fill="url(#nv-gr)" />{fingers.map((f) => <path d={f.d} transform={f.t} fill="url(#nv-gy)" />)}
+        <path class="crease" d="M60 232 C74 214 96 204 118 206" /><path class="crease" d="M70 200 C96 186 128 184 152 196" /><path class="crease" d="M68 266 Q104 274 146 266" />
+        <path class="nv nv-median thin" d="M104 346 L102 240 C88 196 70 140 60 92" />
+        <g transform={fingers[0].t}>{[0.45, 0.7].map((k) => <rect class="electrode" x={fingers[0].len * k - 4} y={-fingers[0].wb / 2} width="8" height={fingers[0].wb} rx="2" />)}</g>
+        <circle cx="104" cy="300" r="20" class="pulse" /><circle cx="104" cy="300" r="15" class="glow" /><circle cx="104" cy="300" r="7" class="core" />
+      </g>
+      <path class="wire" d="M57 84 C110 30 180 60 232 78" /><path class="wire" d="M92 206 C150 236 200 200 232 150" />
+      <rect class="screen" x="232" y="40" width="152" height="136" rx="12" />
+      <path class="trace ok" d="M244 84 L270 84 C276 84 278 58 284 58 C290 58 294 100 300 96 C304 90 308 84 314 84 L372 84" />
+      <path class="trace slow" d="M244 140 L296 140 C302 140 304 126 310 126 C316 126 320 148 326 146 C330 142 332 140 338 140 L372 140" />
+      <text x="372" y="66" text-anchor="end" class="s">{t.ok}</text>
+      <text x="372" y="164" text-anchor="end" class="s">{t.slow}</text>
+      <text x="308" y="200" text-anchor="middle" class="s">{t.speed}</text>
+      <g class="lab hot"><line x1="100" y1="206" x2="130" y2="226" /><text x="136" y="234" class="t">{t.stim}</text></g>
+      <g class="lab"><line x1="64" y1="78" x2="110" y2="30" /><text x="116" y="30" class="t">{t.sens}</text></g>
+    </svg>
+  )}
+  <figcaption>{caption}</figcaption>
+</figure>

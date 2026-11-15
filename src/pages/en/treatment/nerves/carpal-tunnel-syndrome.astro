@@ -1,5 +1,6 @@
 ---
 import NerveMap from '../../../../components/schemes/NerveMap.astro';
+import CarpalFig from '../../../../components/schemes/CarpalFig.astro';
 import Article from '../../../../layouts/Article.astro';
 const tg = 'https://t.me/gasanovDOC';
 ---
@@ -9,10 +10,10 @@ const tg = 'https://t.me/gasanovDOC';
   description="Why fingers go numb at night, how carpal tunnel syndrome is confirmed, when a splint and treatment are enough and when surgery should not be delayed."
   path="/en/treatment/nerves/carpal-tunnel-syndrome/"
   h1="Carpal tunnel syndrome"
-  lede="Fingers go numb at night, you have to shake your hand to make it pass, a mug slips out of your hand — this is how compression of the median nerve at the wrist usually shows itself. Here is how it is confirmed, when treatment without surgery is enough and when surgery is better not postponed."
+  lede="Fingers go numb at night, you have to shake your hand to make it pass, a mug, a pen and other things slip out of your hand, buttons are hard to fasten — this is how compression of the median nerve at the wrist usually shows itself. Here is how it is confirmed, when treatment without surgery is enough and when surgery is better not postponed."
   hub={{ name: 'Peripheral nerves', href: '/en/treatment/nerves/' }}
   condition={{ name: 'Carpal tunnel syndrome', alternateName: ['Median nerve entrapment at the wrist'], procedures: ['Carpal tunnel release', 'Endoscopic carpal tunnel release'] }}
-  keyfacts={[['15–20 min', 'operation time'], ['Local', 'anaesthesia, you are awake'], ['2–3 cm', 'incision along a palm crease'], ['2–3 weeks', 'recovery']]}
+  keyfacts={[['15–20 min', 'operation time'], ['Local anaesthesia', 'the patient is awake and feels no pain'], ['2–3 cm', 'incision along a palm crease'], ['2–3 weeks', 'recovery']]}
   toc={[['chto-eto', 'What it is'], ['simptomy', 'Symptoms'], ['diagnostika', 'Diagnosis'], ['lechenie', 'Non-surgical treatment'], ['operaciya', 'Surgery'], ['vosstanovlenie', 'Recovery']]}
   faq={[
     ['Is the operation done under general anaesthesia?', 'No. I operate under local anaesthesia: only the wrist area is numbed. You are awake and can talk to me, but you feel no pain during surgery. If you have ever had an allergy to local anaesthetics, tell me in advance.'],
@@ -21,15 +22,16 @@ const tg = 'https://t.me/gasanovDOC';
     ['When are stitches removed and can I get my hand wet?', 'Stitches are removed on day 10–14, usually by a surgeon near your home. Until then and until the wound heals, keep the hand dry: cover it with a bag or glove in the shower.'],
     ['Will the numbness go away right after surgery?', 'Night pain and the "pins and needles" feeling ease in the first days for many people. Sensation and strength recover gradually — over several weeks to several months. If the nerve was compressed for years and the muscles have already wasted, recovery may be incomplete.'],
     ['Do I need a splint after surgery?', 'Permanent immobilisation is usually not needed. A splint can be worn at night or during long strain on the wrist, for example when working at a computer.'],
-    ['Can the syndrome come back?', 'Repeat compression after a well-performed operation is rare. If symptoms return or do not improve, further investigation is needed: sometimes the cause is elsewhere — for example in the cervical spine.'],
+    ['Can the syndrome come back?', 'Repeat compression after a well-performed operation is rare. But a lot depends on you. I divide the ligament, but if you keep pressing on the wrist — leaning on it, working in the same position — symptoms can stay or come back. So after surgery it is important to change your habits and take the load off the place where the nerve was squeezed. If symptoms still return or do not improve, further investigation is needed: sometimes the cause is elsewhere — for example in the cervical spine.'],
   ]}
   cta={{ title: 'Tell me about your situation', text: 'Send your nerve conduction report or scans and briefly describe what bothers you. I will tell you whether it looks like carpal tunnel syndrome, what other tests are needed and whether surgery is indicated.' }}
 >
   <section id="chto-eto">
     <h2>What it is</h2>
-    <p>On the palm side of the wrist there is a narrow canal: bones form its floor and sides, and a dense transverse ligament covers it from above. The finger tendons and the <strong>median nerve</strong> pass through this canal to the hand — the nerve supplies sensation to the thumb, index, middle and half of the ring finger and controls the muscles at the base of the thumb.</p>
-    <p>If space in the canal shrinks — because of swollen tendons, a thickened ligament or injury — the nerve gets trapped. It is like a garden hose being stepped on: water still flows, but less and less. This is carpal tunnel syndrome, the most common entrapment syndrome.</p>
-  <NerveMap limb="arm" focus="carpal" lang="en" />
+    <p>On the palm side of the wrist there is a canal. The finger tendons run along its floor, a dense ligament covers it from above, and the <strong>median nerve</strong> lies between them. The nerve gives feeling to the thumb, index, middle and half of the ring finger and controls the muscles at the base of the thumb.</p>
+    <CarpalFig kind="section" lang="en" />
+    <p>If there is too little room in the canal — because of swollen tendons, a thickened ligament or an injury — the nerve gets squeezed. It is like a cable caught in a door: less and less current gets through, and the fingers stop feeling. This is carpal tunnel syndrome, the most common entrapment syndrome.</p>
+    <NerveMap limb="arm" focus="carpal" lang="en" />
   </section>
 
   <section id="simptomy">
@@ -55,6 +57,8 @@ const tg = 'https://t.me/gasanovDOC';
       <li><strong>Nerve ultrasound</strong> — shows swelling of the nerve before the compression and helps rule out other causes such as cysts or tumours.</li>
       <li><strong>Cervical spine MRI</strong> — if the cause is suspected higher up, in the spine.</li>
     </ul>
+    <CarpalFig kind="phalen" lang="en" />
+    <CarpalFig kind="enmg" lang="en" />
   </section>
 
   <section id="lechenie">
@@ -64,9 +68,23 @@ const tg = 'https://t.me/gasanovDOC';
       <li><strong>A night splint</strong> that keeps the wrist in a neutral position and stops it bending during sleep.</li>
       <li><strong>Less strain</strong>: a comfortable hand position at the keyboard and mouse, breaks in repetitive work.</li>
       <li><strong>Medication</strong> — anti-inflammatory and other drugs; the specific drugs and course are prescribed by a doctor.</li>
-      <li><strong>Physiotherapy and exercises</strong>. I showed five simple exercises in <a href={`${tg}/28`} target="_blank" rel="noopener">a post on my Telegram channel</a> (in Russian).</li>
+      <li><strong>Physiotherapy and exercises</strong>. <a href="#uprazhneniya">Five simple hand exercises</a> are below.</li>
       <li><strong>An injection</strong> of an anti-inflammatory drug into the canal area. It reduces swelling, but in some patients the effect is temporary.</li>
     </ul>
+    <details class="fold" id="uprazhneniya">
+      <summary>Five hand exercises</summary>
+      <div class="fold-body">
+        <ol>
+          <li><strong>“Prayer”.</strong> Put your palms together in front of your chest. Slowly lower your hands until you feel a light stretch in the wrists. Hold for 10 seconds, repeat 5 times.</li>
+          <li><strong>Wrist stretch.</strong> Stretch one arm forward, palm down. With the other hand gently bend the hand down until you feel a stretch. Hold for 15 seconds, change hands, repeat 3 times.</li>
+          <li><strong>Finger spread.</strong> Make a fist, then open it quickly and spread the fingers as wide as you can. 10 times.</li>
+          <li><strong>Wrist circles.</strong> Stretch your arms forward and close your fingers. Rotate the hands clockwise and anticlockwise, 10 times each way.</li>
+          <li><strong>“Spider on glass”.</strong> Rest your fingertips on a flat surface and slowly “crawl” down with the fingers without lifting them. 10 times.</li>
+        </ol>
+        <p>Do the exercises every day for 10–14 days. After surgery or an injection, start when the wound has healed. If numbness and pain do not go away or get worse, see a doctor.</p>
+        <p><a href={`${tg}/28`} target="_blank" rel="noopener">A video of these exercises</a> is on my Telegram channel (in Russian).</p>
+      </div>
+    </details>
     <p>It takes time — usually several weeks — to see whether treatment works. If things improve, we continue. If not, we discuss surgery.</p>
   </section>
 
@@ -88,9 +106,11 @@ const tg = 'https://t.me/gasanovDOC';
       <li>The transverse carpal ligament is divided along its whole length, and the nerve is freed.</li>
       <li>The wound is closed with a cosmetic suture and dressed.</li>
     </ol>
-    <p>The whole operation takes 15–20 minutes, and you can move your fingers straight away. If needed, it can be done as a day case, without a long hospital stay.</p>
-    <h3>Endoscopic option</h3>
-    <p>I also perform <strong>endoscopic release</strong> of the median nerve: the ligament is divided through a smaller incision under camera control. This is a paid option and costs more; whether it suits you is decided individually.</p>
+    <p>The whole operation takes 15–20 minutes, and you can move your fingers straight away. In a public hospital it is done with a hospital stay. In some cases you can go home right after the operation — we will discuss this at the appointment.</p>
+    <div class="callout">
+      <h3>Endoscopic surgery</h3>
+      <p>This is a less traumatic option: I divide the ligament through a smaller incision, using a camera. <strong>Endoscopic release</strong> of the median nerve is a paid operation and costs more. We will discuss at the appointment whether it suits you.</p>
+    </div>
     <a class="video-card" href={`${tg}/16`} target="_blank" rel="noopener">
       <span class="vthumb"><img src="/media/surgery.webp" alt="" loading="lazy"></span>
       <span class="vtext"><b>Video of carpal tunnel surgery</b><small>Watch on my Telegram channel (in Russian). Contains surgical footage.</small></span>
@@ -103,11 +123,15 @@ const tg = 'https://t.me/gasanovDOC';
       <li><strong>Right after surgery</strong> you can hold light objects — a mug, a spoon, a phone. For the first days keep the hand raised to reduce swelling.</li>
       <li><strong>For the first 2 weeks</strong> do not lean on the palm or lift anything heavy with that hand.</li>
       <li><strong>Stitches</strong> are removed on day 10–14. Until then keep the hand dry and treat the wound with an antiseptic.</li>
-      <li><strong>Exercises</strong> start once the wound has healed — about 10–14 days after surgery. They help restore mobility and sensation faster. The exercises are <a href={`${tg}/28`} target="_blank" rel="noopener">on my Telegram channel</a> (in Russian).</li>
+      <li><strong>Exercises</strong> start once the wound has healed — about 10–14 days after surgery. They help restore mobility and sensation faster. <a href="#uprazhneniya">Five hand exercises</a> are above in this article.</li>
       <li><strong>Sensation and strength</strong> return gradually: over several weeks to several months. The shorter the compression, the faster and fuller the recovery.</li>
     </ul>
     <h3>Returning to work</h3>
     <p>Most people return to work in 2–3 weeks. At first it is important not to press on the wrist. If you work at a computer a lot, wear a splint, put a soft pad under the wrist, choose a comfortable mouse — for example a vertical one — and watch your grip so the hand does not rest on the operated area.</p>
+    <figure class="photo-fig narrow">
+      <img src="/media/cases/carpal-3-months.webp" alt="Palm 3 months after carpal tunnel surgery: the scar is hard to see" width="900" height="995" loading="lazy">
+      <figcaption>The hand 3 months after surgery. The wound has healed and the scar is hard to see.</figcaption>
+    </figure>
   </section>
 
   <section id="srochno" slot="urgent">
