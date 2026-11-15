@@ -7,3 +7,5 @@ npm ci && npm run build
 cd server && npm ci --omit=dev
 systemctl restart gasanovdoc-api
 echo "Сайт обновлён: $(git log -1 --format='%h %s')"
+# Настройки nginx (кэш страниц). Ошибка здесь не отменяет обновление сайта.
+bash /var/www/gasanovdoc/deploy/apply-nginx.sh || echo "Внимание: настройки nginx не применены, см. сообщение выше"
