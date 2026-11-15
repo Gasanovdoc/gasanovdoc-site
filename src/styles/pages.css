@@ -344,21 +344,18 @@ html[data-theme="light"] .scheme .brainfill{fill:#e3cfbd}
 .reviews-link .rl-go{color:var(--gold);font-size:1.25em;line-height:1}
 
 /* Схемы нервов руки и ноги (NerveMap.astro) */
-.nerve-fig{--nv-median:#e6b93f;--nv-ulnar:#4fc0cf;--nv-radial:#d08fd8;--nv-lfcn:#e6b93f;--nv-peroneal:#4fc0cf;--nv-tibial:#d08fd8;--nv-lo:#3a3029;--nv-hi:#6a5a4c;--nv-edge:#a39582;--nv-hot:#ff6a45}
-html[data-theme="light"] .nerve-fig{--nv-median:#c08a00;--nv-ulnar:#16879a;--nv-radial:#a24fb0;--nv-lfcn:#c08a00;--nv-peroneal:#16879a;--nv-tibial:#a24fb0;--nv-lo:#e6c8ae;--nv-hi:#fbeee2;--nv-edge:#b08d72;--nv-hot:#e0431c}
-.nerve-fig .nv-defs{position:absolute;border:0;background:none}
-.nerve-fig .s-lo{stop-color:var(--nv-lo)}.nerve-fig .s-hi{stop-color:var(--nv-hi)}
-.nerve-fig .skin-edge *{fill:var(--nv-edge);stroke:var(--nv-edge);stroke-width:2.5;stroke-linejoin:round}
+.nerve-fig{--nv-median:#e6b93f;--nv-ulnar:#4fc0cf;--nv-radial:#d08fd8;--nv-lfcn:#e6b93f;--nv-peroneal:#4fc0cf;--nv-tibial:#d08fd8;--nv-lo:#3a3029;--nv-skin:#54473c;--nv-edge:#a39582;--nv-hot:#ff6a45}
+html[data-theme="light"] .nerve-fig{--nv-median:#c08a00;--nv-ulnar:#16879a;--nv-radial:#a24fb0;--nv-lfcn:#c08a00;--nv-peroneal:#16879a;--nv-tibial:#a24fb0;--nv-lo:#e6c8ae;--nv-skin:#f4e2d1;--nv-edge:#b08d72;--nv-hot:#e0431c}
+.nerve-fig .skin{fill:var(--nv-skin)}
+.nerve-fig .skin-edge *{fill:var(--nv-edge);stroke:var(--nv-edge);stroke-width:2;stroke-linejoin:round}
 .nerve-fig .crease{fill:none;stroke:var(--nv-edge);stroke-width:1.3;stroke-linecap:round;opacity:.75}
-.nerve-fig .crease.soft{opacity:.35}
-.nerve-fig .nail{fill:var(--nv-hi);stroke:var(--nv-edge);stroke-width:1;opacity:.8}
-.nerve-fig .nv{fill:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 2px rgba(0,0,0,.55))}
+.nerve-fig .nv{fill:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
 .nerve-fig .nv.back{stroke-dasharray:1 8}
 .nerve-fig .nv.thin{stroke-width:5}
 .nerve-fig .nv-median{stroke:var(--nv-median)}.nerve-fig .nv-ulnar{stroke:var(--nv-ulnar)}.nerve-fig .nv-radial{stroke:var(--nv-radial)}
 .nerve-fig .nv-lfcn{stroke:var(--nv-lfcn)}.nerve-fig .nv-peroneal{stroke:var(--nv-peroneal)}.nerve-fig .nv-tibial{stroke:var(--nv-tibial)}
 .nerve-fig .nv-trunk{stroke:var(--nv-edge)}
-.nerve-fig .nv.dim{stroke:var(--nv-edge);stroke-width:2.2;opacity:.6;filter:none}
+.nerve-fig .nv.dim{stroke:var(--nv-edge);stroke-width:2.2;opacity:.6}
 .nerve-fig .nv.thin.dim{stroke-width:3.2}
 .nerve-fig .nz{opacity:.72}
 .nerve-fig .nz-median{fill:var(--nv-median)}.nerve-fig .nz-ulnar{fill:var(--nv-ulnar)}.nerve-fig .nz-radial{fill:var(--nv-radial)}
@@ -366,9 +363,6 @@ html[data-theme="light"] .nerve-fig{--nv-median:#c08a00;--nv-ulnar:#16879a;--nv-
 .nerve-fig .nz.dim{opacity:0}
 .nerve-fig .site .glow{fill:var(--nv-hot);opacity:.35}
 .nerve-fig .site .core{fill:var(--nv-hot);stroke:#fff;stroke-width:1.5}
-.nerve-fig .site .pulse{fill:none;stroke:var(--nv-hot);stroke-width:1.5;opacity:0;transform-box:fill-box;transform-origin:center;animation:nv-pulse 2.4s ease-out infinite}
-@keyframes nv-pulse{0%{transform:scale(.5);opacity:.9}100%{transform:scale(1.5);opacity:0}}
-@media (prefers-reduced-motion:reduce){.nerve-fig .site .pulse{animation:none}}
 .nerve-fig .lab line{stroke:var(--quiet);stroke-width:1}
 .nerve-fig .lab.dim{opacity:.45}
 .nerve-fig .lab.hot .t{fill:var(--ivory);font-weight:600}
@@ -384,27 +378,24 @@ html[data-theme="light"] .nerve-fig{--nv-median:#c08a00;--nv-ulnar:#16879a;--nv-
 /* Схемы к запястному каналу (CarpalFig.astro) */
 .nerve-fig{--nv-bone:#c9bca6;--nv-lig:#efe3cc;--nv-tendon:#d9d2c4}
 html[data-theme="light"] .nerve-fig{--nv-bone:#e9dcc8;--nv-lig:#a58c6c;--nv-tendon:#fff}
-.nerve-fig.single>svg:not(.nv-defs){max-width:520px;margin:0 auto}
+.nerve-fig.single>svg{max-width:520px;margin:0 auto}
 .nerve-fig .h{font-size:20px}
 .nerve-fig .skin-line{stroke:var(--nv-edge);stroke-width:2.5}
 .nerve-fig .bone{fill:var(--nv-bone);stroke:var(--nv-edge);stroke-width:1.5}
 .nerve-fig .tunnel{fill:var(--nv-lo);opacity:.55}
 .nerve-fig .tendon{fill:var(--nv-tendon);stroke:var(--nv-edge);stroke-width:1}
-.nerve-fig .sheath{fill:var(--nv-ulnar);opacity:.22}
-.nerve-fig .sheath.sick{opacity:.5}
+.nerve-fig .sheath{fill:var(--nv-ulnar);opacity:.45}
 .nerve-fig .lig{fill:none;stroke:var(--nv-lig);stroke-linecap:round}
 .nerve-fig .nerve{fill:var(--nv-median);stroke:rgba(0,0,0,.45);stroke-width:1}
-.nerve-fig svg>.pulse,.nerve-fig g>.pulse{fill:none;stroke:var(--nv-hot);stroke-width:1.5;opacity:0;transform-box:fill-box;transform-origin:center;animation:nv-pulse 2.4s ease-out infinite}
 .nerve-fig svg>.glow,.nerve-fig g>.glow{fill:var(--nv-hot);opacity:.35}
 .nerve-fig g>.core{fill:var(--nv-hot);stroke:#fff;stroke-width:1.5}
-@media (prefers-reduced-motion:reduce){.nerve-fig .pulse{animation:none!important}}
 .nerve-fig .nv.thin2{stroke-width:3;opacity:.9}
 .nerve-fig .arrow,.nerve-fig .clock{fill:none;stroke:var(--gold);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
-.nerve-fig .electrode{fill:var(--nv-ulnar);stroke:rgba(0,0,0,.4);stroke-width:1}
-.nerve-fig .wire{fill:none;stroke:var(--quiet);stroke-width:1.6;stroke-dasharray:1 5;stroke-linecap:round}
-.nerve-fig .screen{fill:#0f0e0c;stroke:var(--nv-edge);stroke-width:1.5}
-.nerve-fig .trace{fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
-.nerve-fig .trace.ok{stroke:var(--nv-ulnar)}.nerve-fig .trace.slow{stroke:var(--nv-hot)}
+.nerve-fig .num circle{stroke:#fff;stroke-width:1.5}
+.nerve-fig .num.hot circle,.nerve-fig .bar.hot{fill:var(--nv-hot)}
+.nerve-fig .num.cool circle,.nerve-fig .bar.cool{fill:var(--nv-ulnar)}
+.nerve-fig .num text{fill:#fff;font-size:14px;font-weight:700;text-anchor:middle}
+.nerve-fig .t.strong{fill:var(--ivory);font-weight:600}
 /* Раскрывающийся блок в тексте статьи */
 .fold{margin-top:18px;border:1px solid var(--rule);border-radius:14px;background:var(--panel);scroll-margin-top:90px}
 .fold summary{list-style:none;cursor:pointer;padding:16px 46px 16px 20px;position:relative;font-weight:600;color:var(--ivory)}

@@ -86,25 +86,13 @@ const caption = limb === 'arm'
 const sites: Record<string, [number, number]> = { cubital: [153, 150], carpal: [203, 362], guyon: [184, 364], meralgia: [139, 52], peroneal: [158, 292], tarsal: [221, 458] };
 ---
 <figure class="scheme nerve-fig">
-  <svg class="nv-defs" width="0" height="0" aria-hidden="true" focusable="false">
-    <defs>
-      <linearGradient id="nv-gx" x1="0" y1="0" x2="1" y2="0"><stop offset="0" class="s-lo" /><stop offset=".45" class="s-hi" /><stop offset="1" class="s-lo" /></linearGradient>
-      <linearGradient id="nv-gy" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="s-lo" /><stop offset=".5" class="s-hi" /><stop offset="1" class="s-lo" /></linearGradient>
-      <radialGradient id="nv-gr" cx=".45" cy=".4" r=".7"><stop offset="0" class="s-hi" /><stop offset="1" class="s-lo" /></radialGradient>
-    </defs>
-  </svg>
   <div class="scheme-pair">
     {limb === 'arm' && (
       <svg viewBox="0 0 400 540" role="img" aria-label={aria} xmlns="http://www.w3.org/2000/svg">
         <g class="skin-edge"><path d={armPath} /><g transform={handT}><path d={palmPath} />{fingers.map((f) => <path d={f.d} transform={f.t} />)}</g></g>
-        <g transform={handT}><path d={palmPath} fill="url(#nv-gr)" />{fingers.map((f) => <path d={f.d} transform={f.t} fill="url(#nv-gy)" />)}</g>
-        <path d={armPath} fill="url(#nv-gx)" />
+        <g transform={handT}><path d={palmPath} class="skin" />{fingers.map((f) => <path d={f.d} transform={f.t} class="skin" />)}</g>
+        <path d={armPath} class="skin" />
         <path class="crease" d="M158 160 Q200 174 244 158" /><path class="crease" d="M177 350 Q201 357 227 350" />
-        <path class="crease soft" d="M200 24 C196 60 200 100 210 134" /><path class="crease soft" d="M214 190 C214 240 210 290 206 330" />
-        <g transform={handT}>
-          <path class="crease" d="M60 232 C74 214 96 204 118 206" /><path class="crease" d="M70 200 C96 186 128 184 152 196" /><path class="crease" d="M66 262 C74 240 82 226 96 214" />
-          {fingers.map((f, i) => (<g transform={f.t}>{(i === 4 ? [0.5] : [0.36, 0.68]).map((k) => <line class="crease" x1={f.len * k} y1={-f.wb * 0.32} x2={f.len * k} y2={f.wb * 0.32} />)}</g>))}
-        </g>
 
         <path class={`${cls('radial')} back`} d="M214 20 C222 50 234 80 240 104" />
         <path class={cls('radial')} d="M240 104 C244 130 238 148 234 164 C238 230 232 300 226 346 L240 372" />
@@ -116,7 +104,7 @@ const sites: Record<string, [number, number]> = { cubital: [153, 150], carpal: [
         </g>
 
         {Object.entries(sites).slice(0, 3).filter(([k]) => showSite(k)).map(([, [x, y]]) => (
-          <g class="site"><circle cx={x} cy={y} r="14" class="pulse" /><circle cx={x} cy={y} r="11" class="glow" /><circle cx={x} cy={y} r="5" class="core" /></g>
+          <g class="site"><circle cx={x} cy={y} r="11" class="glow" /><circle cx={x} cy={y} r="5" class="core" /></g>
         ))}
 
         <g class={lab('ulnar')}><line x1="160" y1="70" x2="136" y2="70" /><text x="130" y="75" text-anchor="end" class="t">{t.ulnar}</text></g>
@@ -135,7 +123,7 @@ const sites: Record<string, [number, number]> = { cubital: [153, 150], carpal: [
         {[{ tx: 12, flip: false }, { tx: 388, flip: true }].map((h) => (
           <g transform={`translate(${h.tx} -10) ${h.flip ? 'scale(-1 1)' : ''}`}>
             <g class="skin-edge"><path d={palmPath} />{fingers.map((f) => <path d={f.d} transform={f.t} />)}</g>
-            <path d={palmPath} fill="url(#nv-gr)" />{fingers.map((f) => <path d={f.d} transform={f.t} fill="url(#nv-gy)" />)}
+            <path d={palmPath} class="skin" />{fingers.map((f) => <path d={f.d} transform={f.t} class="skin" />)}
             <g clip-path="url(#nv-hand)">
               {!h.flip && <polygon class={zcls('median')} points="0,0 124,0 119,266 0,266" />}
               {!h.flip && <polygon class={zcls('ulnar')} points="124,0 190,0 190,266 119,266" />}
@@ -143,15 +131,7 @@ const sites: Record<string, [number, number]> = { cubital: [153, 150], carpal: [
               {h.flip && <polygon class={zcls('median')} points="38,0 125,0 123,92 108,90 106,76 78,76 76,96 40,98" />}
               {h.flip && <polygon class={zcls('ulnar', focus !== 'guyon')} points="124,0 190,0 190,266 119,266" />}
             </g>
-            {!h.flip && <g><path class="crease" d="M60 232 C74 214 96 204 118 206" /><path class="crease" d="M70 200 C96 186 128 184 152 196" /><path class="crease" d="M66 262 C74 240 82 226 96 214" /><path class="crease" d="M68 266 Q104 274 146 266" /></g>}
-            {fingers.map((f, i) => (
-              <g transform={f.t}>
-                {!h.flip && (i === 4 ? [0.5] : [0.36, 0.68]).map((k) => <line class="crease" x1={f.len * k} y1={-f.wb * 0.32} x2={f.len * k} y2={f.wb * 0.32} />)}
-                {h.flip && <rect class="nail" x={f.len - f.wt * 0.35} y={-f.wt * 0.3} width={f.wt * 0.66} height={f.wt * 0.6} rx={f.wt * 0.22} />}
-                {h.flip && (i === 4 ? [0.5] : [0.36, 0.68]).map((k) => <path class="crease" d={`M${f.len * k - 2} ${-f.wb * 0.22} Q${f.len * k + 2} 0 ${f.len * k - 2} ${f.wb * 0.22}`} />)}
-              </g>
-            ))}
-            {h.flip && <path class="crease soft" d="M66 176 Q70 168 76 174 M90 170 Q95 162 100 170 M114 173 Q120 165 125 174 M138 184 Q144 177 148 186" />}
+            {!h.flip && <path class="crease" d="M68 266 Q104 274 146 266" />}
           </g>
         ))}
         <text x="112" y="372" text-anchor="middle" class="t">{t.palm}</text>
@@ -163,12 +143,10 @@ const sites: Record<string, [number, number]> = { cubital: [153, 150], carpal: [
       <svg viewBox="0 0 400 480" role="img" aria-label={aria} xmlns="http://www.w3.org/2000/svg">
         <g transform="translate(34 14) scale(.84)">
           <g class="skin-edge"><path d={legPath} />{legToes.map(([x, y, r]) => <circle cx={x} cy={y} r={r} />)}</g>
-          {legToes.map(([x, y, r]) => <circle cx={x} cy={y} r={r} fill="url(#nv-gr)" />)}
-          <path d={legPath} fill="url(#nv-gx)" />
+          {legToes.map(([x, y, r]) => <circle cx={x} cy={y} r={r} class="skin" />)}
+          <path d={legPath} class="skin" />
           <ellipse class="crease" cx="195" cy="266" rx="18" ry="22" />
           <path class="crease" d="M126 46 Q200 82 262 98" />
-          <path class="crease soft" d="M178 110 C176 160 182 210 188 240" /><path class="crease soft" d="M198 296 C200 350 200 410 200 450" />
-          <path class="crease soft" d="M176 462 Q182 468 180 476 M222 456 Q215 462 218 470" />
           <path class="nv nv-trunk back" d="M214 20 C210 110 204 180 196 232" />
           <path class={`${cls('tibial')} back`} d="M196 232 C204 300 210 380 214 430" />
           <path class={cls('tibial')} d="M214 430 C217 442 221 450 222 460 C222 478 214 500 206 518" />
@@ -176,7 +154,7 @@ const sites: Record<string, [number, number]> = { cubital: [153, 150], carpal: [
           <path class={cls('peroneal')} d="M160 280 C154 288 156 298 160 306 C168 350 184 410 194 456 L204 510 M160 306 C160 360 168 420 180 462 L182 508" />
           <path class={cls('lfcn')} d="M130 20 C132 34 135 44 139 56 C146 112 158 182 168 238 M148 120 C142 150 144 190 150 226" />
           {Object.entries(sites).slice(3).filter(([k]) => showSite(k)).map(([, [x, y]]) => (
-            <g class="site"><circle cx={x} cy={y} r="17" class="pulse" /><circle cx={x} cy={y} r="13" class="glow" /><circle cx={x} cy={y} r="6" class="core" /></g>
+            <g class="site"><circle cx={x} cy={y} r="13" class="glow" /><circle cx={x} cy={y} r="6" class="core" /></g>
           ))}
         </g>
         <g class={lab('lfcn')}><line x1="160" y1="140" x2="118" y2="140" /><text x="112" y="138" text-anchor="end" class="t">{t.lfcn}</text><text x="112" y="156" text-anchor="end" class="t">{t.lfcn2}</text></g>
@@ -196,19 +174,18 @@ const sites: Record<string, [number, number]> = { cubital: [153, 150], carpal: [
         </defs>
         <g transform="translate(-36 6) scale(.84)">
           <g class="skin-edge"><path d={legPath} />{legToes.map(([x, y, r]) => <circle cx={x} cy={y} r={r} />)}</g>
-          {legToes.map(([x, y, r]) => <circle cx={x} cy={y} r={r} fill="url(#nv-gr)" />)}
-          <path d={legPath} fill="url(#nv-gx)" />
+          {legToes.map(([x, y, r]) => <circle cx={x} cy={y} r={r} class="skin" />)}
+          <path d={legPath} class="skin" />
           <g clip-path="url(#nv-leg)">
             <path class={zcls('lfcn')} d="M100 74 C122 62 150 84 158 132 C166 180 170 220 166 244 C150 250 140 240 132 220 C116 170 104 112 100 74 Z" />
             <path class={zcls('peroneal')} d="M140 298 C156 304 172 304 186 300 C188 350 192 410 198 446 C214 452 232 462 250 476 L250 545 L140 545 Z" />
           </g>
           <ellipse class="crease" cx="195" cy="266" rx="18" ry="22" />
-          <path class="crease soft" d="M178 110 C176 160 182 210 188 240" />
         </g>
         <g transform="translate(-14 -70)">
           <g class="skin-edge"><path d={solePath} />{toes.map(([x, y, r]) => <circle cx={x} cy={y} r={r} />)}</g>
-          {toes.map(([x, y, r]) => <circle cx={x} cy={y} r={r} fill="url(#nv-gr)" />)}
-          <path d={solePath} fill="url(#nv-gr)" />
+          {toes.map(([x, y, r]) => <circle cx={x} cy={y} r={r} class="skin" />)}
+          <path d={solePath} class="skin" />
           <rect class={zcls('tibial')} x="280" y="300" width="100" height="220" clip-path="url(#nv-sole)" />
         </g>
         <text x="128" y="470" text-anchor="middle" class="t">{t.front}</text>
