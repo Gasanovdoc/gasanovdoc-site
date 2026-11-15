@@ -6,5 +6,4 @@ git pull --ff-only
 npm ci && npm run build
 cd server && npm ci --omit=dev
 systemctl restart gasanovdoc-api
-bash /var/www/gasanovdoc/deploy/indexnow.sh || echo "IndexNow: не удалось, сайт при этом обновлён"
 echo "Сайт обновлён: $(git log -1 --format='%h %s')"
