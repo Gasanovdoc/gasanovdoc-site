@@ -11,22 +11,29 @@ const hot = focus ? nerveOf[focus] : undefined;
 const cls = (n: string) => `nv nv-${n}${hot && hot !== n ? ' dim' : ''}`;
 const zcls = (n: string, on = true) => `nz nz-${n}${hot && (hot !== n || !on) ? ' dim' : ''}`;
 const showSite = (s: string) => !focus || focus === s;
+const lab = (n?: string) => (hot && hot !== n ? 'lab dim' : 'lab');
 
-// Палец или другой «столбик»: прямоугольник со скруглёнными концами между двумя точками.
-const cap = (x1: number, y1: number, x2: number, y2: number, w: number) => {
+// Палец: сужающийся к кончику контур между основанием и кончиком.
+interface Finger { d: string; t: string; len: number; wb: number; wt: number }
+const finger = (x1: number, y1: number, x2: number, y2: number, wb: number, wt: number): Finger => {
   const len = Math.hypot(x2 - x1, y2 - y1);
   const ang = (Math.atan2(y2 - y1, x2 - x1) * 180) / Math.PI;
-  return { x: x1 - w / 2, y: y1 - w / 2, width: len + w, height: w, rx: w / 2, transform: `rotate(${ang.toFixed(1)} ${x1} ${y1})` };
+  const L = +len.toFixed(1);
+  return {
+    d: `M-14 ${-wb / 2} L${L} ${-wt / 2} A${wt / 2} ${wt / 2} 0 0 1 ${L} ${wt / 2} L-14 ${wb / 2} Z`,
+    t: `translate(${x1} ${y1}) rotate(${ang.toFixed(1)})`, len: L, wb, wt,
+  };
 };
+// Кисть (пальцы вверх, большой палец слева): указательный, средний, безымянный, мизинец, большой.
+const fingers = [finger(65, 170, 56, 58, 27, 21), finger(92, 164, 92, 37, 28, 22), finger(118, 167, 125, 53, 27, 21), finger(141, 178, 156, 94, 23, 18), finger(54, 238, 15, 152, 34, 26)];
+const palmPath = 'M50 176 C46 152 62 148 100 148 C140 148 157 154 159 180 C163 218 160 252 148 278 C146 300 146 322 147 346 L65 346 C66 322 66 302 63 288 C50 272 35 252 36 224 C36 202 44 188 50 176 Z';
+const handT = 'translate(201 352) rotate(180) scale(.66) translate(-106 -264)';
 
-// Кисть для схемы зон (пальцы вверх, большой палец слева).
-const handCaps = [cap(65, 165, 57, 58, 25), cap(91, 160, 91, 38, 26), cap(117, 162, 123, 54, 25), cap(140, 172, 153, 92, 22), cap(58, 238, 17, 152, 30)];
-// Кисть на схеме руки (пальцы вниз).
-const handT = 'translate(201 352) rotate(180) scale(.66) translate(-102 -262)';
-const armPath = 'M152 20 C150 60 150 100 152 132 C146 144 147 158 153 170 C150 215 160 290 172 352 L230 352 C240 290 254 220 249 176 C251 160 250 146 247 132 C252 100 252 60 248 20 Z';
-const legPath = 'M118 20 C108 90 130 190 156 262 C150 290 148 320 154 350 C160 400 172 430 178 456 C170 470 158 492 158 508 C158 522 176 527 198 527 C222 527 240 521 238 506 C236 490 225 470 219 456 C226 420 240 370 238 330 C238 300 234 280 232 262 C244 200 262 120 266 60 L266 20 Z';
-const solePath = 'M312 470 C308 500 322 512 336 512 C352 512 362 498 358 470 C354 440 366 410 364 380 C362 350 350 338 332 340 C312 342 300 360 302 390 C304 420 316 440 312 470 Z';
-const toes = [[352, 321, 12], [334, 316, 8], [320, 320, 7], [308, 328, 6.5], [299, 339, 6]];
+const armPath = 'M150 20 C144 60 146 100 151 130 C147 142 147 156 152 168 C146 200 152 250 168 320 C170 334 172 344 173 354 L229 354 C231 342 234 328 238 312 C250 260 256 215 250 176 C252 160 251 146 248 132 C256 100 256 55 250 20 Z';
+const legPath = 'M120 20 C108 60 112 120 126 180 C136 220 150 245 156 262 C152 276 150 290 152 304 C148 330 152 372 164 412 C170 432 174 446 176 458 C172 462 172 468 175 472 C168 486 160 500 160 510 C160 520 168 525 178 525 L226 525 C238 525 242 516 240 506 C236 492 226 480 222 470 C226 464 226 456 221 452 C224 430 234 400 238 366 C241 338 238 310 233 294 C235 282 234 272 232 262 C240 220 256 150 262 96 C264 70 264 40 264 20 Z';
+const legToes = [[170, 523, 8], [184, 526, 7], [197, 527, 7], [210, 527, 7.5], [226, 524, 10]];
+const solePath = 'M318 508 C304 500 304 478 308 458 C312 436 306 414 302 392 C298 366 308 344 330 340 C354 337 369 354 367 384 C365 406 348 422 347 444 C347 462 358 480 354 496 C350 512 330 514 318 508 Z';
+const toes = [[353, 321, 12.5], [334, 316, 8.5], [320, 320, 7.5], [308, 328, 7], [299, 339, 6.5]];
 
 const t = en
   ? {
@@ -35,7 +42,7 @@ const t = en
       palm: 'Palm', back: 'Back of the hand',
       lfcn: 'Cutaneous nerve', lfcn2: 'of the thigh', sciatic: 'Sciatic', peroneal: 'Peroneal', tibial: 'Tibial', nerve: 'nerve',
       inguinal: 'Inguinal', inguinal2: 'ligament', fibhead: 'Just below', fibhead2: 'the knee', tarsal: 'Tarsal tunnel,', tarsal2: 'inner ankle',
-      front: 'Front view', sole: 'Sole', behind: 'dashed line — the nerve runs at the back',
+      front: 'Front view', sole: 'Sole',
     }
   : {
       median: 'Срединный нерв', ulnar: 'Локтевой нерв', radial: 'Лучевой нерв',
@@ -43,7 +50,7 @@ const t = en
       palm: 'Ладонь', back: 'Тыл кисти',
       lfcn: 'Кожный нерв', lfcn2: 'бедра', sciatic: 'Седалищный', peroneal: 'Малоберцовый', tibial: 'Большеберцовый', nerve: 'нерв',
       inguinal: 'Паховая', inguinal2: 'связка', fibhead: 'Чуть ниже', fibhead2: 'колена', tarsal: 'Тарзальный канал,', tarsal2: 'лодыжка',
-      front: 'Вид спереди', sole: 'Подошва', behind: 'пунктир — нерв идёт по задней поверхности',
+      front: 'Вид спереди', sole: 'Подошва',
     };
 
 const legend: [string, string, string][] = limb === 'arm'
@@ -73,105 +80,135 @@ const legend: [string, string, string][] = limb === 'arm'
 const aria = limb === 'arm'
   ? (en ? 'Nerves of the arm: where they are compressed and which areas of the hand they supply' : 'Нервы руки: где они сдавливаются и за какие зоны кисти отвечают')
   : (en ? 'Nerves of the leg: where they are compressed and which areas they supply' : 'Нервы ноги: где они сдавливаются и за какие зоны отвечают');
-const caption = en
-  ? 'Simplified diagram. The borders of the areas differ a little from person to person.'
-  : 'Упрощённая схема. Границы зон у разных людей немного различаются.';
+const caption = limb === 'arm'
+  ? (en ? 'Dashed line — the nerve runs at the back. Simplified diagram: the borders of the areas differ a little from person to person.' : 'Пунктир — нерв идёт по задней поверхности. Схема упрощённая: границы зон у разных людей немного различаются.')
+  : (en ? 'Dashed line — the nerve runs at the back of the leg. Simplified diagram: the borders of the areas differ a little from person to person.' : 'Пунктир — нерв идёт по задней поверхности ноги. Схема упрощённая: границы зон у разных людей немного различаются.');
+const sites: Record<string, [number, number]> = { cubital: [153, 150], carpal: [203, 362], guyon: [184, 364], meralgia: [139, 52], peroneal: [158, 292], tarsal: [221, 458] };
 ---
 <figure class="scheme nerve-fig">
+  <svg class="nv-defs" width="0" height="0" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="nv-gx" x1="0" y1="0" x2="1" y2="0"><stop offset="0" class="s-lo" /><stop offset=".45" class="s-hi" /><stop offset="1" class="s-lo" /></linearGradient>
+      <linearGradient id="nv-gy" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="s-lo" /><stop offset=".5" class="s-hi" /><stop offset="1" class="s-lo" /></linearGradient>
+      <radialGradient id="nv-gr" cx=".45" cy=".4" r=".7"><stop offset="0" class="s-hi" /><stop offset="1" class="s-lo" /></radialGradient>
+    </defs>
+  </svg>
   <div class="scheme-pair">
     {limb === 'arm' && (
       <svg viewBox="0 0 400 540" role="img" aria-label={aria} xmlns="http://www.w3.org/2000/svg">
-        <g class="skin-edge"><path d={armPath} /><g transform={handT}><rect x="45" y="150" width="112" height="125" rx="24" />{handCaps.map((c) => <rect {...c} />)}</g></g>
-        <g class="skin"><path d={armPath} /><g transform={handT}><rect x="45" y="150" width="112" height="125" rx="24" />{handCaps.map((c) => <rect {...c} />)}</g></g>
-        <path class="crease" d="M158 158 Q200 172 244 156" /><path class="crease" d="M176 352 Q201 359 227 352" />
-
-        <path class={`${cls('radial')} back`} d="M214 20 C222 50 234 80 240 104" />
-        <path class={cls('radial')} d="M240 104 C244 130 238 148 234 164 C238 230 232 300 226 346 L238 374" />
-        <path class={cls('ulnar')} d="M164 20 C160 70 154 110 154 150 C158 200 172 290 184 352" />
-        <path class={cls('median')} d="M176 20 C176 70 188 110 198 152 C202 210 202 300 202 352" />
+        <g class="skin-edge"><path d={armPath} /><g transform={handT}><path d={palmPath} />{fingers.map((f) => <path d={f.d} transform={f.t} />)}</g></g>
+        <g transform={handT}><path d={palmPath} fill="url(#nv-gr)" />{fingers.map((f) => <path d={f.d} transform={f.t} fill="url(#nv-gy)" />)}</g>
+        <path d={armPath} fill="url(#nv-gx)" />
+        <path class="crease" d="M158 160 Q200 174 244 158" /><path class="crease" d="M177 350 Q201 357 227 350" />
+        <path class="crease soft" d="M200 24 C196 60 200 100 210 134" /><path class="crease soft" d="M214 190 C214 240 210 290 206 330" />
         <g transform={handT}>
-          <path class={`${cls('ulnar')} thin`} d="M129 262 L128 240 M128 240 L150 106 M128 240 L125 74" />
-          <path class={`${cls('median')} thin`} d="M101 262 L100 240 M100 240 L28 168 M100 240 L59 74 M100 240 L91 56 M100 240 L117 74" />
+          <path class="crease" d="M60 232 C74 214 96 204 118 206" /><path class="crease" d="M70 200 C96 186 128 184 152 196" /><path class="crease" d="M66 262 C74 240 82 226 96 214" />
+          {fingers.map((f, i) => (<g transform={f.t}>{(i === 4 ? [0.5] : [0.36, 0.68]).map((k) => <line class="crease" x1={f.len * k} y1={-f.wb * 0.32} x2={f.len * k} y2={f.wb * 0.32} />)}</g>))}
         </g>
 
-        {showSite('cubital') && <g class="site"><circle cx="154" cy="150" r="13" class="glow" /><circle cx="154" cy="150" r="5" class="core" /></g>}
-        {showSite('carpal') && <g class="site"><circle cx="202" cy="362" r="12" class="glow" /><circle cx="202" cy="362" r="5" class="core" /></g>}
-        {showSite('guyon') && <g class="site"><circle cx="183" cy="364" r="12" class="glow" /><circle cx="183" cy="364" r="5" class="core" /></g>}
+        <path class={`${cls('radial')} back`} d="M214 20 C222 50 234 80 240 104" />
+        <path class={cls('radial')} d="M240 104 C244 130 238 148 234 164 C238 230 232 300 226 346 L240 372" />
+        <path class={cls('ulnar')} d="M164 20 C160 70 153 110 153 150 C158 200 172 290 184 354" />
+        <path class={cls('median')} d="M176 20 C176 70 188 110 198 152 C202 210 203 300 203 354" />
+        <g transform={handT}>
+          <path class={`${cls('ulnar')} thin`} d="M132 264 L131 240 M131 236 C136 190 146 140 154 104 M131 236 C130 180 128 120 127 76" />
+          <path class={`${cls('median')} thin`} d="M103 264 L102 240 M102 236 C82 220 50 196 24 166 M102 236 C86 190 68 130 58 76 M102 236 C98 180 93 110 92 58 M102 236 C108 190 118 130 121 76" />
+        </g>
 
-        <g class={hot && hot !== 'ulnar' ? 'lab dim' : 'lab'}><line x1="160" y1="70" x2="136" y2="70" /><text x="130" y="75" text-anchor="end" class="t">{t.ulnar}</text></g>
-        <g class={hot && hot !== 'radial' ? 'lab dim' : 'lab'}><line x1="244" y1="120" x2="258" y2="120" /><text x="263" y="125" class="t">{t.radial}</text></g>
-        <g class={hot && hot !== 'median' ? 'lab dim' : 'lab'}><line x1="202" y1="250" x2="258" y2="250" /><text x="263" y="255" class="t">{t.median}</text></g>
-        {showSite('cubital') && <g class="lab hot"><line x1="141" y1="150" x2="136" y2="150" /><text x="130" y="148" text-anchor="end" class="t">{t.cubital}</text><text x="130" y="166" text-anchor="end" class="t">{t.cubital2}</text></g>}
-        {showSite('carpal') && <g class="lab hot"><line x1="214" y1="362" x2="258" y2="340" /><text x="263" y="338" class="t">{t.carpal}</text><text x="263" y="356" class="t">{t.carpal2}</text></g>}
-        {showSite('guyon') && <g class="lab hot"><line x1="171" y1="364" x2="136" y2="364" /><text x="130" y="362" text-anchor="end" class="t">{t.guyon}</text><text x="130" y="380" text-anchor="end" class="t">{t.guyon2}</text></g>}
+        {Object.entries(sites).slice(0, 3).filter(([k]) => showSite(k)).map(([, [x, y]]) => (
+          <g class="site"><circle cx={x} cy={y} r="14" class="pulse" /><circle cx={x} cy={y} r="11" class="glow" /><circle cx={x} cy={y} r="5" class="core" /></g>
+        ))}
+
+        <g class={lab('ulnar')}><line x1="160" y1="70" x2="136" y2="70" /><text x="130" y="75" text-anchor="end" class="t">{t.ulnar}</text></g>
+        <g class={lab('radial')}><line x1="244" y1="120" x2="258" y2="120" /><text x="263" y="125" class="t">{t.radial}</text></g>
+        <g class={lab('median')}><line x1="203" y1="250" x2="258" y2="250" /><text x="263" y="255" class="t">{t.median}</text></g>
+        {showSite('cubital') && <g class="lab hot"><line x1="140" y1="150" x2="136" y2="150" /><text x="130" y="148" text-anchor="end" class="t">{t.cubital}</text><text x="130" y="166" text-anchor="end" class="t">{t.cubital2}</text></g>}
+        {showSite('carpal') && <g class="lab hot"><line x1="214" y1="360" x2="258" y2="340" /><text x="263" y="338" class="t">{t.carpal}</text><text x="263" y="356" class="t">{t.carpal2}</text></g>}
+        {showSite('guyon') && <g class="lab hot"><line x1="172" y1="364" x2="136" y2="364" /><text x="130" y="362" text-anchor="end" class="t">{t.guyon}</text><text x="130" y="380" text-anchor="end" class="t">{t.guyon2}</text></g>}
       </svg>
     )}
     {limb === 'arm' && (
-      <svg viewBox="0 110 400 380" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 400 400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <clipPath id="nv-hand"><rect x="45" y="150" width="112" height="125" rx="24" /><rect x="62" y="250" width="80" height="90" />{handCaps.map((c) => <rect {...c} />)}</clipPath>
+          <clipPath id="nv-hand"><path d={palmPath} />{fingers.map((f) => <path d={f.d} transform={f.t} />)}</clipPath>
         </defs>
-        {[{ tx: 14, flip: false, label: t.palm }, { tx: 386, flip: true, label: t.back }].map((h) => (
-          <g transform={`translate(${h.tx} 96) ${h.flip ? 'scale(-1 1)' : ''}`}>
-            <g class="skin-edge"><rect x="45" y="150" width="112" height="125" rx="24" /><rect x="62" y="250" width="80" height="90" />{handCaps.map((c) => <rect {...c} />)}</g>
-            <g class="skin"><rect x="45" y="150" width="112" height="125" rx="24" /><rect x="62" y="250" width="80" height="90" />{handCaps.map((c) => <rect {...c} />)}</g>
+        {[{ tx: 12, flip: false }, { tx: 388, flip: true }].map((h) => (
+          <g transform={`translate(${h.tx} -10) ${h.flip ? 'scale(-1 1)' : ''}`}>
+            <g class="skin-edge"><path d={palmPath} />{fingers.map((f) => <path d={f.d} transform={f.t} />)}</g>
+            <path d={palmPath} fill="url(#nv-gr)" />{fingers.map((f) => <path d={f.d} transform={f.t} fill="url(#nv-gy)" />)}
             <g clip-path="url(#nv-hand)">
-              {!h.flip && <polygon class={zcls('median')} points="0,0 121,0 117,264 0,264" />}
-              {!h.flip && <polygon class={zcls('ulnar')} points="121,0 180,0 180,264 117,264" />}
-              {h.flip && <polygon class={zcls('radial')} points="0,0 121,0 117,264 0,264" />}
-              {h.flip && <polygon class={zcls('median')} points="38,0 122,0 121,88 106,88 106,72 77,72 77,92 38,92" />}
-              {h.flip && <polygon class={zcls('ulnar', focus !== 'guyon')} points="121,0 180,0 180,264 117,264" />}
+              {!h.flip && <polygon class={zcls('median')} points="0,0 124,0 119,266 0,266" />}
+              {!h.flip && <polygon class={zcls('ulnar')} points="124,0 190,0 190,266 119,266" />}
+              {h.flip && <polygon class={zcls('radial')} points="0,0 124,0 119,266 0,266" />}
+              {h.flip && <polygon class={zcls('median')} points="38,0 125,0 123,92 108,90 106,76 78,76 76,96 40,98" />}
+              {h.flip && <polygon class={zcls('ulnar', focus !== 'guyon')} points="124,0 190,0 190,266 119,266" />}
             </g>
-            {!h.flip && <path class="crease" d="M66 262 Q100 270 138 262" />}
+            {!h.flip && <g><path class="crease" d="M60 232 C74 214 96 204 118 206" /><path class="crease" d="M70 200 C96 186 128 184 152 196" /><path class="crease" d="M66 262 C74 240 82 226 96 214" /><path class="crease" d="M68 266 Q104 274 146 266" /></g>}
+            {fingers.map((f, i) => (
+              <g transform={f.t}>
+                {!h.flip && (i === 4 ? [0.5] : [0.36, 0.68]).map((k) => <line class="crease" x1={f.len * k} y1={-f.wb * 0.32} x2={f.len * k} y2={f.wb * 0.32} />)}
+                {h.flip && <rect class="nail" x={f.len - f.wt * 0.35} y={-f.wt * 0.3} width={f.wt * 0.66} height={f.wt * 0.6} rx={f.wt * 0.22} />}
+                {h.flip && (i === 4 ? [0.5] : [0.36, 0.68]).map((k) => <path class="crease" d={`M${f.len * k - 2} ${-f.wb * 0.22} Q${f.len * k + 2} 0 ${f.len * k - 2} ${f.wb * 0.22}`} />)}
+              </g>
+            ))}
+            {h.flip && <path class="crease soft" d="M66 176 Q70 168 76 174 M90 170 Q95 162 100 170 M114 173 Q120 165 125 174 M138 184 Q144 177 148 186" />}
           </g>
         ))}
-        <text x="110" y="470" text-anchor="middle" class="t">{t.palm}</text>
-        <text x="290" y="470" text-anchor="middle" class="t">{t.back}</text>
+        <text x="112" y="372" text-anchor="middle" class="t">{t.palm}</text>
+        <text x="288" y="372" text-anchor="middle" class="t">{t.back}</text>
       </svg>
     )}
 
     {limb === 'leg' && (
       <svg viewBox="0 0 400 480" role="img" aria-label={aria} xmlns="http://www.w3.org/2000/svg">
         <g transform="translate(34 14) scale(.84)">
-          <path class="skin-edge" d={legPath} /><path class="skin" d={legPath} />
-          <ellipse class="crease" cx="195" cy="264" rx="19" ry="23" />
-          <path class="crease" d="M124 44 Q200 80 264 96" />
+          <g class="skin-edge"><path d={legPath} />{legToes.map(([x, y, r]) => <circle cx={x} cy={y} r={r} />)}</g>
+          {legToes.map(([x, y, r]) => <circle cx={x} cy={y} r={r} fill="url(#nv-gr)" />)}
+          <path d={legPath} fill="url(#nv-gx)" />
+          <ellipse class="crease" cx="195" cy="266" rx="18" ry="22" />
+          <path class="crease" d="M126 46 Q200 82 262 98" />
+          <path class="crease soft" d="M178 110 C176 160 182 210 188 240" /><path class="crease soft" d="M198 296 C200 350 200 410 200 450" />
+          <path class="crease soft" d="M176 462 Q182 468 180 476 M222 456 Q215 462 218 470" />
           <path class="nv nv-trunk back" d="M214 20 C210 110 204 180 196 232" />
           <path class={`${cls('tibial')} back`} d="M196 232 C204 300 210 380 214 430" />
-          <path class={cls('tibial')} d="M214 430 C217 442 221 450 222 460 C222 478 214 500 204 516" />
+          <path class={cls('tibial')} d="M214 430 C217 442 221 450 222 460 C222 478 214 500 206 518" />
           <path class={`${cls('peroneal')} back`} d="M196 232 C186 250 172 266 160 280" />
-          <path class={cls('peroneal')} d="M160 280 C154 288 156 298 160 306 C168 350 182 410 192 456 L200 506 M160 306 C160 360 168 420 180 462 L178 502" />
+          <path class={cls('peroneal')} d="M160 280 C154 288 156 298 160 306 C168 350 184 410 194 456 L204 510 M160 306 C160 360 168 420 180 462 L182 508" />
           <path class={cls('lfcn')} d="M130 20 C132 34 135 44 139 56 C146 112 158 182 168 238 M148 120 C142 150 144 190 150 226" />
-          {showSite('meralgia') && <g class="site"><circle cx="139" cy="52" r="15" class="glow" /><circle cx="139" cy="52" r="6" class="core" /></g>}
-          {showSite('peroneal') && <g class="site"><circle cx="158" cy="292" r="15" class="glow" /><circle cx="158" cy="292" r="6" class="core" /></g>}
-          {showSite('tarsal') && <g class="site"><circle cx="221" cy="456" r="15" class="glow" /><circle cx="221" cy="456" r="6" class="core" /></g>}
+          {Object.entries(sites).slice(3).filter(([k]) => showSite(k)).map(([, [x, y]]) => (
+            <g class="site"><circle cx={x} cy={y} r="17" class="pulse" /><circle cx={x} cy={y} r="13" class="glow" /><circle cx={x} cy={y} r="6" class="core" /></g>
+          ))}
         </g>
-        <g class={hot && hot !== 'lfcn' ? 'lab dim' : 'lab'}><line x1="160" y1="140" x2="118" y2="140" /><text x="112" y="138" text-anchor="end" class="t">{t.lfcn}</text><text x="112" y="156" text-anchor="end" class="t">{t.lfcn2}</text></g>
+        <g class={lab('lfcn')}><line x1="160" y1="140" x2="118" y2="140" /><text x="112" y="138" text-anchor="end" class="t">{t.lfcn}</text><text x="112" y="156" text-anchor="end" class="t">{t.lfcn2}</text></g>
         <g class={hot ? 'lab dim' : 'lab'}><line x1="210" y1="110" x2="266" y2="110" /><text x="272" y="108" class="t">{t.sciatic}</text><text x="272" y="126" class="t">{t.nerve}</text></g>
-        <g class={hot && hot !== 'peroneal' ? 'lab dim' : 'lab'}><line x1="176" y1="325" x2="118" y2="325" /><text x="112" y="323" text-anchor="end" class="t">{t.peroneal}</text><text x="112" y="341" text-anchor="end" class="t">{t.nerve}</text></g>
-        <g class={hot && hot !== 'tibial' ? 'lab dim' : 'lab'}><line x1="209" y1="300" x2="256" y2="300" /><text x="262" y="298" class="t">{t.tibial}</text><text x="262" y="316" class="t">{t.nerve}</text></g>
-        {showSite('meralgia') && <g class="lab hot"><line x1="138" y1="58" x2="118" y2="58" /><text x="112" y="56" text-anchor="end" class="t">{t.inguinal}</text><text x="112" y="74" text-anchor="end" class="t">{t.inguinal2}</text></g>}
-        {showSite('peroneal') && <g class="lab hot"><line x1="154" y1="259" x2="118" y2="259" /><text x="112" y="257" text-anchor="end" class="t">{t.fibhead}</text><text x="112" y="275" text-anchor="end" class="t">{t.fibhead2}</text></g>}
-        {showSite('tarsal') && <g class="lab hot"><line x1="233" y1="397" x2="256" y2="397" /><text x="262" y="395" class="t">{t.tarsal}</text><text x="262" y="413" class="t">{t.tarsal2}</text></g>}
+        <g class={lab('peroneal')}><line x1="176" y1="325" x2="118" y2="325" /><text x="112" y="323" text-anchor="end" class="t">{t.peroneal}</text><text x="112" y="341" text-anchor="end" class="t">{t.nerve}</text></g>
+        <g class={lab('tibial')}><line x1="209" y1="300" x2="256" y2="300" /><text x="262" y="298" class="t">{t.tibial}</text><text x="262" y="316" class="t">{t.nerve}</text></g>
+        {showSite('meralgia') && <g class="lab hot"><line x1="137" y1="58" x2="118" y2="58" /><text x="112" y="56" text-anchor="end" class="t">{t.inguinal}</text><text x="112" y="74" text-anchor="end" class="t">{t.inguinal2}</text></g>}
+        {showSite('peroneal') && <g class="lab hot"><line x1="153" y1="259" x2="118" y2="259" /><text x="112" y="257" text-anchor="end" class="t">{t.fibhead}</text><text x="112" y="275" text-anchor="end" class="t">{t.fibhead2}</text></g>}
+        {showSite('tarsal') && <g class="lab hot"><line x1="234" y1="399" x2="256" y2="399" /><text x="262" y="397" class="t">{t.tarsal}</text><text x="262" y="415" class="t">{t.tarsal2}</text></g>}
       </svg>
     )}
     {limb === 'leg' && (
       <svg viewBox="0 0 400 480" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <clipPath id="nv-leg"><path d={legPath} /></clipPath>
+          <clipPath id="nv-leg"><path d={legPath} />{legToes.map(([x, y, r]) => <circle cx={x} cy={y} r={r} />)}</clipPath>
           <clipPath id="nv-sole"><path d={solePath} />{toes.map(([x, y, r]) => <circle cx={x} cy={y} r={r} />)}</clipPath>
         </defs>
         <g transform="translate(-36 6) scale(.84)">
-          <path class="skin-edge" d={legPath} /><path class="skin" d={legPath} />
+          <g class="skin-edge"><path d={legPath} />{legToes.map(([x, y, r]) => <circle cx={x} cy={y} r={r} />)}</g>
+          {legToes.map(([x, y, r]) => <circle cx={x} cy={y} r={r} fill="url(#nv-gr)" />)}
+          <path d={legPath} fill="url(#nv-gx)" />
           <g clip-path="url(#nv-leg)">
-            <path class={zcls('lfcn')} d="M100 70 C120 60 150 80 158 130 C166 180 170 220 166 244 C150 250 140 240 132 220 C116 170 104 110 100 70 Z" />
-            <path class={zcls('peroneal')} d="M140 296 L184 300 C188 360 194 420 199 452 L250 452 L250 540 L140 540 Z" />
+            <path class={zcls('lfcn')} d="M100 74 C122 62 150 84 158 132 C166 180 170 220 166 244 C150 250 140 240 132 220 C116 170 104 112 100 74 Z" />
+            <path class={zcls('peroneal')} d="M140 298 C156 304 172 304 186 300 C188 350 192 410 198 446 C214 452 232 462 250 476 L250 545 L140 545 Z" />
           </g>
-          <ellipse class="crease" cx="195" cy="264" rx="19" ry="23" />
+          <ellipse class="crease" cx="195" cy="266" rx="18" ry="22" />
+          <path class="crease soft" d="M178 110 C176 160 182 210 188 240" />
         </g>
         <g transform="translate(-14 -70)">
           <g class="skin-edge"><path d={solePath} />{toes.map(([x, y, r]) => <circle cx={x} cy={y} r={r} />)}</g>
-          <g class="skin"><path d={solePath} />{toes.map(([x, y, r]) => <circle cx={x} cy={y} r={r} />)}</g>
+          {toes.map(([x, y, r]) => <circle cx={x} cy={y} r={r} fill="url(#nv-gr)" />)}
+          <path d={solePath} fill="url(#nv-gr)" />
           <rect class={zcls('tibial')} x="280" y="300" width="100" height="220" clip-path="url(#nv-sole)" />
         </g>
         <text x="128" y="470" text-anchor="middle" class="t">{t.front}</text>
@@ -184,5 +221,5 @@ const caption = en
       <li class={hot && hot !== k ? 'dim' : ''}><i class={`sw sw-${k}`}></i><span><strong>{name}</strong> {text}</span></li>
     ))}
   </ul>
-  <figcaption>{limb === 'arm' ? (en ? 'Dashed line — the nerve runs at the back. ' : 'Пунктир — нерв идёт по задней поверхности. ') : (en ? 'Dashed line — the nerve runs at the back of the leg. ' : 'Пунктир — нерв идёт по задней поверхности ноги. ')}{caption}</figcaption>
+  <figcaption>{caption}</figcaption>
 </figure>

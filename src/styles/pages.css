@@ -344,34 +344,40 @@ html[data-theme="light"] .scheme .brainfill{fill:#e3cfbd}
 .reviews-link .rl-go{color:var(--gold);font-size:1.25em;line-height:1}
 
 /* Схемы нервов руки и ноги (NerveMap.astro) */
-.nerve-fig{--nv-median:#e0b23a;--nv-ulnar:#58b8c4;--nv-radial:#c98bd0;--nv-lfcn:#e0b23a;--nv-peroneal:#58b8c4;--nv-tibial:#c98bd0;--nv-skin:#3b332c;--nv-edge:#8a7f70;--nv-hot:#f0603f}
-html[data-theme="light"] .nerve-fig{--nv-median:#b8860b;--nv-ulnar:#1f8795;--nv-radial:#9a4fa6;--nv-lfcn:#b8860b;--nv-peroneal:#1f8795;--nv-tibial:#9a4fa6;--nv-skin:#f1dfcf;--nv-edge:#b79f8a;--nv-hot:#d8421f}
-.nerve-fig .skin{fill:var(--nv-skin)}
-.nerve-fig .skin-edge,.nerve-fig .skin-edge *{fill:var(--nv-edge);stroke:var(--nv-edge);stroke-width:3;stroke-linejoin:round}
-.nerve-fig .crease{fill:none;stroke:var(--nv-edge);stroke-width:1.5;opacity:.7}
-.nerve-fig .nv{fill:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
-.nerve-fig .nv.back{stroke-dasharray:2 8}
+.nerve-fig{--nv-median:#e6b93f;--nv-ulnar:#4fc0cf;--nv-radial:#d08fd8;--nv-lfcn:#e6b93f;--nv-peroneal:#4fc0cf;--nv-tibial:#d08fd8;--nv-lo:#3a3029;--nv-hi:#6a5a4c;--nv-edge:#a39582;--nv-hot:#ff6a45}
+html[data-theme="light"] .nerve-fig{--nv-median:#c08a00;--nv-ulnar:#16879a;--nv-radial:#a24fb0;--nv-lfcn:#c08a00;--nv-peroneal:#16879a;--nv-tibial:#a24fb0;--nv-lo:#e6c8ae;--nv-hi:#fbeee2;--nv-edge:#b08d72;--nv-hot:#e0431c}
+.nerve-fig .nv-defs{position:absolute;border:0;background:none}
+.nerve-fig .s-lo{stop-color:var(--nv-lo)}.nerve-fig .s-hi{stop-color:var(--nv-hi)}
+.nerve-fig .skin-edge *{fill:var(--nv-edge);stroke:var(--nv-edge);stroke-width:2.5;stroke-linejoin:round}
+.nerve-fig .crease{fill:none;stroke:var(--nv-edge);stroke-width:1.3;stroke-linecap:round;opacity:.75}
+.nerve-fig .crease.soft{opacity:.35}
+.nerve-fig .nail{fill:var(--nv-hi);stroke:var(--nv-edge);stroke-width:1;opacity:.8}
+.nerve-fig .nv{fill:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 2px rgba(0,0,0,.55))}
+.nerve-fig .nv.back{stroke-dasharray:1 8}
+.nerve-fig .nv.thin{stroke-width:5}
 .nerve-fig .nv-median{stroke:var(--nv-median)}.nerve-fig .nv-ulnar{stroke:var(--nv-ulnar)}.nerve-fig .nv-radial{stroke:var(--nv-radial)}
 .nerve-fig .nv-lfcn{stroke:var(--nv-lfcn)}.nerve-fig .nv-peroneal{stroke:var(--nv-peroneal)}.nerve-fig .nv-tibial{stroke:var(--nv-tibial)}
 .nerve-fig .nv-trunk{stroke:var(--nv-edge)}
-.nerve-fig .nv.dim{stroke:var(--nv-edge);stroke-width:2.5;opacity:.55}
-.nerve-fig .nz{opacity:.8}
+.nerve-fig .nv.dim{stroke:var(--nv-edge);stroke-width:2.2;opacity:.6;filter:none}
+.nerve-fig .nv.thin.dim{stroke-width:3.2}
+.nerve-fig .nz{opacity:.72}
 .nerve-fig .nz-median{fill:var(--nv-median)}.nerve-fig .nz-ulnar{fill:var(--nv-ulnar)}.nerve-fig .nz-radial{fill:var(--nv-radial)}
 .nerve-fig .nz-lfcn{fill:var(--nv-lfcn)}.nerve-fig .nz-peroneal{fill:var(--nv-peroneal)}.nerve-fig .nz-tibial{fill:var(--nv-tibial)}
 .nerve-fig .nz.dim{opacity:0}
 .nerve-fig .site .glow{fill:var(--nv-hot);opacity:.35}
-.nerve-fig .site .core{fill:var(--nv-hot);stroke:var(--panel);stroke-width:1.5}
+.nerve-fig .site .core{fill:var(--nv-hot);stroke:#fff;stroke-width:1.5}
+.nerve-fig .site .pulse{fill:none;stroke:var(--nv-hot);stroke-width:1.5;opacity:0;transform-box:fill-box;transform-origin:center;animation:nv-pulse 2.4s ease-out infinite}
+@keyframes nv-pulse{0%{transform:scale(.5);opacity:.9}100%{transform:scale(1.5);opacity:0}}
+@media (prefers-reduced-motion:reduce){.nerve-fig .site .pulse{animation:none}}
 .nerve-fig .lab line{stroke:var(--quiet);stroke-width:1}
 .nerve-fig .lab.dim{opacity:.45}
 .nerve-fig .lab.hot .t{fill:var(--ivory);font-weight:600}
 .nerve-fig .lab.hot line{stroke:var(--nv-hot)}
+.nerve-fig .scheme-pair svg{height:100%}
 .nerve-legend{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:8px;font-size:.95rem;color:var(--soft)}
 .nerve-legend li{display:grid;grid-template-columns:14px 1fr;gap:10px;align-items:start}
 .nerve-legend li.dim{opacity:.55}
 .nerve-legend strong{color:var(--ivory)}
 .nerve-legend .sw{width:14px;height:14px;border-radius:4px;margin-top:.3em}
 .sw-median,.sw-lfcn{background:var(--nv-median)}.sw-ulnar,.sw-peroneal{background:var(--nv-ulnar)}.sw-radial,.sw-tibial{background:var(--nv-radial)}
-.nerve-fig .nv.thin{stroke-width:5.5}
-.nerve-fig .nv.thin.dim{stroke-width:3.5}
-.nerve-fig .scheme-pair svg{height:100%}
 @media (max-width:640px){.nerve-fig .scheme-pair svg{height:auto}}
