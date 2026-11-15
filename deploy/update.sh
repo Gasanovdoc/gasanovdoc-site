@@ -8,3 +8,5 @@ cd server && npm ci --omit=dev
 systemctl restart gasanovdoc-api
 bash /var/www/gasanovdoc/deploy/indexnow.sh || echo "IndexNow: не удалось, сайт при этом обновлён"
 echo "Сайт обновлён: $(git log -1 --format='%h %s')"
+# Настройки nginx (кэш страниц). Ошибка здесь не отменяет обновление сайта.
+bash /var/www/gasanovdoc/deploy/apply-nginx.sh || echo "Внимание: настройки nginx не применены, см. сообщение выше"
