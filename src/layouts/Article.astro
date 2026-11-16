@@ -17,8 +17,8 @@ interface Props {
 const p = Astro.props;
 const en = p.lang === 'en';
 const L = en
-  ? { home: 'Home', homeHref: '/en/', dir: 'Conditions & treatment', dirHref: '/en/treatment/', author: 'Author:', role: 'neurosurgeon', aboutHref: '/en/#about', upd: 'Updated:', updDefault: 'November 2026', brief: 'In brief', faq: 'Frequently asked questions', urgent: 'Urgent care', toc: 'Contents', req: 'Send your scans', reqHref: '/en/#request', tgBtn: 'Message on Telegram', name: 'Timur Gasanov', inLang: 'en' }
-  : { home: 'Главная', homeHref: '/', dir: 'Болезни и лечение', dirHref: '/lechenie/', author: 'Автор:', role: 'нейрохирург', aboutHref: '/#about', upd: 'Обновлено:', updDefault: 'октябрь 2026', brief: 'Коротко', faq: 'Частые вопросы', urgent: 'Срочная помощь', toc: 'Содержание', req: 'Оставить заявку', reqHref: '/#request', tgBtn: 'Написать в Telegram', name: 'Тимур Гасанов', inLang: 'ru' };
+  ? { home: 'Home', homeHref: '/en/', dir: 'Conditions & treatment', dirHref: '/en/treatment/', author: 'Author:', role: 'neurosurgeon', aboutHref: '/en/#about', upd: 'Updated:', updDefault: 'November 2026', brief: 'In brief', faq: 'Frequently asked questions', toc: 'Contents', req: 'Send your scans', reqHref: '/en/#request', tgBtn: 'Message on Telegram', name: 'Timur Gasanov', inLang: 'en' }
+  : { home: 'Главная', homeHref: '/', dir: 'Болезни и лечение', dirHref: '/lechenie/', author: 'Автор:', role: 'нейрохирург', aboutHref: '/#about', upd: 'Обновлено:', updDefault: 'октябрь 2026', brief: 'Коротко', faq: 'Частые вопросы', toc: 'Содержание', req: 'Оставить заявку', reqHref: '/#request', tgBtn: 'Написать в Telegram', name: 'Тимур Гасанов', inLang: 'ru' };
 const url = new URL(p.path, 'https://gasanovdoc.ru').href;
 const jsonld = JSON.stringify({
   '@context': 'https://schema.org',
@@ -66,19 +66,19 @@ const jsonld = JSON.stringify({
           {p.faq.map(([q, a]) => (<details><summary>{q}</summary><p>{a}</p></details>))}
         </div>
       </section>
-      <slot name="urgent" />
       <aside class="cta-box">
         <h2>{p.cta.title}</h2>
         <p class="lede">{p.cta.text}</p>
         <div class="btns">
           <a class="btn btn-fill" href={L.reqHref}>{L.req}</a>
           <a class="btn btn-line" href="https://t.me/gasanov_doc" target="_blank" rel="noopener">{L.tgBtn}</a>
+          {!en && <a class="btn btn-line" href="https://clc.li/jmoBz" target="_blank" rel="noopener">Написать в MAX</a>}
         </div>
       </aside>
     </article>
     <nav class="toc" aria-label={L.toc}>
       <p>{L.toc}</p>
-      <ol>{[...p.toc, ['voprosy', L.faq], ...(Astro.slots.has('urgent') ? [['srochno', L.urgent]] : [])].map(([id, name]) => <li><a href={`#${id}`}>{name}</a></li>)}</ol>
+      <ol>{[...p.toc, ['voprosy', L.faq]].map(([id, name]) => <li><a href={`#${id}`}>{name}</a></li>)}</ol>
     </nav>
   </div>
 </main>
