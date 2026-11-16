@@ -65,7 +65,7 @@ export const directions: Direction[] = [
     conditions: [
       { name: 'Туннельные синдромы', text: 'Почему немеют руки и ноги: какие бывают туннельные синдромы и как их отличить.', href: '/lechenie/nervy/tunnelnye-sindromy/' },
       { name: 'Синдром запястного канала', text: 'Онемение пальцев по ночам, слабость кисти. Самый частый туннельный синдром.', href: '/lechenie/nervy/sindrom-zapyastnogo-kanala/' },
-      { name: 'Кубитальный синдром', text: 'Сдавление локтевого нерва на локте: немеют мизинец и безымянный палец.', href: '/lechenie/nervy/kubitalnyj-sindrom/' },
+      { name: 'Синдром кубитального канала', text: 'Сдавление локтевого нерва на локте: немеют мизинец и безымянный палец.', href: '/lechenie/nervy/kubitalnyj-sindrom/' },
       { name: 'Синдром канала Гийона', text: 'Сдавление локтевого нерва на запястье: онемение мизинца, слабость мелких мышц кисти.', href: '/lechenie/nervy/sindrom-kanala-giona/' },
       { name: 'Синдром фибулярного канала', text: 'Сдавление малоберцового нерва у колена: онемение голени, «шлёпающая» стопа.', href: '/lechenie/nervy/sindrom-fibulyarnogo-kanala/' },
       { name: 'Синдром тарзального канала', text: 'Сдавление большеберцового нерва у лодыжки: жжение и онемение стопы.', href: '/lechenie/nervy/sindrom-tarzalnogo-kanala/' },
