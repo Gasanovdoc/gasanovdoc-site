@@ -1,0 +1,202 @@
+---
+// Схема нервов руки или ноги: ход нервов, места сдавления и зоны чувствительности.
+// focus — какой синдром подсветить; без focus показываются все нервы.
+type Focus = 'carpal' | 'cubital' | 'guyon' | 'meralgia' | 'peroneal' | 'tarsal' | undefined;
+interface Props { limb: 'arm' | 'leg'; focus?: Focus; lang?: 'ru' | 'en' }
+const { limb, focus, lang = 'ru' } = Astro.props;
+const en = lang === 'en';
+
+const nerveOf: Record<string, string> = { carpal: 'median', cubital: 'ulnar', guyon: 'ulnar', meralgia: 'lfcn', peroneal: 'peroneal', tarsal: 'tibial' };
+const hot = focus ? nerveOf[focus] : undefined;
+const cls = (n: string) => `nv nv-${n}${hot && hot !== n ? ' dim' : ''}`;
+const zcls = (n: string, on = true) => `nz nz-${n}${hot && (hot !== n || !on) ? ' dim' : ''}`;
+const showSite = (s: string) => !focus || focus === s;
+const lab = (n?: string) => (hot && hot !== n ? 'lab dim' : 'lab');
+
+// Палец: сужающийся к кончику контур между основанием и кончиком.
+interface Finger { d: string; t: string; len: number; wb: number; wt: number }
+const finger = (x1: number, y1: number, x2: number, y2: number, wb: number, wt: number): Finger => {
+  const len = Math.hypot(x2 - x1, y2 - y1);
+  const ang = (Math.atan2(y2 - y1, x2 - x1) * 180) / Math.PI;
+  const L = +len.toFixed(1);
+  return {
+    d: `M-14 ${-wb / 2} L${L} ${-wt / 2} A${wt / 2} ${wt / 2} 0 0 1 ${L} ${wt / 2} L-14 ${wb / 2} Z`,
+    t: `translate(${x1} ${y1}) rotate(${ang.toFixed(1)})`, len: L, wb, wt,
+  };
+};
+// Кисть (пальцы вверх, большой палец слева): указательный, средний, безымянный, мизинец, большой.
+const fingers = [finger(65, 170, 56, 58, 27, 21), finger(92, 164, 92, 37, 28, 22), finger(118, 167, 125, 53, 27, 21), finger(141, 178, 156, 94, 23, 18), finger(54, 238, 15, 152, 34, 26)];
+const palmPath = 'M50 176 C46 152 62 148 100 148 C140 148 157 154 159 180 C163 218 160 252 148 278 C146 300 146 322 147 346 L65 346 C66 322 66 302 63 288 C50 272 35 252 36 224 C36 202 44 188 50 176 Z';
+const handT = 'translate(201 352) rotate(180) scale(.66) translate(-106 -264)';
+
+const armPath = 'M150 20 C144 60 146 100 151 130 C147 142 147 156 152 168 C146 200 152 250 168 320 C170 334 172 344 173 354 L229 354 C231 342 234 328 238 312 C250 260 256 215 250 176 C252 160 251 146 248 132 C256 100 256 55 250 20 Z';
+const legPath = 'M120 20 C108 60 112 120 126 180 C136 220 150 245 156 262 C152 276 150 290 152 304 C148 330 152 372 164 412 C170 432 174 446 176 458 C172 462 172 468 175 472 C168 486 160 500 160 510 C160 520 168 525 178 525 L226 525 C238 525 242 516 240 506 C236 492 226 480 222 470 C226 464 226 456 221 452 C224 430 234 400 238 366 C241 338 238 310 233 294 C235 282 234 272 232 262 C240 220 256 150 262 96 C264 70 264 40 264 20 Z';
+const legToes = [[170, 523, 8], [184, 526, 7], [197, 527, 7], [210, 527, 7.5], [226, 524, 10]];
+const solePath = 'M318 508 C304 500 304 478 308 458 C312 436 306 414 302 392 C298 366 308 344 330 340 C354 337 369 354 367 384 C365 406 348 422 347 444 C347 462 358 480 354 496 C350 512 330 514 318 508 Z';
+const toes = [[353, 321, 12.5], [334, 316, 8.5], [320, 320, 7.5], [308, 328, 7], [299, 339, 6.5]];
+
+const t = en
+  ? {
+      median: 'Median nerve', ulnar: 'Ulnar nerve', radial: 'Radial nerve',
+      cubital: 'Cubital tunnel', cubital2: 'at the elbow', carpal: 'Carpal tunnel', carpal2: 'at the wrist', guyon: 'Guyon canal', guyon2: 'at the wrist',
+      palm: 'Palm', back: 'Back of the hand',
+      lfcn: 'Cutaneous nerve', lfcn2: 'of the thigh', sciatic: 'Sciatic', peroneal: 'Peroneal', tibial: 'Tibial', nerve: 'nerve',
+      inguinal: 'Inguinal', inguinal2: 'ligament', fibhead: 'Just below', fibhead2: 'the knee', tarsal: 'Tarsal tunnel,', tarsal2: 'inner ankle',
+      front: 'Front view', sole: 'Sole',
+    }
+  : {
+      median: 'Срединный нерв', ulnar: 'Локтевой нерв', radial: 'Лучевой нерв',
+      cubital: 'Кубитальный', cubital2: 'канал, локоть', carpal: 'Запястный', carpal2: 'канал', guyon: 'Канал', guyon2: 'Гийона',
+      palm: 'Ладонь', back: 'Тыл кисти',
+      lfcn: 'Кожный нерв', lfcn2: 'бедра', sciatic: 'Седалищный', peroneal: 'Малоберцовый', tibial: 'Большеберцовый', nerve: 'нерв',
+      inguinal: 'Паховая', inguinal2: 'связка', fibhead: 'Чуть ниже', fibhead2: 'колена', tarsal: 'Тарзальный канал,', tarsal2: 'лодыжка',
+      front: 'Вид спереди', sole: 'Подошва',
+    };
+
+const legend: [string, string, string][] = limb === 'arm'
+  ? en
+    ? [
+        ['median', 'Median nerve', 'is compressed in the carpal tunnel at the wrist. Feeling in the thumb, index, middle and half of the ring finger on the palm side.'],
+        ['ulnar', 'Ulnar nerve', 'is compressed at the elbow (cubital tunnel) or at the wrist (Guyon canal). Feeling in the little finger and half of the ring finger.'],
+        ['radial', 'Radial nerve', 'is affected less often, usually in the upper arm. Feeling on the back of the hand on the thumb side.'],
+      ]
+    : [
+        ['median', 'Срединный нерв', 'сдавливается в запястном канале. Чувствительность большого, указательного, среднего и половины безымянного пальца со стороны ладони.'],
+        ['ulnar', 'Локтевой нерв', 'сдавливается у локтя (кубитальный канал) или на запястье (канал Гийона). Чувствительность мизинца и половины безымянного пальца.'],
+        ['radial', 'Лучевой нерв', 'страдает реже, обычно на уровне плеча. Чувствительность тыла кисти со стороны большого пальца.'],
+      ]
+  : en
+    ? [
+        ['lfcn', 'Lateral femoral cutaneous nerve', 'is compressed under the inguinal ligament (meralgia). Feeling on the outer side of the thigh.'],
+        ['peroneal', 'Peroneal nerve', 'is compressed at the fibular head, just below the knee. Feeling on the outer side of the shin and the top of the foot; lifts the foot.'],
+        ['tibial', 'Tibial nerve', 'is compressed behind the inner ankle (tarsal tunnel). Feeling in the sole.'],
+      ]
+    : [
+        ['lfcn', 'Наружный кожный нерв бедра', 'сдавливается под паховой связкой (мералгия). Чувствительность наружной поверхности бедра.'],
+        ['peroneal', 'Малоберцовый нерв', 'сдавливается у головки малоберцовой кости, чуть ниже колена. Чувствительность наружной поверхности голени и тыла стопы; поднимает стопу.'],
+        ['tibial', 'Большеберцовый нерв', 'сдавливается за внутренней лодыжкой (тарзальный канал). Чувствительность подошвы.'],
+      ];
+
+const aria = limb === 'arm'
+  ? (en ? 'Nerves of the arm: where they are compressed and which areas of the hand they supply' : 'Нервы руки: где они сдавливаются и за какие зоны кисти отвечают')
+  : (en ? 'Nerves of the leg: where they are compressed and which areas they supply' : 'Нервы ноги: где они сдавливаются и за какие зоны отвечают');
+const caption = limb === 'arm'
+  ? (en ? 'Dashed line — the nerve runs at the back. Simplified diagram: the borders of the areas differ a little from person to person.' : 'Пунктир — нерв идёт по задней поверхности. Схема упрощённая: границы зон у разных людей немного различаются.')
+  : (en ? 'Dashed line — the nerve runs at the back of the leg. Simplified diagram: the borders of the areas differ a little from person to person.' : 'Пунктир — нерв идёт по задней поверхности ноги. Схема упрощённая: границы зон у разных людей немного различаются.');
+const sites: Record<string, [number, number]> = { cubital: [153, 150], carpal: [203, 362], guyon: [184, 364], meralgia: [139, 52], peroneal: [158, 292], tarsal: [221, 458] };
+---
+<figure class="scheme nerve-fig">
+  <div class="scheme-pair">
+    {limb === 'arm' && (
+      <svg viewBox="0 0 400 540" role="img" aria-label={aria} xmlns="http://www.w3.org/2000/svg">
+        <g class="skin-edge"><path d={armPath} /><g transform={handT}><path d={palmPath} />{fingers.map((f) => <path d={f.d} transform={f.t} />)}</g></g>
+        <g transform={handT}><path d={palmPath} class="skin" />{fingers.map((f) => <path d={f.d} transform={f.t} class="skin" />)}</g>
+        <path d={armPath} class="skin" />
+        <path class="crease" d="M158 160 Q200 174 244 158" /><path class="crease" d="M177 350 Q201 357 227 350" />
+
+        <path class={`${cls('radial')} back`} d="M214 20 C222 50 234 80 240 104" />
+        <path class={cls('radial')} d="M240 104 C244 130 238 148 234 164 C238 230 232 300 226 346 L240 372" />
+        <path class={cls('ulnar')} d="M164 20 C160 70 153 110 153 150 C158 200 172 290 184 354" />
+        <path class={cls('median')} d="M176 20 C176 70 188 110 198 152 C202 210 203 300 203 354" />
+        <g transform={handT}>
+          <path class={`${cls('ulnar')} thin`} d="M132 264 L131 240 M131 236 C136 190 146 140 154 104 M131 236 C130 180 128 120 127 76" />
+          <path class={`${cls('median')} thin`} d="M103 264 L102 240 M102 236 C82 220 50 196 24 166 M102 236 C86 190 68 130 58 76 M102 236 C98 180 93 110 92 58 M102 236 C108 190 118 130 121 76" />
+        </g>
+
+        {Object.entries(sites).slice(0, 3).filter(([k]) => showSite(k)).map(([, [x, y]]) => (
+          <g class="site"><circle cx={x} cy={y} r="11" class="glow" /><circle cx={x} cy={y} r="5" class="core" /></g>
+        ))}
+
+        <g class={lab('ulnar')}><line x1="160" y1="70" x2="136" y2="70" /><text x="130" y="75" text-anchor="end" class="t">{t.ulnar}</text></g>
+        <g class={lab('radial')}><line x1="244" y1="120" x2="258" y2="120" /><text x="263" y="125" class="t">{t.radial}</text></g>
+        <g class={lab('median')}><line x1="203" y1="250" x2="258" y2="250" /><text x="263" y="255" class="t">{t.median}</text></g>
+        {showSite('cubital') && <g class="lab hot"><line x1="140" y1="150" x2="136" y2="150" /><text x="130" y="148" text-anchor="end" class="t">{t.cubital}</text><text x="130" y="166" text-anchor="end" class="t">{t.cubital2}</text></g>}
+        {showSite('carpal') && <g class="lab hot"><line x1="214" y1="360" x2="258" y2="340" /><text x="263" y="338" class="t">{t.carpal}</text><text x="263" y="356" class="t">{t.carpal2}</text></g>}
+        {showSite('guyon') && <g class="lab hot"><line x1="172" y1="364" x2="136" y2="364" /><text x="130" y="362" text-anchor="end" class="t">{t.guyon}</text><text x="130" y="380" text-anchor="end" class="t">{t.guyon2}</text></g>}
+      </svg>
+    )}
+    {limb === 'arm' && (
+      <svg viewBox="0 0 400 400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <clipPath id="nv-hand"><path d={palmPath} />{fingers.map((f) => <path d={f.d} transform={f.t} />)}</clipPath>
+        </defs>
+        {[{ tx: 12, flip: false }, { tx: 388, flip: true }].map((h) => (
+          <g transform={`translate(${h.tx} -10) ${h.flip ? 'scale(-1 1)' : ''}`}>
+            <g class="skin-edge"><path d={palmPath} />{fingers.map((f) => <path d={f.d} transform={f.t} />)}</g>
+            <path d={palmPath} class="skin" />{fingers.map((f) => <path d={f.d} transform={f.t} class="skin" />)}
+            <g clip-path="url(#nv-hand)">
+              {!h.flip && <polygon class={zcls('median')} points="0,0 124,0 119,266 0,266" />}
+              {!h.flip && <polygon class={zcls('ulnar')} points="124,0 190,0 190,266 119,266" />}
+              {h.flip && <polygon class={zcls('radial')} points="0,0 124,0 119,266 0,266" />}
+              {h.flip && <polygon class={zcls('median')} points="38,0 125,0 123,92 108,90 106,76 78,76 76,96 40,98" />}
+              {h.flip && <polygon class={zcls('ulnar', focus !== 'guyon')} points="124,0 190,0 190,266 119,266" />}
+            </g>
+            {!h.flip && <path class="crease" d="M68 266 Q104 274 146 266" />}
+          </g>
+        ))}
+        <text x="112" y="372" text-anchor="middle" class="t">{t.palm}</text>
+        <text x="288" y="372" text-anchor="middle" class="t">{t.back}</text>
+      </svg>
+    )}
+
+    {limb === 'leg' && (
+      <svg viewBox="0 0 400 480" role="img" aria-label={aria} xmlns="http://www.w3.org/2000/svg">
+        <g transform="translate(34 14) scale(.84)">
+          <g class="skin-edge"><path d={legPath} />{legToes.map(([x, y, r]) => <circle cx={x} cy={y} r={r} />)}</g>
+          {legToes.map(([x, y, r]) => <circle cx={x} cy={y} r={r} class="skin" />)}
+          <path d={legPath} class="skin" />
+          <ellipse class="crease" cx="195" cy="266" rx="18" ry="22" />
+          <path class="crease" d="M126 46 Q200 82 262 98" />
+          <path class="nv nv-trunk back" d="M214 20 C210 110 204 180 196 232" />
+          <path class={`${cls('tibial')} back`} d="M196 232 C204 300 210 380 214 430" />
+          <path class={cls('tibial')} d="M214 430 C217 442 221 450 222 460 C222 478 214 500 206 518" />
+          <path class={`${cls('peroneal')} back`} d="M196 232 C186 250 172 266 160 280" />
+          <path class={cls('peroneal')} d="M160 280 C154 288 156 298 160 306 C168 350 184 410 194 456 L204 510 M160 306 C160 360 168 420 180 462 L182 508" />
+          <path class={cls('lfcn')} d="M130 20 C132 34 135 44 139 56 C146 112 158 182 168 238 M148 120 C142 150 144 190 150 226" />
+          {Object.entries(sites).slice(3).filter(([k]) => showSite(k)).map(([, [x, y]]) => (
+            <g class="site"><circle cx={x} cy={y} r="13" class="glow" /><circle cx={x} cy={y} r="6" class="core" /></g>
+          ))}
+        </g>
+        <g class={lab('lfcn')}><line x1="160" y1="140" x2="118" y2="140" /><text x="112" y="138" text-anchor="end" class="t">{t.lfcn}</text><text x="112" y="156" text-anchor="end" class="t">{t.lfcn2}</text></g>
+        <g class={hot ? 'lab dim' : 'lab'}><line x1="210" y1="110" x2="266" y2="110" /><text x="272" y="108" class="t">{t.sciatic}</text><text x="272" y="126" class="t">{t.nerve}</text></g>
+        <g class={lab('peroneal')}><line x1="176" y1="325" x2="118" y2="325" /><text x="112" y="323" text-anchor="end" class="t">{t.peroneal}</text><text x="112" y="341" text-anchor="end" class="t">{t.nerve}</text></g>
+        <g class={lab('tibial')}><line x1="209" y1="300" x2="256" y2="300" /><text x="262" y="298" class="t">{t.tibial}</text><text x="262" y="316" class="t">{t.nerve}</text></g>
+        {showSite('meralgia') && <g class="lab hot"><line x1="137" y1="58" x2="118" y2="58" /><text x="112" y="56" text-anchor="end" class="t">{t.inguinal}</text><text x="112" y="74" text-anchor="end" class="t">{t.inguinal2}</text></g>}
+        {showSite('peroneal') && <g class="lab hot"><line x1="153" y1="259" x2="118" y2="259" /><text x="112" y="257" text-anchor="end" class="t">{t.fibhead}</text><text x="112" y="275" text-anchor="end" class="t">{t.fibhead2}</text></g>}
+        {showSite('tarsal') && <g class="lab hot"><line x1="234" y1="399" x2="256" y2="399" /><text x="262" y="397" class="t">{t.tarsal}</text><text x="262" y="415" class="t">{t.tarsal2}</text></g>}
+      </svg>
+    )}
+    {limb === 'leg' && (
+      <svg viewBox="0 0 400 480" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <clipPath id="nv-leg"><path d={legPath} />{legToes.map(([x, y, r]) => <circle cx={x} cy={y} r={r} />)}</clipPath>
+          <clipPath id="nv-sole"><path d={solePath} />{toes.map(([x, y, r]) => <circle cx={x} cy={y} r={r} />)}</clipPath>
+        </defs>
+        <g transform="translate(-36 6) scale(.84)">
+          <g class="skin-edge"><path d={legPath} />{legToes.map(([x, y, r]) => <circle cx={x} cy={y} r={r} />)}</g>
+          {legToes.map(([x, y, r]) => <circle cx={x} cy={y} r={r} class="skin" />)}
+          <path d={legPath} class="skin" />
+          <g clip-path="url(#nv-leg)">
+            <path class={zcls('lfcn')} d="M100 74 C122 62 150 84 158 132 C166 180 170 220 166 244 C150 250 140 240 132 220 C116 170 104 112 100 74 Z" />
+            <path class={zcls('peroneal')} d="M140 298 C156 304 172 304 186 300 C188 350 192 410 198 446 C214 452 232 462 250 476 L250 545 L140 545 Z" />
+          </g>
+          <ellipse class="crease" cx="195" cy="266" rx="18" ry="22" />
+        </g>
+        <g transform="translate(-14 -70)">
+          <g class="skin-edge"><path d={solePath} />{toes.map(([x, y, r]) => <circle cx={x} cy={y} r={r} />)}</g>
+          {toes.map(([x, y, r]) => <circle cx={x} cy={y} r={r} class="skin" />)}
+          <path d={solePath} class="skin" />
+          <rect class={zcls('tibial')} x="280" y="300" width="100" height="220" clip-path="url(#nv-sole)" />
+        </g>
+        <text x="128" y="470" text-anchor="middle" class="t">{t.front}</text>
+        <text x="318" y="470" text-anchor="middle" class="t">{t.sole}</text>
+      </svg>
+    )}
+  </div>
+  <ul class="nerve-legend">
+    {legend.map(([k, name, text]) => (
+      <li class={hot && hot !== k ? 'dim' : ''}><i class={`sw sw-${k}`}></i><span><strong>{name}</strong> {text}</span></li>
+    ))}
+  </ul>
+  <figcaption>{caption}</figcaption>
+</figure>
