@@ -1,0 +1,14 @@
+<figure class="footdrop" aria-labelledby="footdrop-caption">
+  <div class="labels" aria-hidden="true"><span>Обычный шаг</span><span>Свисающая стопа</span></div>
+  <img src="/media/foot-drop-realistic.png" alt="Сравнение положения стопы во время шага: слева стопа поднята, справа при слабости мышц свисает вниз" loading="lazy" width="900" height="600" />
+  <figcaption id="footdrop-caption">При свисающей стопе трудно поднять носок во время шага, и он может задевать пол.</figcaption>
+</figure>
+
+<style>
+  .footdrop{max-width:620px;margin:24px auto 0;padding:14px 18px 12px;border:1px solid var(--rule);border-radius:14px;background:var(--panel);overflow:hidden}
+  .labels{display:grid;grid-template-columns:1fr 1fr;gap:12px;text-align:center;color:var(--soft);font:600 .92rem/1.4 var(--sans)}
+  .labels span+span{color:var(--gold)}
+  .footdrop img{display:block;width:100%;height:auto;max-height:320px;object-fit:contain;margin:4px auto 0}
+  .footdrop figcaption{margin-top:8px;color:var(--quiet);font-size:.9rem;line-height:1.5}
+  @media(max-width:520px){.footdrop{padding:10px}.footdrop img{max-height:240px}.labels{font-size:.82rem}}
+</style>
