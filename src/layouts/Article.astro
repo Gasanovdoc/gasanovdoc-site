@@ -61,7 +61,6 @@ const jsonld = JSON.stringify({
           {p.faq.map(([q, a]) => (<details><summary>{q}</summary><p>{a}</p></details>))}
         </div>
       </section>
-      <slot name="urgent" />
       <aside class="cta-box">
         <h2>{p.cta.title}</h2>
         <p class="lede">{p.cta.text}</p>
@@ -74,7 +73,7 @@ const jsonld = JSON.stringify({
     </article>
     <nav class="toc" aria-label="Содержание">
       <p>Содержание</p>
-      <ol>{[...p.toc, ['voprosy', 'Частые вопросы'], ...(Astro.slots.has('urgent') ? [['srochno', 'Срочная помощь']] : [])].map(([id, name]) => <li><a href={`#${id}`}>{name}</a></li>)}</ol>
+      <ol>{[...p.toc, ['voprosy', 'Частые вопросы']].map(([id, name]) => <li><a href={`#${id}`}>{name}</a></li>)}</ol>
     </nav>
   </div>
 </main>
