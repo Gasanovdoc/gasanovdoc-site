@@ -1,0 +1,64 @@
+---
+import Base from './Base.astro';
+import { orthoses } from '../data/orthoses';
+interface Props { slug: typeof orthoses[number]['slug']; lede: string; }
+const { slug, lede } = Astro.props;
+const guide = orthoses.find(g => g.slug === slug)!;
+const compactPrint = Astro.slots.has('print-guide');
+const otherGuides = orthoses.filter(item => item.slug !== slug);
+---
+<Base title={guide.title + ' — как выбрать и сколько носить'} description={guide.summary}>
+<main id="top" class:list={{ "compact-orthosis-print": compactPrint }}>
+  <header class="page-head"><div class="wrap">
+    <ol class="crumbs"><li><a href="/">Главная</a></li><li><a href="/pacientam/">Пациентам</a></li><li><a href="/pacientam/#ortezy">Подбор ортеза</a></li></ol>
+    <h1>{guide.title}</h1><p class="lede">{lede}</p>
+  </div></header>
+  <div class="wrap doc"><article class="body">
+    <figure class="photo-fig"><img src={'/media/orthoses/'+guide.image+'.webp'} alt={guide.caption}/><figcaption>{guide.caption}</figcaption></figure>
+    <slot />
+    <section id="gde-kupit">
+      <h2>Где примерить и купить</h2>
+      <p>Ортез или корсет лучше примерить в проверенном ортопедическом салоне. На маркетплейсах, включая Wildberries и Ozon, перед заказом проверьте продавца, производителя, маркировку и возможность примерки. От посадки зависит, будет ли изделие удобно и обеспечит ли нужную фиксацию.</p>
+      <div class="callout discount-callout">
+        <p><strong>Скидка по фамилии «Гасанов»</strong></p>
+        <p>При покупке назовите мою фамилию в салоне <a href="https://www.ortix.ru/">«Ортикс»</a> или <a href="https://orteka.ru/">«ОРТЕКА»</a> и уточните условия скидки.</p>
+      </div>
+    </section>
+    <div class="toolbar"><button type="button" class="btn btn-line" onclick="window.print()">Распечатать памятку</button></div>
+  </article>
+    {otherGuides.length > 0 && (
+      <aside class="toc">
+        <strong>Другие памятки</strong>
+        <ul>{otherGuides.map(item => <li><a href={'/pacientam/ortezy/' + item.slug + '/'}>{item.title}</a></li>)}</ul>
+      </aside>
+    )}
+  </div>
+  {compactPrint && <div class="orthosis-print-sheet"><slot name="print-guide" /></div>}
+</main></Base>
+<style>
+  .photo-fig { margin: 0 0 2rem; }
+  .photo-fig img { width: 100%; height: auto; }
+  .toc a { line-height: 1.45; }
+  .discount-callout { border-inline-start: 3px solid var(--gold); }
+  .discount-callout p:first-child { margin-bottom: .35rem; }
+  .discount-callout p:last-child { margin-bottom: 0; }
+  .orthosis-print-sheet { display: none; }
+
+  @media print {
+    .compact-orthosis-print > .page-head,
+    .compact-orthosis-print > .doc,
+    :global(body:has(.compact-orthosis-print) #cookie) {
+      display: none !important;
+    }
+    .orthosis-print-sheet {
+      display: block;
+      max-width: 168mm;
+      margin: 0 auto;
+      color: #111;
+      font: 11pt/1.35 system-ui, sans-serif;
+    }
+    .orthosis-print-sheet :global(h1) { margin: 6pt 0 14pt; font-size: 21pt; }
+    .orthosis-print-sheet :global(p) { margin: 0 0 6pt; }
+    .orthosis-print-sheet :global(li) { margin-bottom: 6pt; break-inside: avoid; }
+  }
+</style>
