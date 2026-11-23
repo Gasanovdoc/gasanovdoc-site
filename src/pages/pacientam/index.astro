@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import { orthoses } from '../../data/orthoses';
 const title = 'Пациентам: подготовка к операции и восстановление';
 const description = 'Памятки нейрохирурга для пациентов: анализы для госпитализации, уход за раной после операции, восстановление и упражнения.';
 ---
@@ -33,6 +34,18 @@ const description = 'Памятки нейрохирурга для пациен
         <span class="go">Смотреть в Telegram</span>
       </a>
     </div>
+    <section id="ortezy" style="padding:3rem 0 0;scroll-margin-top:5rem">
+      <h2>Подбор ортеза</h2>
+      <div class="cards" style="margin-top:1.5rem">
+        {orthoses.map(guide => (
+          <a class="card" href={'/pacientam/ortezy/' + guide.slug + '/'}>
+            <h3>{guide.title}</h3>
+            <p>{guide.summary}</p>
+            <span class="go">Читать памятку</span>
+          </a>
+        ))}
+      </div>
+    </section>
   </div>
 </main>
 </Base>
