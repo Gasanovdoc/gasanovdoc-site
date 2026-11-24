@@ -25,6 +25,15 @@ const otherGuides = orthoses.filter(item => item.slug !== slug);
       </div>
     </section>
     {slug !== "korset" && <div class="toolbar"><button type="button" class="btn btn-line" onclick="window.print()">Распечатать памятку</button></div>}
+    <aside class="cta-box">
+      <h2>Есть вопросы о подборе ортеза?</h2>
+      <p>Опишите, что вас беспокоит и для какой задачи вам рекомендовали ортез.</p>
+      <div class="btns">
+        <a class="btn btn-fill" href="/#request">Оставить заявку</a>
+        <a class="btn btn-line" href="https://t.me/gasanov_doc" target="_blank" rel="noopener">Написать в Telegram</a>
+        <a class="btn btn-line" href="https://clc.li/jmoBz" target="_blank" rel="noopener">Написать в MAX</a>
+      </div>
+    </aside>
   </article>
     {otherGuides.length > 0 && (
       <aside class="toc">
