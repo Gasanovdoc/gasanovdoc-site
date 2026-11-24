@@ -24,7 +24,7 @@ const otherGuides = orthoses.filter(item => item.slug !== slug);
         <p>При покупке назовите мою фамилию в салоне <a href="https://www.ortix.ru/">«Ортикс»</a> или <a href="https://orteka.ru/">«ОРТЕКА»</a> и уточните условия скидки.</p>
       </div>
     </section>
-    <div class="toolbar"><button type="button" class="btn btn-line" onclick="window.print()">Распечатать памятку</button></div>
+    {slug !== "korset" && <div class="toolbar"><button type="button" class="btn btn-line" onclick="window.print()">Распечатать памятку</button></div>}
   </article>
     {otherGuides.length > 0 && (
       <aside class="toc">
