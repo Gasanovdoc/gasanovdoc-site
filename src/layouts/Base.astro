@@ -125,6 +125,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 <footer>
   <div class="wrap">
     <p class="warn">{t.warn}</p>
+    <p><a class="btn btn-line" href="https://clc.li/jmoBz" target="_blank" rel="noopener">{en ? 'Message on MAX' : 'Написать в MAX'}</a></p>
     <p><a href="/politika-konfidencialnosti/">{t.privacy}</a>&nbsp;&nbsp;&nbsp;<a href="/soglasie-na-obrabotku-dannyh/">{t.consent}</a>&nbsp;&nbsp;&nbsp;<a href="/soglasie-cookie/">{en ? 'Cookies' : 'Файлы cookie'}</a>{site.yandexMetrikaId && <Fragment>&nbsp;&nbsp;&nbsp;<a href="#" onclick="window.cookieSettings&&window.cookieSettings();return false">{en ? 'Cookie settings' : 'Настройки cookie'}</a></Fragment>}</p>
   </div>
 </footer>
